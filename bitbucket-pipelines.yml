@@ -12,7 +12,7 @@ pipelines:
         script:
           #- cd food-allergy-prediction
           - pip install -r requirements.txt
-          - ./app.py
+          - ./run.py
 
     - step:
         name: Build
