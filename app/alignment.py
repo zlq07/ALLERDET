@@ -74,7 +74,8 @@ def create_alignments_files(aligPos=True, aligNeg=True, aligTest=False
                 +" > "+alignsPath+posAlFile
             if verbose:
                 print("Ejecutando comando: "+cmd)
-            os.system(cmd)
+            # os.system(cmd)
+            os.popen(cmd).read()
             if verbose:
                 print("Se ha creado correctamente el archivo del alineamiento"
                 " del conjunto de datos entrenamiento positivo")
@@ -85,7 +86,8 @@ def create_alignments_files(aligPos=True, aligNeg=True, aligTest=False
                 +" > "+alignsPath+negAlFile
             if verbose:
                 print("Ejecutando comando: "+cmd)
-            os.system(cmd)
+            # os.system(cmd)
+            os.popen(cmd).read()
             if verbose:
                 print("Se ha creado correctamente el archivo del alineamiento"
                 " del conjunto de datos entrenamiento negativos")
@@ -96,7 +98,8 @@ def create_alignments_files(aligPos=True, aligNeg=True, aligTest=False
                     +" > "+alignsPath+testAlFile
                 if verbose:
                     print("Ejecutando comando: "+cmd)
-                os.system(cmd)
+                # os.system(cmd)
+                os.popen(cmd).read()
             else:
                 #si la consulta se realiza mediante un texto con formato FASTA
                 #y no mediante un fichero .fasta se crea dicho fichero (w+)
@@ -107,7 +110,8 @@ def create_alignments_files(aligPos=True, aligNeg=True, aligTest=False
                     +" > "+alignsPath+testAlFile
                 if verbose:
                     print("Ejecutando comando: "+cmd)
-                os.system(cmd)
+                # os.system(cmd)
+                os.popen(cmd).read()
                 if verbose:
                     print("Se ha creado correctamente el archivo .fasta del"
                     " conjunto de datos de prueba")
