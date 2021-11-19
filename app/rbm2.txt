@@ -1,0 +1,121 @@
+/Library/Frameworks/Python.framework/Versions/3.5/bin/python3.5 /Users/frangarcia/Dropbox/Ingenieria-Informatica/TFG/practica/practica-TFG/APP/app/tests.py
+Nuestro conjunto total de entrenamiento de allergens: 2000
+Nuestro conjunto total de entrenamiento de non-allergens: 2000
+Conjunto total de validación de allergens: 500
+Nuestro conjunto total de test de allergens: 769
+Nuestro conjunto total de test de non-allergens: 800
+Conjunto total de test consultado en web: 2
+
+AllerTop total allergens: 2426
+Allerdictor A total allergens: 3906
+Allerdictor B total allergens: 1989
+Allerdictor C total allergens: 1661
+AllerHunter total allergens: 1124
+AllerHunter total test allergens: 140
+AllerHunter total indep allergens: 138
+AllerPred 1 total test allergens: 113
+Uniprot total test allergens: 90
+Uniprot2 total test allergens: 29787
+------
+AllerTop total non-allergens: 2426
+AllerHunter total non-allergens: 3976
+Allerdictor A total non-allergens: 39069
+Uniprot A total non-allergens: 37769
+
+duplicaciones validation en train: 195
+duplicaciones test en train: 0
+duplicaciones allertop: 1138
+duplicaciones allerdictor A: 1228
+duplicaciones allerdictor B: 644
+duplicaciones allerdictor C: 585
+duplicaciones allerhunter train: 485
+duplicaciones allerhunter test: 68
+duplicaciones allerhunter indep: 63
+duplicaciones allerpred 1: 57
+duplicaciones allerpred 2: 56
+duplicaciones allerpred 3: 53
+duplicaciones allerpred 4: 51
+duplicaciones allerpred 5: 62
+duplicaciones unitprot: 40
+duplicaciones unitprot2: 1461
+
+duplicaciones allergen set entre train y test: 0
+duplicaciones non allergen set entre train y test: 0
+
+Tuning model: rbm
+checking with m=1 and feats: [True, False, True]
+best params: {'rbm__n_components': 50, 'rbm__learning_rate': 0.1, 'rbm__n_iter': 20}
+
+Test con rbm, m=1 y feats=Smith-Waterman Score,Identity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 82.59%, Sensitivity = 69.51%, Specification = 95.67%
+With CV (k-fold=10) + Stratification
+Valorando Método rbm
+Extrayendo features..
+Training performance...
+
+Valoración del Método rbm
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Identity
+Accuracy = 96.66%, Sensitivity = 96.78%, Specification = 96.53%, ppv = 96.75%, F1 = 96.75%, MCC = 93.35%
+__________
+
+Mejor tuning para CV: {'sp': 96.53291046148188, 'mcc': 93.34794614863951, 'spt': 95.67039106145252, 'f1s': 96.74987303599714, 'ppv': 96.75138398848492, 'set': 69.51066499372648, 'ac': 96.66064678531289, 'params': {'rbm__n_components': 50, 'rbm__learning_rate': 0.1, 'rbm__n_iter': 20}, 'act': 82.5905280275895, 'm': 1, 'se': 96.77956989247312, 'feats': [True, False, True]}
+Accuracy = 96.66%, Sensitivity = 96.78%, Specification = 96.53%
+Mejor tuning con conjunto de prueba propio: {'sp': 96.53291046148188, 'mcc': 93.34794614863951, 'spt': 95.67039106145252, 'f1s': 96.74987303599714, 'ppv': 96.75138398848492, 'set': 69.51066499372648, 'ac': 96.66064678531289, 'params': {'rbm__n_components': 50, 'rbm__learning_rate': 0.1, 'rbm__n_iter': 20}, 'act': 82.5905280275895, 'm': 1, 'se': 96.77956989247312, 'feats': [True, False, True]}
+Accuracy = 82.59%, Sensitivity = 69.51%, Specification = 95.67%
+Todos los tunings:
+[{'sp': 96.53291046148188, 'mcc': 93.34794614863951, 'spt': 95.67039106145252, 'f1s': 96.74987303599714, 'ppv': 96.75138398848492, 'set': 69.51066499372648, 'ac': 96.66064678531289, 'params': {'rbm__n_components': 50, 'rbm__learning_rate': 0.1, 'rbm__n_iter': 20}, 'act': 82.5905280275895, 'm': 1, 'se': 96.77956989247312, 'feats': [True, False, True]}]
+checking with m=2 and feats: [True, False, True]
+best params: {'rbm__n_components': 500, 'rbm__learning_rate': 0.1, 'rbm__n_iter': 20}
+
+Test con rbm, m=2 y feats=Smith-Waterman Score,Identity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 77.08%, Sensitivity = 83.44%, Specification = 70.72%
+With CV (k-fold=10) + Stratification
+Valorando Método rbm
+Extrayendo features..
+Training performance...
+
+Valoración del Método rbm
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Identity
+Accuracy = 97.09%, Sensitivity = 97.62%, Specification = 96.53%, ppv = 96.77%, F1 = 97.18%, MCC = 94.19%
+__________
+
+Mejor tuning para CV: {'sp': 96.5324508181651, 'mcc': 94.19444834170316, 'spt': 70.71865443425077, 'f1s': 97.18209873260682, 'ppv': 96.76806986244858, 'set': 83.4382871536524, 'ac': 97.08958400196937, 'params': {'rbm__n_components': 500, 'rbm__learning_rate': 0.1, 'rbm__n_iter': 20}, 'act': 77.07847079395158, 'm': 2, 'se': 97.61662531017369, 'feats': [True, False, True]}
+Accuracy = 97.09%, Sensitivity = 97.62%, Specification = 96.53%
+Mejor tuning con conjunto de prueba propio: {'sp': 96.53291046148188, 'mcc': 93.34794614863951, 'spt': 95.67039106145252, 'f1s': 96.74987303599714, 'ppv': 96.75138398848492, 'set': 69.51066499372648, 'ac': 96.66064678531289, 'params': {'rbm__n_components': 50, 'rbm__learning_rate': 0.1, 'rbm__n_iter': 20}, 'act': 82.5905280275895, 'm': 1, 'se': 96.77956989247312, 'feats': [True, False, True]}
+Accuracy = 82.59%, Sensitivity = 69.51%, Specification = 95.67%
+Todos los tunings:
+[{'sp': 96.53291046148188, 'mcc': 93.34794614863951, 'spt': 95.67039106145252, 'f1s': 96.74987303599714, 'ppv': 96.75138398848492, 'set': 69.51066499372648, 'ac': 96.66064678531289, 'params': {'rbm__n_components': 50, 'rbm__learning_rate': 0.1, 'rbm__n_iter': 20}, 'act': 82.5905280275895, 'm': 1, 'se': 96.77956989247312, 'feats': [True, False, True]}, {'sp': 96.5324508181651, 'mcc': 94.19444834170316, 'spt': 70.71865443425077, 'f1s': 97.18209873260682, 'ppv': 96.76806986244858, 'set': 83.4382871536524, 'ac': 97.08958400196937, 'params': {'rbm__n_components': 500, 'rbm__learning_rate': 0.1, 'rbm__n_iter': 20}, 'act': 77.07847079395158, 'm': 2, 'se': 97.61662531017369, 'feats': [True, False, True]}]
+Mejor tuning para CV: {'sp': 96.5324508181651, 'mcc': 94.19444834170316, 'spt': 70.71865443425077, 'f1s': 97.18209873260682, 'ppv': 96.76806986244858, 'set': 83.4382871536524, 'ac': 97.08958400196937, 'params': {'rbm__n_components': 500, 'rbm__learning_rate': 0.1, 'rbm__n_iter': 20}, 'act': 77.07847079395158, 'm': 2, 'se': 97.61662531017369, 'feats': [True, False, True]}
+Accuracy = 97.09%, Sensitivity = 97.62%, Specification = 96.53%
+Mejor tuning con conjunto de prueba propio: {'sp': 96.53291046148188, 'mcc': 93.34794614863951, 'spt': 95.67039106145252, 'f1s': 96.74987303599714, 'ppv': 96.75138398848492, 'set': 69.51066499372648, 'ac': 96.66064678531289, 'params': {'rbm__n_components': 50, 'rbm__learning_rate': 0.1, 'rbm__n_iter': 20}, 'act': 82.5905280275895, 'm': 1, 'se': 96.77956989247312, 'feats': [True, False, True]}
+Accuracy = 82.59%, Sensitivity = 69.51%, Specification = 95.67%
+Todos los tunings:
+[{'sp': 96.53291046148188, 'mcc': 93.34794614863951, 'spt': 95.67039106145252, 'f1s': 96.74987303599714, 'ppv': 96.75138398848492, 'set': 69.51066499372648, 'ac': 96.66064678531289, 'params': {'rbm__n_components': 50, 'rbm__learning_rate': 0.1, 'rbm__n_iter': 20}, 'act': 82.5905280275895, 'm': 1, 'se': 96.77956989247312, 'feats': [True, False, True]}, {'sp': 96.5324508181651, 'mcc': 94.19444834170316, 'spt': 70.71865443425077, 'f1s': 97.18209873260682, 'ppv': 96.76806986244858, 'set': 83.4382871536524, 'ac': 97.08958400196937, 'params': {'rbm__n_components': 500, 'rbm__learning_rate': 0.1, 'rbm__n_iter': 20}, 'act': 77.07847079395158, 'm': 2, 'se': 97.61662531017369, 'feats': [True, False, True]}]
+Valorando Método rbm
+Extrayendo features..
+Training performance...
+
+Valoración del Método rbm
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Identity
+Accuracy = 98.71%, Sensitivity = 98.84%, Specification = 98.57%, ppv = 98.65%, F1 = 98.75%, MCC = 97.42%
+__________
+
+
+Process finished with exit code 0
+
+
+Valoración del Método rbm
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Identity
+Accuracy = 98.78%, Sensitivity = 98.91%, Specification = 98.64%, ppv = 98.72%, F1 = 98.81%, MCC = 97.56%
+
+{'criterion': 'gini', 'max_depth': 5, 'min_samples_leaf': 3}
+{'rbm__n_iter': 20, 'rbm__n_components': 1000
+        , 'rbm__learning_rate': 0.001

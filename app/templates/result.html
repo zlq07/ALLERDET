@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block content %}
+  <div id="list">
+  	{% if allPred|length > 0 %}
+  		<table class="tg" style="undefined;table-layout: fixed; width: 915px">
+        <colgroup>
+          <col style="width: 707px">
+          <col style="width: 208px">
+        </colgroup>  
+        <!--table header-->
+        <tr>
+          <th class="tg-031e">Potein</th>
+          <th class="tg-baqh">Prediction</th>
+        </tr>			
+		{% for pred in allPred %}
+  			<tr>
+  			{% if protInfo[loop.index0]|length > 1 %}
+
+  				{% if protInfo[loop.index0][0]=="sp" or protInfo[loop.index0][0]=="tr" %}
+            <th class="tg-yw4l tg-left">
+  					 <a href="{{ ''.join(['http://www.uniprot.org/uniprot/', protInfo[loop.index0][1]]) }}" target="_blank">{{protInfo[loop.index0][2]}}</a>
+            </th>
+            <th class="tg-yw4l">
+              <span style="{{'color:red;' if pred == 'allergen' else 'color:green;'}}">{{pred}}</span>
+            </th>
+  				{% elif protInfo[loop.index0][0]=="gi" %}
+            <th class="tg-yw4l tg-left">
+  					 <a href="{{ ''.join(['http://www.ncbi.nlm.nih.gov/protein/', protInfo[loop.index0][1]]) }}" target="_blank">{{protInfo[loop.index0][2]}}</a>
+            </th>
+            <th class="tg-yw4l">
+              <span style="{{'color:red;' if pred == 'allergen' else 'color:green;'}}">{{pred}}</span>
+            </th>
+  				{% else %}
+            <th class="tg-yw4l tg-left">
+					   <span>{{protInfo[loop.index0][0]}}</span>
+            </th>
+            <th class="tg-yw4l">
+             <span style="{{'color:red;' if pred == 'allergen' else 'color:green;'}}">{{pred}}</span>
+            </th>
+  				{% endif %}
+
+  			{% else %}
+          <th class="tg-yw4l tg-left">
+  			   <span>{{protInfo[loop.index0][0]}}</span>
+          </th>
+          <th class="tg-yw4l">
+           <span style="{{'color:red;' if pred == 'allergen' else 'color:green;'}}">{{pred}}</span>
+          </th>
+  			{% endif %}
+  			</tr>
+		{% endfor %}
+		</table>
+  </div>
+	{% else %}
+		<span>No predictions</span>
+	{% endif %}
+{% endblock %}

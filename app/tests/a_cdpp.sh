@@ -1,0 +1,1 @@
+fasta-36.3.8d/bin/fasta36 -f -12 -g -2 test_allergens_data_set.fasta allergens_data_set.fasta > a_cdp.txt

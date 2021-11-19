@@ -1,0 +1,246 @@
+Nuestro conjunto total de entrenamiento de allergens: 2000
+Nuestro conjunto total de entrenamiento de non-allergens: 2000
+Conjunto total de validación de allergens: 500
+Nuestro conjunto total de test de allergens: 798
+Nuestro conjunto total de test de non-allergens: 800
+Conjunto total de test consultado en web: 2
+
+AllerTop total allergens: 2426
+Allerdictor A total allergens: 3906
+Allerdictor B total allergens: 1989
+Allerdictor C total allergens: 1661
+AllerHunter total allergens: 1124
+AllerHunter total test allergens: 140
+AllerHunter total indep allergens: 138
+AllerPred 1 total test allergens: 113
+Uniprot total test allergens: 90
+Uniprot2 total test allergens: 29787
+------
+AllerTop total non-allergens: 2426
+AllerHunter total non-allergens: 3976
+Allerdictor A total non-allergens: 39069
+Uniprot A total non-allergens: 37769
+
+duplicaciones validation en train: 195
+duplicaciones test en train: 0
+duplicaciones allertop: 1138
+duplicaciones allerdictor A: 1228
+duplicaciones allerdictor B: 644
+duplicaciones allerdictor C: 585
+duplicaciones allerhunter train: 485
+duplicaciones allerhunter test: 68
+duplicaciones allerhunter indep: 63
+duplicaciones allerpred 1: 57
+duplicaciones allerpred 2: 56
+duplicaciones allerpred 3: 53
+duplicaciones allerpred 4: 51
+duplicaciones allerpred 5: 62
+duplicaciones unitprot: 40
+duplicaciones unitprot2: 1461
+
+duplicaciones allergen set entre train y test: 0
+duplicaciones non allergen set entre train y test: 0
+
+Prueba Alérgenos kNN
+file read
+file read
+file read
+train 3577, test 799
+Predicting...
+Resultados
+Counter({'allergen': 648, 'non-allergen': 151})
+Accuracy: 81.10137672090113
+Prueba Alérgenos DT
+file read
+file read
+file read
+train 3577, test 799
+Predicting...
+Resultados
+Counter({'allergen': 610, 'non-allergen': 189})
+Accuracy: 76.34543178973718
+Prueba Alérgenos RF
+file read
+file read
+file read
+train 3577, test 799
+Predicting...
+Resultados
+Counter({'allergen': 632, 'non-allergen': 167})
+Accuracy: 79.09887359198999
+Prueba Alérgenos NB
+file read
+file read
+file read
+train 3577, test 799
+Predicting...
+Resultados
+Counter({'allergen': 517, 'non-allergen': 282})
+Accuracy: 64.70588235294117
+Prueba Alérgenos RBM
+file read
+file read
+file read
+train 3577, test 799
+Predicting...
+Resultados
+Counter({'allergen': 678, 'non-allergen': 121})
+Accuracy: 84.85607008760951
+Prueba Alérgenos MLP
+file read
+file read
+file read
+train 3577, test 799
+Predicting...
+Resultados
+Counter({'allergen': 495, 'non-allergen': 304})
+Accuracy: 61.95244055068836
+Prueba Alérgenos k-medias
+file read
+file read
+file read
+train 3577, test 799
+Predicting...
+Resultados
+Counter({0: 681, 1: 118})
+Accuracy: 85.23153942428036
+Prueba NO Alérgenos kNN
+file read
+file read
+file read
+train 3577, test 789
+Predicting...
+Resultados
+Counter({'non-allergen': 772, 'allergen': 17})
+Accuracy: 97.84537389100127
+Prueba NO Alérgenos DT
+file read
+file read
+file read
+train 3577, test 789
+Predicting...
+Resultados
+Counter({'non-allergen': 774, 'allergen': 15})
+Accuracy: 98.09885931558935
+Prueba NO Alérgenos RF
+file read
+file read
+file read
+train 3577, test 789
+Predicting...
+Resultados
+Counter({'non-allergen': 779, 'allergen': 10})
+Accuracy: 98.73257287705957
+Prueba NO Alérgenos NB
+file read
+file read
+file read
+train 3577, test 789
+Predicting...
+Resultados
+Counter({'non-allergen': 766, 'allergen': 23})
+Accuracy: 97.08491761723701
+Prueba NO Alérgenos RBM
+file read
+file read
+file read
+train 3577, test 789
+Predicting...
+Resultados
+Counter({'non-allergen': 611, 'allergen': 178})
+Accuracy: 77.43979721166033
+Prueba NO Alérgenos MLP
+file read
+file read
+file read
+train 3577, test 789
+Predicting...
+Resultados
+Counter({'non-allergen': 780, 'allergen': 9})
+Accuracy: 98.85931558935361
+Prueba NO Alérgenos k-medias
+file read
+file read
+file read
+train 3577, test 789
+Predicting...
+Resultados
+Counter({0: 783, 1: 6})
+Accuracy: 99.23954372623574Valorando Método knn
+Extrayendo features..
+file read
+file read
+file read
+train 3577, test 799
+Training performance...
+
+Valoración del Método knn
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length
+Y con k=None
+
+Accuracy = 97.71%, Sensitivity = 98.27%, Specification = 97.15%, ppv = 97.19%, F1 = 97.72%, MCC = 95.43%
+__________
+
+Valorando Método dt
+Extrayendo features..
+file read
+file read
+file read
+train 3577, test 799
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length
+Accuracy = 97.71%, Sensitivity = 97.71%, Specification = 97.71%, ppv = 97.72%, F1 = 97.71%, MCC = 95.42%
+__________
+
+Valorando Método nb
+Extrayendo features..
+file read
+file read
+file read
+train 3577, test 799
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length
+Accuracy = 85.49%, Sensitivity = 75.70%, Specification = 95.30%, ppv = 94.22%, F1 = 83.92%, MCC = 72.44%
+__________
+
+Valorando Método mlp
+Extrayendo features..
+file read
+file read
+file read
+train 3577, test 799
+Training performance...
+
+Valoración del Método mlp
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length
+Accuracy = 98.27%, Sensitivity = 98.10%, Specification = 98.43%, ppv = 98.45%, F1 = 98.27%, MCC = 96.55%
+__________
+
+Valorando Método rbm
+Extrayendo features..
+file read
+file read
+file read
+train 3577, test 799
+Training performance...
+
+Valoración del Método rbm
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length
+Accuracy = 71.93%, Sensitivity = 51.06%, Specification = 92.84%, ppv = 87.79%, F1 = 64.45%, MCC = 48.35%
+__________
+
+
+Valoración del Método km
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length
+Accuracy = 41.85%, Sensitivity = 62.96%, Specification = 20.67%, ppv = 51.99%, F1 = 51.45%, MCC = -23.03%
+__________

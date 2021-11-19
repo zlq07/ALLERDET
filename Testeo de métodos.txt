@@ -1,0 +1,92 @@
+——————————————————————————————————————————————————————————————————————
+Características extraídas: Smith-Waterman Score,Alignment Length
+——————————————————————————————————————————————————————————————————————
+MEJOR: RF
+
+Valoración del Método mlp
+Con m=1 mejores alineamientos, nº de experimentos=10, kFolds=5
+Características extraídas: Smith-Waterman Score,Alignment Length
+Accuracy = 96.57%, Sensitivity = 95.61%, Specification = 97.55%, ppv = 97.59%, F1 = 96.54%, MCC = 93.25%
+
+
+Valoración del Método rf
+Con m=1 mejores alineamientos, nº de experimentos=10, kFolds=5
+Características extraídas: Smith-Waterman Score,Alignment Length
+Accuracy = 97.19%, Sensitivity = 97.00%, Specification = 97.38%, ppv = 97.43%, F1 = 97.21%, MCC = 94.39%
+
+
+Valoración del Método knn
+Con m=1 mejores alineamientos, nº de experimentos=10, kFolds=5
+Características extraídas: Smith-Waterman Score,Alignment Length
+Y con k=3
+Accuracy = 96.85%, Sensitivity = 96.78%, Specification = 96.93%, ppv = 96.99%, F1 = 96.88%, MCC = 93.72%
+
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, nº de experimentos=10, kFolds=5
+Características extraídas: Smith-Waterman Score,Alignment Length
+Accuracy = 96.39%, Sensitivity = 96.46%, Specification = 96.32%, ppv = 96.41%, F1 = 96.43%, MCC = 92.79%
+
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, nº de experimentos=10, kFolds=5
+Características extraídas: Smith-Waterman Score,Alignment Length
+Accuracy = 91.81%, Sensitivity = 88.41%, Specification = 95.29%, ppv = 95.04%, F1 = 91.60%, MCC = 83.85%
+
+
+Valoración del Método svm
+Con m=1 mejores alineamientos, nº de experimentos=10, kFolds=5
+Características extraídas: Smith-Waterman Score,Alignment Length
+Accuracy = 75.87%, Sensitivity = 52.71%, Specification = 99.49%, ppv = 99.07%, F1 = 68.74%, MCC = 58.88%
+
+
+Valoración del Método rbm
+Con m=1 mejores alineamientos, nº de experimentos=10, kFolds=5
+Características extraídas: Smith-Waterman Score,Alignment Length
+Accuracy = 69.49%, Sensitivity = 54.86%, Specification = 84.40%, ppv = 78.15%, F1 = 64.42%, MCC = 41.04%
+
+——————————————————————————————————————————————————————————————————————
+Características extraídas: Smith-Waterman Score,Alignment Length,Identity,Similarity,Z-Score,initn,init1,bits,E value
+——————————————————————————————————————————————————————————————————————
+MEJOR: kan
+
+Valoración del Método mlp
+Con m=1 mejores alineamientos, nº de experimentos=10, kFolds=5
+Características extraídas: Smith-Waterman Score,Alignment Length,Identity,Similarity,Z-Score,initn,init1,bits,E value
+Accuracy = 96.33%, Sensitivity = 96.77%, Specification = 95.82%, ppv = 96.45%, F1 = 96.54%, MCC = 92.76%
+
+
+Valoración del Método rf
+Con m=1 mejores alineamientos, nº de experimentos=10, kFolds=5
+Características extraídas: Smith-Waterman Score,Alignment Length,Identity,Similarity,Z-Score,initn,init1,bits,E value
+Accuracy = 99.54%, Sensitivity = 99.86%, Specification = 99.18%, ppv = 99.28%, F1 = 99.57%, MCC = 99.07%
+
+Valoración del Método knn
+Con m=1 mejores alineamientos, nº de experimentos=10, kFolds=5
+Características extraídas: Smith-Waterman Score,Alignment Length,Identity,Similarity,Z-Score,initn,init1,bits,E value
+Y con k=3
+Accuracy = 97.57%, Sensitivity = 98.78%, Specification = 96.21%, ppv = 96.74%, F1 = 97.74%, MCC = 95.15%
+
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, nº de experimentos=10, kFolds=5
+Características extraídas: Smith-Waterman Score,Alignment Length,Identity,Similarity,Z-Score,initn,init1,bits,E value
+Accuracy = 99.49%, Sensitivity = 99.50%, Specification = 99.48%, ppv = 99.54%, F1 = 99.52%, MCC = 98.98%
+
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, nº de experimentos=10, kFolds=5
+Características extraídas: Smith-Waterman Score,Alignment Length,Identity,Similarity,Z-Score,initn,init1,bits,E value
+Accuracy = 99.56%, Sensitivity = 99.92%, Specification = 99.16%, ppv = 99.26%, F1 = 99.59%, MCC = 99.12%
+
+
+Valoración del Método svm
+Con m=1 mejores alineamientos, nº de experimentos=10, kFolds=5
+Características extraídas: Smith-Waterman Score,Alignment Length,Identity,Similarity,Z-Score,initn,init1,bits,E value
+Accuracy = 54.13%, Sensitivity = 100.00%, Specification = 1.98%, ppv = 53.70%, F1 = 69.88%, MCC = 10.23%
+
+
+Valoración del Método rbm
+Con m=1 mejores alineamientos, nº de experimentos=10, kFolds=5
+Características extraídas: Smith-Waterman Score,Alignment Length,Identity,Similarity,Z-Score,initn,init1,bits,E value
+Accuracy = 92.09%, Sensitivity = 94.06%, Specification = 89.84%, ppv = 91.38%, F1 = 92.69%, MCC = 84.15%

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+  <div id="list">
+  	{% if allPred|length > 0 %}
+  		<ol>  			
+		{% for pred in allPred %}
+  			<li>
+  			{% if protInfo[loop.index0]|length > 1 %}
+
+  				{% if protInfo[loop.index0][0]=="sp" or protInfo[loop.index0][0]=="tr" %}
+  					<a href="{{ ''.join(['http://www.uniprot.org/uniprot/', protInfo[loop.index0][1]]) }}" target="_blank">{{protInfo[loop.index0][2]}}</a>:&nbsp;<span style="{{'color:red;' if pred == 'allergen' else 'color:green;'}}">{{pred}}</span>
+  				{% elif protInfo[loop.index0][0]=="gi" %}
+  					<a href="{{ ''.join(['http://www.ncbi.nlm.nih.gov/protein/', protInfo[loop.index0][1]]) }}" target="_blank">{{protInfo[loop.index0][2]}}</a>:&nbsp;<span style="{{'color:red;' if pred == 'allergen' else 'color:green;'}}">{{pred}}</span>
+  				{% else %}
+					<span>{{protInfo[loop.index0][0]}}:&nbsp;<span style="{{'color:red;' if pred == 'allergen' else 'color:green;'}}">{{pred}}</span>
+  				{% endif %}
+
+  			{% else %}
+  			<span>{{protInfo[loop.index0][0]}}:&nbsp;<span style="{{'color:red;' if pred == 'allergen' else 'color:green;'}}">{{pred}}</span>
+  			{% endif %}
+  			</li>
+		{% endfor %}
+		</ol>
+  </div>
+	{% else %}
+		<span>No predictions</span>
+	{% endif %}
+{% endblock %}

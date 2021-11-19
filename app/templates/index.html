@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+	<form action="/index" method="post" name="protein_sequence" id="protein_sequence">
+		{{ form.hidden_tag() }}
+	  <table width="100%" border="0" cellspacing="2" cellpadding="0">
+	    <tbody><tr>
+	      <td width="562"><font face="Verdana, Arial, Helvetica, sans-serif" color="#FFFFFF" style="font-size:12px"> Enter a PROTEIN sequence here as a plain text (one letter code) </font></td>
+	    </tr>
+	    <tr>
+	    	Please, enter your sequence/s in <a href="http://fasta.bioch.virginia.edu/fasta_www2/fasta_list2.shtml" target="blank">FASTA</a> format:<br>
+        	{{ form.sequences(cols="80", rows="20") }} <!--Text area-->
+        	{% for error in form.sequences.errors %}
+        		<br>
+          		<span style="color: red;">{{error}}</span>
+        	{% endfor %}<br>
+
+        	
+
+	      	<!--<td height="230"><textarea name="sequence" id="sequence" cols="70" rows="13" style="font-family:Verdana, Arial, Helvetica, sans-serif; font-size:12px; font-weight:700; color:#003366" wrap="virtual">-->
+	    <!--</textarea></td>-->
+	    </tr>
+	    <tr>
+	      <td height="40"><input class="button button-inline button-small button-success" type="submit" value="Predict"></td>
+	    </tr>
+	  </tbody></table>
+	</form>
+{% endblock %}

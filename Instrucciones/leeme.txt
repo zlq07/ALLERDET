@@ -1,0 +1,45 @@
+- Instalar Python version 3.5.2.
+Si no tenemos instalado pip, comprobar en un terminal a escribir pip y pulsar enter, si no encuentra el comando tendremos que instalarlo:
+- Para instalar pip: descargar el fichero get-pip.py del sitio oficial: https://bootstrap.pypa.io/get-pip.py
+- Para instalarlo usar la línea de comando: python3.5  Downloads/get-pip.py
+
+
+Instalar Flask (seguir sus instrucciones): http://flask.pocoo.org 
+pip3 install Flask
+
+Instalar Flask WTF: https://flask-wtf.readthedocs.io/en/stable/install.html
+pip3 install Flask-WTF
+
+Instalar matplotlib: pip3 install matplotlib
+Instalar sklearn: pip3 install scikit-learn
+Instalar scipy: pip3 install scipy
+Instalar numpy: pip3 install numpy
+
+pip3 install pydotplus
+
+#pip3 install sklearn.externals.six
+pip3 install six
+
+———
+Info: http://askubuntu.com/questions/538905/cannot-install-scikit-learn-in-python-3-4-in-ubuntu-14-04
+
+
+sudo apt-get install build-essential python3-dev python3-setuptools python3-numpy python3-scipy python3-pip libatlas-dev libatlas3gf-base
+
+Para matplotlib
+sudo apt-get install python3-tk
+
+sudo pip3 install Flask Flask-WTF matplotlib numpy scipy scikit-learn
+
+
+According to the official doc, make sure that ATLAS is used to provide the implementation of the BLAS and LAPACK linear algebra routines:
+
+sudo update-alternatives --set libblas.so.3 \
+    /usr/lib/atlas-base/atlas/libblas.so.3
+
+sudo update-alternatives --set liblapack.so.3 \
+    /usr/lib/atlas-base/atlas/liblapack.so.3
+
+sudo apt-get install libffi-dev
+sudo pip3 install cffi
+sudo pip3 install cairocffi

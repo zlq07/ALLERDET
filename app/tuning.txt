@@ -1,0 +1,2620 @@
+/Library/Frameworks/Python.framework/Versions/3.5/bin/python3.5 /Users/frangarcia/Dropbox/Ingenieria-Informatica/TFG/practica/practica-TFG/APP/app/tests.py
+Nuestro conjunto total de entrenamiento de allergens: 2000
+Nuestro conjunto total de entrenamiento de non-allergens: 2000
+Conjunto total de validación de allergens: 500
+Nuestro conjunto total de test de allergens: 769
+Nuestro conjunto total de test de non-allergens: 800
+Conjunto total de test consultado en web: 2
+
+AllerTop total allergens: 2426
+Allerdictor A total allergens: 3906
+Allerdictor B total allergens: 1989
+Allerdictor C total allergens: 1661
+AllerHunter total allergens: 1124
+AllerHunter total test allergens: 140
+AllerHunter total indep allergens: 138
+AllerPred 1 total test allergens: 113
+Uniprot total test allergens: 90
+Uniprot2 total test allergens: 29787
+------
+AllerTop total non-allergens: 2426
+AllerHunter total non-allergens: 3976
+Allerdictor A total non-allergens: 39069
+Uniprot A total non-allergens: 37769
+
+duplicaciones validation en train: 195
+duplicaciones test en train: 0
+duplicaciones allertop: 1138
+duplicaciones allerdictor A: 1228
+duplicaciones allerdictor B: 644
+duplicaciones allerdictor C: 585
+duplicaciones allerhunter train: 485
+duplicaciones allerhunter test: 68
+duplicaciones allerhunter indep: 63
+duplicaciones allerpred 1: 57
+duplicaciones allerpred 2: 56
+duplicaciones allerpred 3: 53
+duplicaciones allerpred 4: 51
+duplicaciones allerpred 5: 62
+duplicaciones unitprot: 40
+duplicaciones unitprot2: 1461
+
+duplicaciones allergen set entre train y test: 0
+duplicaciones non allergen set entre train y test: 0
+
+Tuning model: dt
+checking with m=1 and feats: [True]
+best params: {'criterion': 'entropy', 'max_depth': 5, 'min_samples_leaf': 15}
+
+Test con dt, m=1 y feats=Smith-Waterman Score
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 90.01%, Sensitivity = 85.73%, Specification = 94.30%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score
+Accuracy = 88.50%, Sensitivity = 89.70%, Specification = 86.79%, ppv = 90.69%, F1 = 90.16%, MCC = 76.40%
+__________
+
+checking with m=1 and feats: [False, True]
+best params: {'criterion': 'entropy', 'max_depth': 30, 'min_samples_leaf': 8}
+
+Test con dt, m=1 y feats=Alignment Length
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 64.06%, Sensitivity = 71.84%, Specification = 56.27%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Alignment Length
+Accuracy = 65.16%, Sensitivity = 69.20%, Specification = 60.77%, ppv = 65.67%, F1 = 67.29%, MCC = 30.20%
+__________
+
+checking with m=1 and feats: [True, True]
+best params: {'criterion': 'gini', 'max_depth': 10, 'min_samples_leaf': 8}
+
+Test con dt, m=1 y feats=Smith-Waterman Score,Alignment Length
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 87.22%, Sensitivity = 76.35%, Specification = 98.10%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length
+Accuracy = 97.71%, Sensitivity = 97.54%, Specification = 97.87%, ppv = 97.89%, F1 = 97.70%, MCC = 95.44%
+__________
+
+checking with m=1 and feats: [False, False, True]
+best params: {'criterion': 'gini', 'max_depth': 5, 'min_samples_leaf': 1}
+
+Test con dt, m=1 y feats=Identity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 56.19%, Sensitivity = 15.31%, Specification = 97.07%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Identity
+Accuracy = 98.06%, Sensitivity = 100.00%, Specification = 96.03%, ppv = 96.36%, F1 = 98.14%, MCC = 96.19%
+__________
+
+checking with m=1 and feats: [False, False, False, True]
+best params: {'criterion': 'gini', 'max_depth': 5, 'min_samples_leaf': 15}
+
+Test con dt, m=1 y feats=Similarity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 71.21%, Sensitivity = 53.57%, Specification = 88.85%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Similarity
+Accuracy = 93.80%, Sensitivity = 97.61%, Specification = 90.27%, ppv = 90.36%, F1 = 93.82%, MCC = 87.94%
+__________
+
+checking with m=1 and feats: [True, False, True]
+best params: {'criterion': 'gini', 'max_depth': 5, 'min_samples_leaf': 3}
+
+Test con dt, m=1 y feats=Smith-Waterman Score,Identity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 54.31%, Sensitivity = 8.91%, Specification = 99.72%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Identity
+Accuracy = 99.34%, Sensitivity = 99.94%, Specification = 98.71%, ppv = 98.80%, F1 = 99.36%, MCC = 98.69%
+__________
+
+checking with m=1 and feats: [True, True, True]
+best params: {'criterion': 'entropy', 'max_depth': 10, 'min_samples_leaf': 1}
+
+Test con dt, m=1 y feats=Smith-Waterman Score,Alignment Length,Identity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 54.13%, Sensitivity = 8.41%, Specification = 99.86%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length,Identity
+Accuracy = 98.98%, Sensitivity = 99.05%, Specification = 98.90%, ppv = 99.00%, F1 = 99.02%, MCC = 97.95%
+__________
+
+checking with m=1 and feats: [True, True, False, True]
+best params: {'criterion': 'gini', 'max_depth': 10, 'min_samples_leaf': 5}
+
+Test con dt, m=1 y feats=Smith-Waterman Score,Alignment Length,Similarity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 79.34%, Sensitivity = 59.70%, Specification = 98.99%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length,Similarity
+Accuracy = 98.44%, Sensitivity = 98.66%, Specification = 98.23%, ppv = 98.17%, F1 = 98.41%, MCC = 96.89%
+__________
+
+checking with m=1 and feats: [True, True, True, True]
+best params: {'criterion': 'gini', 'max_depth': 5, 'min_samples_leaf': 8}
+
+Test con dt, m=1 y feats=Smith-Waterman Score,Alignment Length,Identity,Similarity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 54.01%, Sensitivity = 8.16%, Specification = 99.86%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length,Identity,Similarity
+Accuracy = 99.18%, Sensitivity = 99.67%, Specification = 98.65%, ppv = 98.79%, F1 = 99.22%, MCC = 98.37%
+__________
+
+checking with m=1 and feats: [False, False, True, True]
+best params: {'criterion': 'gini', 'max_depth': 5, 'min_samples_leaf': 1}
+
+Test con dt, m=1 y feats=Identity,Similarity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 56.19%, Sensitivity = 15.31%, Specification = 97.07%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Identity,Similarity
+Accuracy = 98.56%, Sensitivity = 100.00%, Specification = 97.29%, ppv = 97.05%, F1 = 98.50%, MCC = 97.17%
+__________
+
+checking with m=2 and feats: [True]
+best params: {'criterion': 'gini', 'max_depth': 5, 'min_samples_leaf': 30}
+
+Test con dt, m=2 y feats=Smith-Waterman Score
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 90.73%, Sensitivity = 88.79%, Specification = 92.68%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score
+Accuracy = 88.43%, Sensitivity = 90.28%, Specification = 85.78%, ppv = 90.08%, F1 = 90.16%, MCC = 76.15%
+__________
+
+checking with m=2 and feats: [False, True]
+best params: {'criterion': 'gini', 'max_depth': 5, 'min_samples_leaf': 100}
+
+Test con dt, m=2 y feats=Alignment Length
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 60.10%, Sensitivity = 74.89%, Specification = 45.30%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Alignment Length
+Accuracy = 60.64%, Sensitivity = 77.20%, Specification = 42.69%, ppv = 59.34%, F1 = 67.04%, MCC = 21.45%
+__________
+
+checking with m=2 and feats: [True, True]
+best params: {'criterion': 'gini', 'max_depth': 30, 'min_samples_leaf': 15}
+
+Test con dt, m=2 y feats=Smith-Waterman Score,Alignment Length
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 90.58%, Sensitivity = 86.35%, Specification = 94.82%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length
+Accuracy = 97.09%, Sensitivity = 97.60%, Specification = 96.59%, ppv = 96.66%, F1 = 97.11%, MCC = 94.22%
+__________
+
+checking with m=2 and feats: [False, False, True]
+best params: {'criterion': 'gini', 'max_depth': 5, 'min_samples_leaf': 8}
+
+Test con dt, m=2 y feats=Identity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 85.27%, Sensitivity = 81.17%, Specification = 89.37%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Identity
+Accuracy = 98.06%, Sensitivity = 100.00%, Specification = 96.02%, ppv = 96.38%, F1 = 98.15%, MCC = 96.20%
+__________
+
+checking with m=2 and feats: [False, False, False, True]
+best params: {'criterion': 'entropy', 'max_depth': 10, 'min_samples_leaf': 5}
+
+Test con dt, m=2 y feats=Similarity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 84.41%, Sensitivity = 83.78%, Specification = 85.03%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Similarity
+Accuracy = 93.61%, Sensitivity = 98.31%, Specification = 89.26%, ppv = 89.50%, F1 = 93.68%, MCC = 87.67%
+__________
+
+checking with m=2 and feats: [True, False, True]
+best params: {'criterion': 'gini', 'max_depth': 5, 'min_samples_leaf': 30}
+
+Test con dt, m=2 y feats=Smith-Waterman Score,Identity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 90.40%, Sensitivity = 85.77%, Specification = 95.03%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Identity
+Accuracy = 99.37%, Sensitivity = 100.00%, Specification = 98.71%, ppv = 98.80%, F1 = 99.39%, MCC = 98.75%
+__________
+
+checking with m=2 and feats: [True, True, True]
+best params: {'criterion': 'entropy', 'max_depth': 10, 'min_samples_leaf': 30}
+
+Test con dt, m=2 y feats=Smith-Waterman Score,Alignment Length,Identity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 90.45%, Sensitivity = 87.09%, Specification = 93.81%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length,Identity
+Accuracy = 99.27%, Sensitivity = 99.94%, Specification = 98.53%, ppv = 98.68%, F1 = 99.31%, MCC = 98.54%
+__________
+
+checking with m=2 and feats: [True, True, False, True]
+best params: {'criterion': 'entropy', 'max_depth': 10, 'min_samples_leaf': 1}
+
+Test con dt, m=2 y feats=Smith-Waterman Score,Alignment Length,Similarity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 90.22%, Sensitivity = 86.85%, Specification = 93.58%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length,Similarity
+Accuracy = 98.74%, Sensitivity = 98.72%, Specification = 98.77%, ppv = 98.73%, F1 = 98.72%, MCC = 97.49%
+__________
+
+checking with m=2 and feats: [True, True, True, True]
+best params: {'criterion': 'entropy', 'max_depth': 10, 'min_samples_leaf': 15}
+
+Test con dt, m=2 y feats=Smith-Waterman Score,Alignment Length,Identity,Similarity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 90.90%, Sensitivity = 87.91%, Specification = 93.88%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length,Identity,Similarity
+Accuracy = 99.30%, Sensitivity = 99.94%, Specification = 98.59%, ppv = 98.74%, F1 = 99.34%, MCC = 98.61%
+__________
+
+checking with m=2 and feats: [False, False, True, True]
+best params: {'criterion': 'gini', 'max_depth': 5, 'min_samples_leaf': 100}
+
+Test con dt, m=2 y feats=Identity,Similarity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 85.03%, Sensitivity = 83.75%, Specification = 86.31%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Identity,Similarity
+Accuracy = 98.56%, Sensitivity = 100.00%, Specification = 97.29%, ppv = 97.04%, F1 = 98.49%, MCC = 97.16%
+__________
+
+checking with m=3 and feats: [True]
+best params: {'criterion': 'entropy', 'max_depth': 5, 'min_samples_leaf': 1}
+
+Test con dt, m=3 y feats=Smith-Waterman Score
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 89.71%, Sensitivity = 90.06%, Specification = 89.37%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score
+Accuracy = 88.46%, Sensitivity = 90.79%, Specification = 85.14%, ppv = 89.75%, F1 = 90.24%, MCC = 76.20%
+__________
+
+checking with m=3 and feats: [False, True]
+best params: {'criterion': 'gini', 'max_depth': 30, 'min_samples_leaf': 2}
+
+Test con dt, m=3 y feats=Alignment Length
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 64.18%, Sensitivity = 74.14%, Specification = 54.21%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Alignment Length
+Accuracy = 63.64%, Sensitivity = 71.16%, Specification = 55.48%, ppv = 63.43%, F1 = 66.99%, MCC = 27.11%
+__________
+
+checking with m=3 and feats: [True, True]
+best params: {'criterion': 'entropy', 'max_depth': 10, 'min_samples_leaf': 1}
+
+Test con dt, m=3 y feats=Smith-Waterman Score,Alignment Length
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 90.09%, Sensitivity = 87.26%, Specification = 92.91%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length
+Accuracy = 97.37%, Sensitivity = 97.43%, Specification = 97.31%, ppv = 97.35%, F1 = 97.38%, MCC = 94.76%
+__________
+
+checking with m=3 and feats: [False, False, True]
+best params: {'criterion': 'gini', 'max_depth': 30, 'min_samples_leaf': 3}
+
+Test con dt, m=3 y feats=Identity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 84.31%, Sensitivity = 81.28%, Specification = 87.33%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Identity
+Accuracy = 98.06%, Sensitivity = 100.00%, Specification = 96.02%, ppv = 96.37%, F1 = 98.14%, MCC = 96.19%
+__________
+
+checking with m=3 and feats: [False, False, False, True]
+best params: {'criterion': 'entropy', 'max_depth': 10, 'min_samples_leaf': 8}
+
+Test con dt, m=3 y feats=Similarity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 83.54%, Sensitivity = 80.28%, Specification = 86.80%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Similarity
+Accuracy = 93.51%, Sensitivity = 97.91%, Specification = 89.44%, ppv = 89.65%, F1 = 93.57%, MCC = 87.45%
+__________
+
+checking with m=3 and feats: [True, False, True]
+best params: {'criterion': 'gini', 'max_depth': 5, 'min_samples_leaf': 10}
+
+Test con dt, m=3 y feats=Smith-Waterman Score,Identity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 90.03%, Sensitivity = 87.41%, Specification = 92.66%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Identity
+Accuracy = 99.37%, Sensitivity = 100.00%, Specification = 98.71%, ppv = 98.80%, F1 = 99.39%, MCC = 98.75%
+__________
+
+checking with m=3 and feats: [True, True, True]
+best params: {'criterion': 'entropy', 'max_depth': 10, 'min_samples_leaf': 1}
+
+Test con dt, m=3 y feats=Smith-Waterman Score,Alignment Length,Identity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 89.52%, Sensitivity = 86.78%, Specification = 92.26%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length,Identity
+Accuracy = 98.98%, Sensitivity = 99.05%, Specification = 98.90%, ppv = 99.00%, F1 = 99.02%, MCC = 97.95%
+__________
+
+checking with m=3 and feats: [True, True, False, True]
+best params: {'criterion': 'entropy', 'max_depth': 10, 'min_samples_leaf': 5}
+
+Test con dt, m=3 y feats=Smith-Waterman Score,Alignment Length,Similarity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 90.65%, Sensitivity = 89.85%, Specification = 91.45%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length,Similarity
+Accuracy = 98.63%, Sensitivity = 98.72%, Specification = 98.55%, ppv = 98.50%, F1 = 98.61%, MCC = 97.27%
+__________
+
+checking with m=3 and feats: [True, True, True, True]
+best params: {'criterion': 'gini', 'max_depth': 10, 'min_samples_leaf': 5}
+
+Test con dt, m=3 y feats=Smith-Waterman Score,Alignment Length,Identity,Similarity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 89.78%, Sensitivity = 88.26%, Specification = 91.31%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length,Identity,Similarity
+Accuracy = 99.09%, Sensitivity = 99.39%, Specification = 98.77%, ppv = 98.90%, F1 = 99.14%, MCC = 98.20%
+__________
+
+checking with m=3 and feats: [False, False, True, True]
+best params: {'criterion': 'gini', 'max_depth': 10, 'min_samples_leaf': 100}
+
+Test con dt, m=3 y feats=Identity,Similarity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 82.94%, Sensitivity = 81.96%, Specification = 83.91%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Identity,Similarity
+Accuracy = 98.56%, Sensitivity = 100.00%, Specification = 97.29%, ppv = 97.04%, F1 = 98.49%, MCC = 97.17%
+__________
+
+checking with m=4 and feats: [True]
+best params: {'criterion': 'gini', 'max_depth': 5, 'min_samples_leaf': 50}
+
+Test con dt, m=4 y feats=Smith-Waterman Score
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 89.05%, Sensitivity = 88.77%, Specification = 89.32%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score
+Accuracy = 88.69%, Sensitivity = 90.72%, Specification = 85.78%, ppv = 90.13%, F1 = 90.41%, MCC = 76.67%
+__________
+
+checking with m=4 and feats: [False, True]
+best params: {'criterion': 'entropy', 'max_depth': 10, 'min_samples_leaf': 8}
+
+Test con dt, m=4 y feats=Alignment Length
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 62.94%, Sensitivity = 73.65%, Specification = 52.23%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Alignment Length
+Accuracy = 61.01%, Sensitivity = 74.27%, Specification = 46.63%, ppv = 60.11%, F1 = 66.33%, MCC = 22.00%
+__________
+
+checking with m=4 and feats: [True, True]
+best params: {'criterion': 'entropy', 'max_depth': 10, 'min_samples_leaf': 1}
+
+Test con dt, m=4 y feats=Smith-Waterman Score,Alignment Length
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 88.97%, Sensitivity = 86.20%, Specification = 91.74%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length
+Accuracy = 97.51%, Sensitivity = 97.37%, Specification = 97.65%, ppv = 97.66%, F1 = 97.51%, MCC = 95.04%
+__________
+
+checking with m=4 and feats: [False, False, True]
+best params: {'criterion': 'entropy', 'max_depth': 10, 'min_samples_leaf': 2}
+
+Test con dt, m=4 y feats=Identity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 83.16%, Sensitivity = 78.30%, Specification = 88.02%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Identity
+Accuracy = 98.06%, Sensitivity = 100.00%, Specification = 96.02%, ppv = 96.38%, F1 = 98.15%, MCC = 96.20%
+__________
+
+checking with m=4 and feats: [False, False, False, True]
+best params: {'criterion': 'entropy', 'max_depth': 10, 'min_samples_leaf': 5}
+
+Test con dt, m=4 y feats=Similarity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 81.39%, Sensitivity = 80.11%, Specification = 82.67%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Similarity
+Accuracy = 93.37%, Sensitivity = 98.01%, Specification = 89.07%, ppv = 89.28%, F1 = 93.42%, MCC = 87.18%
+__________
+
+checking with m=4 and feats: [True, False, True]
+best params: {'criterion': 'gini', 'max_depth': 5, 'min_samples_leaf': 10}
+
+Test con dt, m=4 y feats=Smith-Waterman Score,Identity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 90.39%, Sensitivity = 88.69%, Specification = 92.09%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Identity
+Accuracy = 99.37%, Sensitivity = 100.00%, Specification = 98.71%, ppv = 98.80%, F1 = 99.39%, MCC = 98.75%
+__________
+
+checking with m=4 and feats: [True, True, True]
+best params: {'criterion': 'entropy', 'max_depth': 10, 'min_samples_leaf': 50}
+
+Test con dt, m=4 y feats=Smith-Waterman Score,Alignment Length,Identity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 89.94%, Sensitivity = 87.06%, Specification = 92.82%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length,Identity
+Accuracy = 99.27%, Sensitivity = 99.94%, Specification = 98.53%, ppv = 98.69%, F1 = 99.31%, MCC = 98.55%
+__________
+
+checking with m=4 and feats: [True, True, False, True]
+best params: {'criterion': 'gini', 'max_depth': 10, 'min_samples_leaf': 8}
+
+Test con dt, m=4 y feats=Smith-Waterman Score,Alignment Length,Similarity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 89.64%, Sensitivity = 88.74%, Specification = 90.55%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length,Similarity
+Accuracy = 98.33%, Sensitivity = 98.27%, Specification = 98.39%, ppv = 98.35%, F1 = 98.30%, MCC = 96.68%
+__________
+
+checking with m=4 and feats: [True, True, True, True]
+best params: {'criterion': 'gini', 'max_depth': 10, 'min_samples_leaf': 3}
+
+Test con dt, m=4 y feats=Smith-Waterman Score,Alignment Length,Identity,Similarity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 89.75%, Sensitivity = 88.97%, Specification = 90.53%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length,Identity,Similarity
+Accuracy = 99.39%, Sensitivity = 99.61%, Specification = 99.14%, ppv = 99.23%, F1 = 99.42%, MCC = 98.78%
+__________
+
+checking with m=4 and feats: [False, False, True, True]
+best params: {'criterion': 'entropy', 'max_depth': 10, 'min_samples_leaf': 100}
+
+Test con dt, m=4 y feats=Identity,Similarity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 82.06%, Sensitivity = 82.68%, Specification = 81.44%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Identity,Similarity
+Accuracy = 98.56%, Sensitivity = 100.00%, Specification = 97.29%, ppv = 97.04%, F1 = 98.49%, MCC = 97.17%
+__________
+
+checking with m=5 and feats: [True]
+best params: {'criterion': 'entropy', 'max_depth': 5, 'min_samples_leaf': 50}
+
+Test con dt, m=5 y feats=Smith-Waterman Score
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 88.30%, Sensitivity = 87.89%, Specification = 88.71%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score
+Accuracy = 88.19%, Sensitivity = 90.15%, Specification = 85.41%, ppv = 89.85%, F1 = 89.95%, MCC = 75.75%
+__________
+
+checking with m=5 and feats: [False, True]
+best params: {'criterion': 'gini', 'max_depth': 5, 'min_samples_leaf': 15}
+
+Test con dt, m=5 y feats=Alignment Length
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 58.37%, Sensitivity = 73.11%, Specification = 43.64%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Alignment Length
+Accuracy = 61.05%, Sensitivity = 70.28%, Specification = 51.06%, ppv = 61.13%, F1 = 65.14%, MCC = 21.97%
+__________
+
+checking with m=5 and feats: [True, True]
+best params: {'criterion': 'entropy', 'max_depth': 10, 'min_samples_leaf': 2}
+
+Test con dt, m=5 y feats=Smith-Waterman Score,Alignment Length
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 88.82%, Sensitivity = 87.31%, Specification = 90.34%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length
+Accuracy = 97.26%, Sensitivity = 97.77%, Specification = 96.75%, ppv = 96.80%, F1 = 97.28%, MCC = 94.53%
+__________
+
+checking with m=5 and feats: [False, False, True]
+best params: {'criterion': 'entropy', 'max_depth': 30, 'min_samples_leaf': 15}
+
+Test con dt, m=5 y feats=Identity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 81.04%, Sensitivity = 81.00%, Specification = 81.08%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Identity
+Accuracy = 98.06%, Sensitivity = 100.00%, Specification = 96.02%, ppv = 96.35%, F1 = 98.14%, MCC = 96.19%
+__________
+
+checking with m=5 and feats: [False, False, False, True]
+best params: {'criterion': 'entropy', 'max_depth': 10, 'min_samples_leaf': 8}
+
+Test con dt, m=5 y feats=Similarity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 80.85%, Sensitivity = 78.24%, Specification = 83.46%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Similarity
+Accuracy = 93.56%, Sensitivity = 98.01%, Specification = 89.43%, ppv = 89.66%, F1 = 93.62%, MCC = 87.56%
+__________
+
+checking with m=5 and feats: [True, False, True]
+best params: {'criterion': 'gini', 'max_depth': 5, 'min_samples_leaf': 8}
+
+Test con dt, m=5 y feats=Smith-Waterman Score,Identity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 90.16%, Sensitivity = 88.34%, Specification = 91.97%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Identity
+Accuracy = 99.37%, Sensitivity = 100.00%, Specification = 98.71%, ppv = 98.80%, F1 = 99.39%, MCC = 98.75%
+__________
+
+checking with m=5 and feats: [True, True, True]
+best params: {'criterion': 'entropy', 'max_depth': 10, 'min_samples_leaf': 3}
+
+Test con dt, m=5 y feats=Smith-Waterman Score,Alignment Length,Identity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 89.10%, Sensitivity = 87.56%, Specification = 90.64%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length,Identity
+Accuracy = 99.18%, Sensitivity = 99.50%, Specification = 98.83%, ppv = 98.96%, F1 = 99.22%, MCC = 98.37%
+__________
+
+checking with m=5 and feats: [True, True, False, True]
+best params: {'criterion': 'entropy', 'max_depth': 10, 'min_samples_leaf': 8}
+
+Test con dt, m=5 y feats=Smith-Waterman Score,Alignment Length,Similarity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 88.60%, Sensitivity = 87.48%, Specification = 89.72%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length,Similarity
+Accuracy = 98.49%, Sensitivity = 98.77%, Specification = 98.23%, ppv = 98.18%, F1 = 98.47%, MCC = 97.00%
+__________
+
+checking with m=5 and feats: [True, True, True, True]
+best params: {'criterion': 'entropy', 'max_depth': 10, 'min_samples_leaf': 15}
+
+Test con dt, m=5 y feats=Smith-Waterman Score,Alignment Length,Identity,Similarity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 88.63%, Sensitivity = 86.58%, Specification = 90.68%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length,Identity,Similarity
+Accuracy = 99.30%, Sensitivity = 99.94%, Specification = 98.59%, ppv = 98.74%, F1 = 99.34%, MCC = 98.60%
+__________
+
+checking with m=5 and feats: [False, False, True, True]
+best params: {'criterion': 'gini', 'max_depth': 10, 'min_samples_leaf': 50}
+
+Test con dt, m=5 y feats=Identity,Similarity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 78.29%, Sensitivity = 84.31%, Specification = 72.27%
+With CV (k-fold=10) + Stratification
+Valorando Método dt
+Extrayendo features..
+Training performance...
+
+Valoración del Método dt
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Identity,Similarity
+Accuracy = 98.56%, Sensitivity = 100.00%, Specification = 97.29%, ppv = 97.04%, F1 = 98.49%, MCC = 97.16%
+__________
+
+Mejor tuning para CV: {'ac': 98.56136749659896, 'f1s': 98.49292452945329, 'feats': [False, False, True, True], 'set': 100.0, 'sp': 97.29290617848969, 'm': 3, 'mcc': 97.16620290410086, 'params': {'criterion': 'gini', 'max_depth': 10, 'min_samples_leaf': 100}, 'spt': 97.29290617848969, 'ppv': 97.0396830540693, 'se': 100.0, 'act': 82.93642166864643}
+Accuracy = 98.56%, Sensitivity = 100.00%, Specification = 97.29%
+Mejor tuning con conjunto de prueba propio: {'ac': 98.56050214526633, 'f1s': 98.49200009062397, 'feats': [False, False, True, True], 'set': 100.0, 'sp': 97.29138062547673, 'm': 2, 'mcc': 97.16462419789505, 'params': {'criterion': 'gini', 'max_depth': 5, 'min_samples_leaf': 100}, 'spt': 97.29138062547673, 'ppv': 97.03805654886978, 'se': 100.0, 'act': 85.03406666204485}
+Accuracy = 82.94%, Sensitivity = 100.00%, Specification = 97.29%
+Todos los tunings:
+[{'ac': 98.56050415771128, 'f1s': 98.49572055447894, 'feats': [False, False, True, True], 'set': 100.0, 'sp': 97.29061784897024, 'm': 1, 'mcc': 97.1708609630929, 'params': {'criterion': 'gini', 'max_depth': 5, 'min_samples_leaf': 1}, 'spt': 97.29061784897024, 'ppv': 97.05128077954937, 'se': 100.0, 'act': 56.187220933248284}, {'ac': 98.56050214526633, 'f1s': 98.49200009062397, 'feats': [False, False, True, True], 'set': 100.0, 'sp': 97.29138062547673, 'm': 2, 'mcc': 97.16462419789505, 'params': {'criterion': 'gini', 'max_depth': 5, 'min_samples_leaf': 100}, 'spt': 97.29138062547673, 'ppv': 97.03805654886978, 'se': 100.0, 'act': 85.03406666204485}, {'ac': 98.56136749659896, 'f1s': 98.49292452945329, 'feats': [False, False, True, True], 'set': 100.0, 'sp': 97.29290617848969, 'm': 3, 'mcc': 97.16620290410086, 'params': {'criterion': 'gini', 'max_depth': 10, 'min_samples_leaf': 100}, 'spt': 97.29290617848969, 'ppv': 97.0396830540693, 'se': 100.0, 'act': 82.93642166864643}, {'ac': 98.56115216498829, 'f1s': 98.49386936752879, 'feats': [False, False, True, True], 'set': 100.0, 'sp': 97.29214340198322, 'm': 4, 'mcc': 97.16764408711654, 'params': {'criterion': 'entropy', 'max_depth': 10, 'min_samples_leaf': 100}, 'spt': 97.29214340198322, 'ppv': 97.04332775317374, 'se': 100.0, 'act': 82.05696434215781}, {'ac': 98.55985413798932, 'f1s': 98.4920280865039, 'feats': [False, False, True, True], 'set': 100.0, 'sp': 97.28985507246378, 'm': 5, 'mcc': 97.16440583524226, 'params': {'criterion': 'gini', 'max_depth': 10, 'min_samples_leaf': 50}, 'spt': 97.28985507246378, 'ppv': 97.03915063848471, 'se': 100.0, 'act': 78.28653390363506}]
+Tuning model: nb
+checking with m=1 and feats: [True]
+best params: {'priors': None}
+
+Test con nb, m=1 y feats=Smith-Waterman Score
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 67.51%, Sensitivity = 37.55%, Specification = 97.47%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score
+Accuracy = 73.74%, Sensitivity = 59.05%, Specification = 94.68%, ppv = 94.06%, F1 = 72.48%, MCC = 54.86%
+__________
+
+checking with m=1 and feats: [False, True]
+best params: {'priors': None}
+
+Test con nb, m=1 y feats=Alignment Length
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 53.99%, Sensitivity = 89.99%, Specification = 18.00%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Alignment Length
+Accuracy = 54.31%, Sensitivity = 92.90%, Specification = 12.50%, ppv = 53.50%, F1 = 67.90%, MCC = 9.09%
+__________
+
+checking with m=1 and feats: [True, True]
+best params: {'priors': [0.5, 0.5]}
+
+Test con nb, m=1 y feats=Smith-Waterman Score,Alignment Length
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 80.90%, Sensitivity = 64.71%, Specification = 97.08%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length
+Accuracy = 85.66%, Sensitivity = 76.03%, Specification = 95.30%, ppv = 94.20%, F1 = 84.08%, MCC = 72.74%
+__________
+
+checking with m=1 and feats: [False, False, True]
+best params: {'priors': None}
+
+Test con nb, m=1 y feats=Identity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 56.06%, Sensitivity = 15.06%, Specification = 97.07%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Identity
+Accuracy = 98.06%, Sensitivity = 100.00%, Specification = 96.03%, ppv = 96.36%, F1 = 98.14%, MCC = 96.19%
+__________
+
+checking with m=1 and feats: [False, False, False, True]
+best params: {'priors': [0.1, 0.9]}
+
+Test con nb, m=1 y feats=Similarity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 78.65%, Sensitivity = 68.59%, Specification = 88.72%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Similarity
+Accuracy = 93.51%, Sensitivity = 97.91%, Specification = 89.43%, ppv = 89.63%, F1 = 93.56%, MCC = 87.44%
+__________
+
+checking with m=1 and feats: [True, False, True]
+best params: {'priors': None}
+
+Test con nb, m=1 y feats=Smith-Waterman Score,Identity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 55.00%, Sensitivity = 10.29%, Specification = 99.72%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Identity
+Accuracy = 99.34%, Sensitivity = 100.00%, Specification = 98.64%, ppv = 98.74%, F1 = 99.36%, MCC = 98.69%
+__________
+
+checking with m=1 and feats: [True, True, True]
+best params: {'priors': [0.1, 0.9]}
+
+Test con nb, m=1 y feats=Smith-Waterman Score,Alignment Length,Identity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 62.47%, Sensitivity = 25.22%, Specification = 99.72%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length,Identity
+Accuracy = 99.06%, Sensitivity = 99.94%, Specification = 98.10%, ppv = 98.31%, F1 = 99.12%, MCC = 98.14%
+__________
+
+checking with m=1 and feats: [True, True, False, True]
+best params: {'priors': [0.1, 0.9]}
+
+Test con nb, m=1 y feats=Smith-Waterman Score,Alignment Length,Similarity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 83.21%, Sensitivity = 68.84%, Specification = 97.59%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length,Similarity
+Accuracy = 97.24%, Sensitivity = 98.38%, Specification = 96.14%, ppv = 96.08%, F1 = 97.22%, MCC = 94.50%
+__________
+
+checking with m=1 and feats: [True, True, True, True]
+best params: {'priors': None}
+
+Test con nb, m=1 y feats=Smith-Waterman Score,Alignment Length,Identity,Similarity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 64.54%, Sensitivity = 29.36%, Specification = 99.72%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length,Identity,Similarity
+Accuracy = 98.54%, Sensitivity = 98.99%, Specification = 98.04%, ppv = 98.24%, F1 = 98.61%, MCC = 97.09%
+__________
+
+checking with m=1 and feats: [False, False, True, True]
+best params: {'priors': None}
+
+Test con nb, m=1 y feats=Identity,Similarity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 56.06%, Sensitivity = 15.06%, Specification = 97.07%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Identity,Similarity
+Accuracy = 98.10%, Sensitivity = 99.01%, Specification = 97.29%, ppv = 97.01%, F1 = 97.99%, MCC = 96.21%
+__________
+
+checking with m=2 and feats: [True]
+best params: {'priors': None}
+
+Test con nb, m=2 y feats=Smith-Waterman Score
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 72.12%, Sensitivity = 46.84%, Specification = 97.41%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score
+Accuracy = 73.63%, Sensitivity = 58.92%, Specification = 94.59%, ppv = 94.05%, F1 = 72.38%, MCC = 54.67%
+__________
+
+checking with m=2 and feats: [False, True]
+best params: {'priors': [0.5, 0.5]}
+
+Test con nb, m=2 y feats=Alignment Length
+Predicting...
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+Predicting...
+With our test data set >> Accuracy = 55.96%, Sensitivity = 92.55%, Specification = 19.38%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Alignment Length
+Accuracy = 56.53%, Sensitivity = 92.37%, Specification = 17.69%, ppv = 54.88%, F1 = 68.84%, MCC = 15.38%
+__________
+
+checking with m=2 and feats: [True, True]
+best params: {'priors': None}
+
+Test con nb, m=2 y feats=Smith-Waterman Score,Alignment Length
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 84.30%, Sensitivity = 71.57%, Specification = 97.02%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length
+Accuracy = 85.46%, Sensitivity = 75.53%, Specification = 95.41%, ppv = 94.28%, F1 = 83.81%, MCC = 72.43%
+__________
+
+checking with m=2 and feats: [False, False, True]
+best params: {'priors': [0.4, 0.6]}
+
+Test con nb, m=2 y feats=Identity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 83.97%, Sensitivity = 79.79%, Specification = 88.15%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Identity
+Accuracy = 98.06%, Sensitivity = 100.00%, Specification = 96.03%, ppv = 96.40%, F1 = 98.15%, MCC = 96.21%
+__________
+
+checking with m=2 and feats: [False, False, False, True]
+best params: {'priors': [0.4, 0.6]}
+
+Test con nb, m=2 y feats=Similarity
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 83.35%, Sensitivity = 86.85%, Specification = 79.84%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Similarity
+Accuracy = 93.51%, Sensitivity = 98.31%, Specification = 89.07%, ppv = 89.34%, F1 = 93.60%, MCC = 87.50%
+__________
+
+checking with m=2 and feats: [True, False, True]
+best params: {'priors': [0.4, 0.6]}
+
+Test con nb, m=2 y feats=Smith-Waterman Score,Identity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 86.56%, Sensitivity = 78.46%, Specification = 94.65%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Identity
+Accuracy = 99.34%, Sensitivity = 100.00%, Specification = 98.64%, ppv = 98.74%, F1 = 99.36%, MCC = 98.69%
+__________
+
+checking with m=2 and feats: [True, True, True]
+best params: {'priors': [0.3, 0.7]}
+
+Test con nb, m=2 y feats=Smith-Waterman Score,Alignment Length,Identity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 86.44%, Sensitivity = 78.09%, Specification = 94.80%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length,Identity
+Accuracy = 99.03%, Sensitivity = 99.94%, Specification = 98.03%, ppv = 98.26%, F1 = 99.09%, MCC = 98.09%
+__________
+
+checking with m=2 and feats: [True, True, False, True]
+best params: {'priors': [0.1, 0.9]}
+
+Test con nb, m=2 y feats=Smith-Waterman Score,Alignment Length,Similarity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 87.63%, Sensitivity = 79.09%, Specification = 96.18%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length,Similarity
+Accuracy = 97.21%, Sensitivity = 98.33%, Specification = 96.13%, ppv = 96.09%, F1 = 97.19%, MCC = 94.46%
+__________
+
+checking with m=2 and feats: [True, True, True, True]
+best params: {'priors': [0.1, 0.9]}
+
+Test con nb, m=2 y feats=Smith-Waterman Score,Alignment Length,Identity,Similarity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 86.26%, Sensitivity = 77.64%, Specification = 94.88%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length,Identity,Similarity
+Accuracy = 98.54%, Sensitivity = 98.94%, Specification = 98.10%, ppv = 98.29%, F1 = 98.61%, MCC = 97.08%
+__________
+
+checking with m=2 and feats: [False, False, True, True]
+best params: {'priors': [0.1, 0.9]}
+
+Test con nb, m=2 y feats=Identity,Similarity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 82.66%, Sensitivity = 74.12%, Specification = 91.21%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Identity,Similarity
+Accuracy = 98.00%, Sensitivity = 98.81%, Specification = 97.29%, ppv = 97.00%, F1 = 97.89%, MCC = 96.02%
+__________
+
+checking with m=3 and feats: [True]
+best params: {'priors': None}
+
+Test con nb, m=3 y feats=Smith-Waterman Score
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 75.64%, Sensitivity = 53.84%, Specification = 97.43%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score
+Accuracy = 73.40%, Sensitivity = 58.66%, Specification = 94.40%, ppv = 93.84%, F1 = 72.11%, MCC = 54.25%
+__________
+
+checking with m=3 and feats: [False, True]
+best params: {'priors': [0.5, 0.5]}
+
+Test con nb, m=3 y feats=Alignment Length
+Predicting...
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+Predicting...
+With our test data set >> Accuracy = 55.48%, Sensitivity = 94.53%, Specification = 16.43%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Alignment Length
+Accuracy = 56.58%, Sensitivity = 92.46%, Specification = 17.69%, ppv = 54.89%, F1 = 68.88%, MCC = 15.61%
+__________
+
+checking with m=3 and feats: [True, True]
+best params: {'priors': None}
+
+Test con nb, m=3 y feats=Smith-Waterman Score,Alignment Length
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 84.15%, Sensitivity = 71.14%, Specification = 97.17%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length
+Accuracy = 85.63%, Sensitivity = 75.92%, Specification = 95.36%, ppv = 94.23%, F1 = 84.05%, MCC = 72.69%
+__________
+
+checking with m=3 and feats: [False, False, True]
+best params: {'priors': [0.5, 0.5]}
+
+Test con nb, m=3 y feats=Identity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 82.49%, Sensitivity = 79.05%, Specification = 85.93%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Identity
+Accuracy = 98.06%, Sensitivity = 100.00%, Specification = 96.03%, ppv = 96.36%, F1 = 98.14%, MCC = 96.19%
+__________
+
+checking with m=3 and feats: [False, False, False, True]
+best params: {'priors': [0.3, 0.7]}
+
+Test con nb, m=3 y feats=Similarity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 82.13%, Sensitivity = 77.90%, Specification = 86.36%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Similarity
+Accuracy = 93.42%, Sensitivity = 98.01%, Specification = 89.17%, ppv = 89.35%, F1 = 93.47%, MCC = 87.27%
+__________
+
+checking with m=3 and feats: [True, False, True]
+best params: {'priors': None}
+
+Test con nb, m=3 y feats=Smith-Waterman Score,Identity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 86.39%, Sensitivity = 79.00%, Specification = 93.78%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Identity
+Accuracy = 99.34%, Sensitivity = 100.00%, Specification = 98.64%, ppv = 98.74%, F1 = 99.36%, MCC = 98.69%
+__________
+
+checking with m=3 and feats: [True, True, True]
+best params: {'priors': None}
+
+Test con nb, m=3 y feats=Smith-Waterman Score,Alignment Length,Identity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 86.76%, Sensitivity = 79.81%, Specification = 93.72%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length,Identity
+Accuracy = 99.06%, Sensitivity = 99.94%, Specification = 98.10%, ppv = 98.30%, F1 = 99.11%, MCC = 98.14%
+__________
+
+checking with m=3 and feats: [True, True, False, True]
+best params: {'priors': [0.2, 0.8]}
+
+Test con nb, m=3 y feats=Smith-Waterman Score,Alignment Length,Similarity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 87.07%, Sensitivity = 78.70%, Specification = 95.44%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length,Similarity
+Accuracy = 97.15%, Sensitivity = 98.38%, Specification = 95.97%, ppv = 95.93%, F1 = 97.13%, MCC = 94.35%
+__________
+
+checking with m=3 and feats: [True, True, True, True]
+best params: {'priors': None}
+
+Test con nb, m=3 y feats=Smith-Waterman Score,Alignment Length,Identity,Similarity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 86.05%, Sensitivity = 80.74%, Specification = 91.37%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length,Identity,Similarity
+Accuracy = 98.54%, Sensitivity = 98.99%, Specification = 98.04%, ppv = 98.23%, F1 = 98.61%, MCC = 97.08%
+__________
+
+checking with m=3 and feats: [False, False, True, True]
+best params: {'priors': [0.4, 0.6]}
+
+Test con nb, m=3 y feats=Identity,Similarity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 82.56%, Sensitivity = 80.82%, Specification = 84.30%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Identity,Similarity
+Accuracy = 98.09%, Sensitivity = 99.01%, Specification = 97.29%, ppv = 97.02%, F1 = 98.00%, MCC = 96.21%
+__________
+
+checking with m=4 and feats: [True]
+best params: {'priors': None}
+
+Test con nb, m=4 y feats=Smith-Waterman Score
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 78.58%, Sensitivity = 59.32%, Specification = 97.85%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score
+Accuracy = 73.52%, Sensitivity = 58.66%, Specification = 94.68%, ppv = 94.06%, F1 = 72.17%, MCC = 54.55%
+__________
+
+checking with m=4 and feats: [False, True]
+best params: {'priors': [0.5, 0.5]}
+
+Test con nb, m=4 y feats=Alignment Length
+Predicting...
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+Predicting...
+With our test data set >> Accuracy = 56.40%, Sensitivity = 92.16%, Specification = 20.64%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Alignment Length
+Accuracy = 56.58%, Sensitivity = 92.37%, Specification = 17.79%, ppv = 54.92%, F1 = 68.88%, MCC = 15.15%
+__________
+
+checking with m=4 and feats: [True, True]
+best params: {'priors': None}
+
+Test con nb, m=4 y feats=Smith-Waterman Score,Alignment Length
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 84.15%, Sensitivity = 71.24%, Specification = 97.07%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length
+Accuracy = 85.54%, Sensitivity = 75.70%, Specification = 95.41%, ppv = 94.36%, F1 = 83.89%, MCC = 72.64%
+__________
+
+checking with m=4 and feats: [False, False, True]
+best params: {'priors': [0.5, 0.5]}
+
+Test con nb, m=4 y feats=Identity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 80.89%, Sensitivity = 75.90%, Specification = 85.87%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Identity
+Accuracy = 98.06%, Sensitivity = 100.00%, Specification = 96.02%, ppv = 96.40%, F1 = 98.15%, MCC = 96.21%
+__________
+
+checking with m=4 and feats: [False, False, False, True]
+best params: {'priors': [0.4, 0.6]}
+
+Test con nb, m=4 y feats=Similarity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 81.83%, Sensitivity = 80.52%, Specification = 83.15%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Similarity
+Accuracy = 93.37%, Sensitivity = 98.01%, Specification = 89.07%, ppv = 89.33%, F1 = 93.44%, MCC = 87.21%
+__________
+
+checking with m=4 and feats: [True, False, True]
+best params: {'priors': None}
+
+Test con nb, m=4 y feats=Smith-Waterman Score,Identity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 85.05%, Sensitivity = 76.64%, Specification = 93.46%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Identity
+Accuracy = 99.34%, Sensitivity = 100.00%, Specification = 98.64%, ppv = 98.73%, F1 = 99.36%, MCC = 98.69%
+__________
+
+checking with m=4 and feats: [True, True, True]
+best params: {'priors': None}
+
+Test con nb, m=4 y feats=Smith-Waterman Score,Alignment Length,Identity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 85.45%, Sensitivity = 77.44%, Specification = 93.46%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length,Identity
+Accuracy = 99.03%, Sensitivity = 99.94%, Specification = 98.03%, ppv = 98.25%, F1 = 99.09%, MCC = 98.09%
+__________
+
+checking with m=4 and feats: [True, True, False, True]
+best params: {'priors': None}
+
+Test con nb, m=4 y feats=Smith-Waterman Score,Alignment Length,Similarity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 86.54%, Sensitivity = 80.90%, Specification = 92.19%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length,Similarity
+Accuracy = 97.04%, Sensitivity = 98.38%, Specification = 95.76%, ppv = 95.73%, F1 = 97.03%, MCC = 94.15%
+__________
+
+checking with m=4 and feats: [True, True, True, True]
+best params: {'priors': None}
+
+Test con nb, m=4 y feats=Smith-Waterman Score,Alignment Length,Identity,Similarity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 85.03%, Sensitivity = 78.97%, Specification = 91.08%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length,Identity,Similarity
+Accuracy = 98.54%, Sensitivity = 98.94%, Specification = 98.10%, ppv = 98.29%, F1 = 98.61%, MCC = 97.08%
+__________
+
+checking with m=4 and feats: [False, False, True, True]
+best params: {'priors': [0.4, 0.6]}
+
+Test con nb, m=4 y feats=Identity,Similarity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 81.03%, Sensitivity = 77.15%, Specification = 84.91%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Identity,Similarity
+Accuracy = 98.05%, Sensitivity = 98.91%, Specification = 97.29%, ppv = 97.00%, F1 = 97.94%, MCC = 96.11%
+__________
+
+checking with m=5 and feats: [True]
+best params: {'priors': None}
+
+Test con nb, m=5 y feats=Smith-Waterman Score
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 79.90%, Sensitivity = 61.87%, Specification = 97.92%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score
+Accuracy = 73.51%, Sensitivity = 58.79%, Specification = 94.50%, ppv = 93.90%, F1 = 72.28%, MCC = 54.42%
+__________
+
+checking with m=5 and feats: [False, True]
+best params: {'priors': [0.5, 0.5]}
+
+Test con nb, m=5 y feats=Alignment Length
+Predicting...
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+Predicting...
+With our test data set >> Accuracy = 56.16%, Sensitivity = 91.68%, Specification = 20.64%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Alignment Length
+Accuracy = 56.62%, Sensitivity = 92.37%, Specification = 17.88%, ppv = 54.93%, F1 = 68.89%, MCC = 15.53%
+__________
+
+checking with m=5 and feats: [True, True]
+best params: {'priors': None}
+
+Test con nb, m=5 y feats=Smith-Waterman Score,Alignment Length
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 84.18%, Sensitivity = 71.22%, Specification = 97.14%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length
+Accuracy = 85.66%, Sensitivity = 76.15%, Specification = 95.19%, ppv = 94.07%, F1 = 84.13%, MCC = 72.68%
+__________
+
+checking with m=5 and feats: [False, False, True]
+best params: {'priors': [0.5, 0.5]}
+
+Test con nb, m=5 y feats=Identity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 79.60%, Sensitivity = 72.78%, Specification = 86.43%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Identity
+Accuracy = 98.06%, Sensitivity = 100.00%, Specification = 96.03%, ppv = 96.38%, F1 = 98.15%, MCC = 96.20%
+__________
+
+checking with m=5 and feats: [False, False, False, True]
+best params: {'priors': [0.3, 0.7]}
+
+Test con nb, m=5 y feats=Similarity
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 79.73%, Sensitivity = 70.65%, Specification = 88.82%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Similarity
+Accuracy = 93.37%, Sensitivity = 97.92%, Specification = 89.16%, ppv = 89.36%, F1 = 93.42%, MCC = 87.19%
+__________
+
+checking with m=5 and feats: [True, False, True]
+best params: {'priors': None}
+
+Test con nb, m=5 y feats=Smith-Waterman Score,Identity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 83.99%, Sensitivity = 75.10%, Specification = 92.88%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Identity
+Accuracy = 99.34%, Sensitivity = 100.00%, Specification = 98.64%, ppv = 98.74%, F1 = 99.36%, MCC = 98.69%
+__________
+
+checking with m=5 and feats: [True, True, True]
+best params: {'priors': None}
+
+Test con nb, m=5 y feats=Smith-Waterman Score,Alignment Length,Identity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 84.72%, Sensitivity = 76.24%, Specification = 93.19%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length,Identity
+Accuracy = 99.06%, Sensitivity = 99.94%, Specification = 98.10%, ppv = 98.30%, F1 = 99.11%, MCC = 98.14%
+__________
+
+checking with m=5 and feats: [True, True, False, True]
+best params: {'priors': [0.3, 0.7]}
+
+Test con nb, m=5 y feats=Smith-Waterman Score,Alignment Length,Similarity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 85.15%, Sensitivity = 75.57%, Specification = 94.72%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length,Similarity
+Accuracy = 97.10%, Sensitivity = 98.38%, Specification = 95.87%, ppv = 95.82%, F1 = 97.08%, MCC = 94.24%
+__________
+
+checking with m=5 and feats: [True, True, True, True]
+best params: {'priors': [0.5, 0.5]}
+
+Test con nb, m=5 y feats=Smith-Waterman Score,Alignment Length,Identity,Similarity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 83.85%, Sensitivity = 76.09%, Specification = 91.62%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length,Identity,Similarity
+Accuracy = 98.48%, Sensitivity = 98.94%, Specification = 97.98%, ppv = 98.18%, F1 = 98.56%, MCC = 96.96%
+__________
+
+checking with m=5 and feats: [False, False, True, True]
+best params: {'priors': [0.5, 0.5]}
+
+Test con nb, m=5 y feats=Identity,Similarity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 79.62%, Sensitivity = 77.17%, Specification = 82.06%
+With CV (k-fold=10) + Stratification
+Valorando Método nb
+Extrayendo features..
+Training performance...
+
+Valoración del Método nb
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Identity,Similarity
+Accuracy = 98.00%, Sensitivity = 98.81%, Specification = 97.29%, ppv = 97.03%, F1 = 97.90%, MCC = 96.03%
+__________
+
+Mejor tuning para CV: {'ac': 98.09624316774936, 'f1s': 97.9917571702799, 'feats': [False, False, True, True], 'set': 99.00990099009901, 'sp': 97.29214340198322, 'm': 1, 'mcc': 96.21458400342206, 'params': {'priors': None}, 'spt': 97.29214340198322, 'ppv': 97.0092284332035, 'se': 99.00990099009901, 'act': 56.06175041881917}
+Accuracy = 98.10%, Sensitivity = 99.01%, Specification = 97.29%
+Mejor tuning con conjunto de prueba propio: {'ac': 98.00171460310558, 'f1s': 97.89026969467434, 'feats': [False, False, True, True], 'set': 98.8118811881188, 'sp': 97.28527841342489, 'm': 2, 'mcc': 96.02457824173001, 'params': {'priors': [0.1, 0.9]}, 'spt': 97.28527841342489, 'ppv': 97.0043871315813, 'se': 98.8118811881188, 'act': 82.66316948982814}
+Accuracy = 56.06%, Sensitivity = 99.01%, Specification = 97.29%
+Todos los tunings:
+[{'ac': 98.09624316774936, 'f1s': 97.9917571702799, 'feats': [False, False, True, True], 'set': 99.00990099009901, 'sp': 97.29214340198322, 'm': 1, 'mcc': 96.21458400342206, 'params': {'priors': None}, 'spt': 97.29214340198322, 'ppv': 97.0092284332035, 'se': 99.00990099009901, 'act': 56.06175041881917}, {'ac': 98.00171460310558, 'f1s': 97.89026969467434, 'feats': [False, False, True, True], 'set': 98.8118811881188, 'sp': 97.28527841342489, 'm': 2, 'mcc': 96.02457824173001, 'params': {'priors': [0.1, 0.9]}, 'spt': 97.28527841342489, 'ppv': 97.0043871315813, 'se': 98.8118811881188, 'act': 82.66316948982814}, {'ac': 98.09387653247683, 'f1s': 97.99595143659235, 'feats': [False, False, True, True], 'set': 99.00792079207922, 'sp': 97.28604118993135, 'm': 3, 'mcc': 96.21073543344217, 'params': {'priors': [0.4, 0.6]}, 'spt': 97.28604118993135, 'ppv': 97.01918908273703, 'se': 99.00792079207922, 'act': 82.56226780413041}, {'ac': 98.04778953045633, 'f1s': 97.94011444955547, 'feats': [False, False, True, True], 'set': 98.90891089108912, 'sp': 97.2883295194508, 'm': 4, 'mcc': 96.11014133086192, 'params': {'priors': [0.4, 0.6]}, 'spt': 97.2883295194508, 'ppv': 96.99914109389553, 'se': 98.90891089108912, 'act': 81.03004286200905}, {'ac': 98.00279729849389, 'f1s': 97.89887557973603, 'feats': [False, False, True, True], 'set': 98.8118811881188, 'sp': 97.28756674294432, 'm': 5, 'mcc': 96.03211627922951, 'params': {'priors': [0.5, 0.5]}, 'spt': 97.28756674294432, 'ppv': 97.02574125036908, 'se': 98.8118811881188, 'act': 79.61651697195492}]
+Tuning model: knn
+checking with m=1 and feats: [True]
+best params: {'algorithm': 'auto', 'weights': 'uniform', 'metric': 'euclidean', 'p': 1, 'n_neighbors': 11, 'leaf_size': 30}
+
+Test con knn, m=1 y feats=Smith-Waterman Score
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 90.64%, Sensitivity = 87.48%, Specification = 93.79%
+With CV (k-fold=10) + Stratification
+Valorando Método knn
+Extrayendo features..
+Training performance...
+
+Valoración del Método knn
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score
+Y con k=None
+
+Accuracy = 88.23%, Sensitivity = 90.28%, Specification = 85.32%, ppv = 89.83%, F1 = 90.03%, MCC = 75.74%
+__________
+
+checking with m=1 and feats: [False, True]
+best params: {'algorithm': 'brute', 'weights': 'uniform', 'metric': 'euclidean', 'p': 1, 'n_neighbors': 3, 'leaf_size': 1}
+
+Test con knn, m=1 y feats=Alignment Length
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 56.34%, Sensitivity = 89.24%, Specification = 23.45%
+With CV (k-fold=10) + Stratification
+Valorando Método knn
+Extrayendo features..
+Training performance...
+
+Valoración del Método knn
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Alignment Length
+Y con k=None
+
+Accuracy = 61.24%, Sensitivity = 88.02%, Specification = 32.21%, ppv = 58.46%, F1 = 70.25%, MCC = 24.61%
+__________
+
+checking with m=1 and feats: [True, True]
+best params: {'algorithm': 'auto', 'weights': 'uniform', 'metric': 'euclidean', 'p': 1, 'n_neighbors': 3, 'leaf_size': 1}
+
+Test con knn, m=1 y feats=Smith-Waterman Score,Alignment Length
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 89.47%, Sensitivity = 81.10%, Specification = 97.85%
+With CV (k-fold=10) + Stratification
+Valorando Método knn
+Extrayendo features..
+Training performance...
+
+Valoración del Método knn
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length
+Y con k=None
+
+Accuracy = 97.57%, Sensitivity = 98.10%, Specification = 97.04%, ppv = 97.10%, F1 = 97.59%, MCC = 95.17%
+__________
+
+checking with m=1 and feats: [False, False, True]
+best params: {'algorithm': 'auto', 'weights': 'distance', 'metric': 'euclidean', 'p': 1, 'n_neighbors': 1, 'leaf_size': 1}
+
+Test con knn, m=1 y feats=Identity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 56.19%, Sensitivity = 15.31%, Specification = 97.07%
+With CV (k-fold=10) + Stratification
+Valorando Método knn
+Extrayendo features..
+Training performance...
+
+Valoración del Método knn
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Identity
+Y con k=None
+
+Accuracy = 98.06%, Sensitivity = 100.00%, Specification = 96.03%, ppv = 96.36%, F1 = 98.14%, MCC = 96.19%
+__________
+
+checking with m=1 and feats: [False, False, False, True]
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+/Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/site-packages/sklearn/metrics/classification.py:1113: UndefinedMetricWarning: Precision is ill-defined and being set to 0.0 in labels with no predicted samples.
+  'precision', 'predicted', average, warn_for)
+best params: {'algorithm': 'auto', 'weights': 'uniform', 'metric': 'euclidean', 'p': 1, 'n_neighbors': 15, 'leaf_size': 1}
+
+Test con knn, m=1 y feats=Similarity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 73.02%, Sensitivity = 57.32%, Specification = 88.72%
+With CV (k-fold=10) + Stratification
+Valorando Método knn
+Extrayendo features..
+Training performance...
+
+Valoración del Método knn
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Similarity
+Y con k=None
+
+Accuracy = 93.70%, Sensitivity = 97.71%, Specification = 89.99%, ppv = 90.09%, F1 = 93.72%, MCC = 87.77%
+__________
+
+checking with m=1 and feats: [True, False, True]
+best params: {'algorithm': 'auto', 'weights': 'uniform', 'metric': 'euclidean', 'p': 1, 'n_neighbors': 3, 'leaf_size': 1}
+
+Test con knn, m=1 y feats=Smith-Waterman Score,Identity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 89.28%, Sensitivity = 82.06%, Specification = 96.51%
+With CV (k-fold=10) + Stratification
+Valorando Método knn
+Extrayendo features..
+Training performance...
+
+Valoración del Método knn
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Identity
+Y con k=None
+
+Accuracy = 96.63%, Sensitivity = 99.03%, Specification = 94.08%, ppv = 94.68%, F1 = 96.79%, MCC = 93.37%
+__________
+
+checking with m=1 and feats: [True, True, True]
+best params: {'algorithm': 'auto', 'weights': 'distance', 'metric': 'minkowski', 'p': 1, 'n_neighbors': 1, 'leaf_size': 30}
+
+Test con knn, m=1 y feats=Smith-Waterman Score,Alignment Length,Identity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 87.16%, Sensitivity = 76.41%, Specification = 97.91%
+With CV (k-fold=10) + Stratification
+Valorando Método knn
+Extrayendo features..
+Training performance...
+
+Valoración del Método knn
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length,Identity
+Y con k=None
+
+Accuracy = 97.86%, Sensitivity = 98.04%, Specification = 97.67%, ppv = 97.90%, F1 = 97.96%, MCC = 95.74%
+__________
+
+checking with m=1 and feats: [True, True, False, True]
+best params: {'algorithm': 'auto', 'weights': 'distance', 'metric': 'minkowski', 'p': 1, 'n_neighbors': 3, 'leaf_size': 1}
+
+Test con knn, m=1 y feats=Smith-Waterman Score,Alignment Length,Similarity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 89.98%, Sensitivity = 81.73%, Specification = 98.23%
+With CV (k-fold=10) + Stratification
+Valorando Método knn
+Extrayendo features..
+Training performance...
+
+Valoración del Método knn
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length,Similarity
+Y con k=None
+
+Accuracy = 98.25%, Sensitivity = 98.38%, Specification = 98.12%, ppv = 98.06%, F1 = 98.22%, MCC = 96.50%
+__________
+
+checking with m=1 and feats: [True, True, True, True]
+best params: {'algorithm': 'auto', 'weights': 'uniform', 'metric': 'minkowski', 'p': 1, 'n_neighbors': 3, 'leaf_size': 1}
+
+Test con knn, m=1 y feats=Smith-Waterman Score,Alignment Length,Identity,Similarity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 88.78%, Sensitivity = 79.80%, Specification = 97.77%
+With CV (k-fold=10) + Stratification
+Valorando Método knn
+Extrayendo features..
+Training performance...
+
+Valoración del Método knn
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Smith-Waterman Score,Alignment Length,Identity,Similarity
+Y con k=None
+
+Accuracy = 98.28%, Sensitivity = 99.27%, Specification = 97.18%, ppv = 97.49%, F1 = 98.37%, MCC = 96.57%
+__________
+
+checking with m=1 and feats: [False, False, True, True]
+best params: {'algorithm': 'auto', 'weights': 'distance', 'metric': 'euclidean', 'p': 1, 'n_neighbors': 1, 'leaf_size': 1}
+
+Test con knn, m=1 y feats=Identity,Similarity
+Predicting...
+Predicting...
+With our test data set >> Accuracy = 56.56%, Sensitivity = 16.06%, Specification = 97.07%
+With CV (k-fold=10) + Stratification
+Valorando Método knn
+Extrayendo features..
+Training performance...
+
+Valoración del Método knn
+Con m=1 mejores alineamientos, kFolds=10
+Características extraídas: Identity,Similarity
+Y con k=None
+
+Accuracy = 98.51%, Sensitivity = 100.00%, Specification = 97.20%, ppv = 96.94%, F1 = 98.44%, MCC = 97.07%
+__________
+
+checking with m=2 and feats: [True]

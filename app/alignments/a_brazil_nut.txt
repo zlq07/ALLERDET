@@ -1,0 +1,1412 @@
+# ./fasta36 -f -12 -g -2 ../../brazil_nuts.fasta ../../cdep.fasta
+FASTA searches a protein or DNA sequence data bank
+ version 36.3.8d Apr, 2016(preload9)
+Please cite:
+ W.R. Pearson & D.J. Lipman PNAS (1988) 85:2444-2448
+
+Query: ../../brazil_nuts.fasta
+  1>>>sp|P04403|2SS1_BEREX 2S sulfur-rich seed storage protein 1 OS=Bertholletia excelsa GN=BE2S1 PE=1 SV=2 - 146 aa
+Library: ../../cdep.fasta
+    86627 residues in    91 sequences
+
+Statistics: (shuffled [485]) MLE statistics: Lambda= 0.1981;  K=0.02217
+ statistics sampled from 23 (23) to 485 sequences
+Algorithm: FASTA (3.8 Nov 2011) [optimized]
+Parameters: BL50 matrix (15:-5), open/ext: -12/-2
+ ktup: 2, E-join: 1 (0.495), E-opt: 0.2 (0.253), width:  16
+ Scan time:  0.020
+
+The best scores are:                                      opt bits E(91)
+sp|F5B8W5|CONB7_LUPAN Conglutin beta 7 OS=Lupinus  ( 605)   93 33.2 0.00081
+sp|Q8MUF6|MYSP_BLOTA Paramyosin OS=Blomia tropical ( 875)   86 31.2  0.0047
+sp|F5B8W4|CONB6_LUPAN Conglutin beta 6 OS=Lupinus  ( 593)   84 30.6  0.0047
+tr|Q6Y2F9|Q6Y2F9_DERPT HDM allergen OS=Dermatophag ( 875)   85 30.9  0.0057
+sp|Q967Z0|MYSP_DERFA Paramyosin (Fragment) OS=Derm ( 692)   83 30.3  0.0067
+sp|F5B8W0|CONB2_LUPAN Conglutin beta 2 OS=Lupinus  ( 603)   77 28.6   0.019
+sp|F5B8V9|CONB1_LUPAN Conglutin beta 1 OS=Lupinus  ( 611)   74 27.8   0.035
+sp|P49064|ALBU_FELCA Serum albumin OS=Felis catus  ( 608)   58 23.2    0.84
+sp|P49822|ALBU_CANLF Serum albumin OS=Canis lupus  ( 608)   57 22.9       1
+sp|Q9NJA9|MYSP_ANISI Paramyosin OS=Anisakis simple ( 869)   56 22.6     1.8
+sp|P02769|ALBU_BOVIN Serum albumin OS=Bos taurus G ( 607)   54 22.1     1.8
+sp|P19121|ALBU_CHICK Serum albumin OS=Gallus gallu ( 615)   53 21.8     2.2
+sp|Q09095|AVEA_AVESA Avenin-A (Fragment) OS=Avena  (  36)   37 17.2     3.1
+tr|A0A0B5I8T6|A0A0B5I8T6_9ACTN Alkyl hydroperoxide ( 599)   47 20.1       7
+
+>>sp|F5B8W5|CONB7_LUPAN Conglutin beta 7 OS=Lupinus angu  (605 aa)
+ initn:  88 init1:  57 opt:  93  Z-score: 136.2  bits: 33.2 E(91): 0.00081
+Smith-Waterman score: 93; 27.4% identity (53.7% similar) in 95 aa overlap (34-125:93-182)
+
+            10        20        30        40        50        60   
+sp|P04 ISVAAAALLVLMALGHATAFRATVTTTVVEEENQEECREQMQRQQMLSHCRMYMRQQMEE
+                                     :. .: :::. :.::      .. :.. ::
+sp|F5B QEREHRREEEHDRDPSRGRRESEERQEEERERRREPCREREQEQQP-----QHGRREEEE
+             70        80        90       100            110       
+
+            70        80        90          100       110       120
+sp|P04 SPYQTMPRRGMEPHMSECCEQLEGMDESCRCEG---LRMMMMRMQQEEMQPRGEQMRRMM
+          . .:::      .:  :: .: . : : ..    :..  : .:.. . . .. :   
+sp|F5B EEEEWQPRRLRPQSRKEEREQEQGSSSSSRKQSGYERRQYHERREQRDEKEKEQDSRSDS
+       120       130       140       150       160       170       
+
+              130       140                                        
+sp|P04 RLAENIPSRCNLSPMRCPMGGSIAGF                                  
+       :  .:                                                       
+sp|F5B RRQRNPYHFSSERFQTRYRNRNGQIRVLERFDQRTNRLENLQNYRIVEFQSNPNTLILPK
+       180       190       200       210       220       230       
+
+>>sp|Q8MUF6|MYSP_BLOTA Paramyosin OS=Blomia tropicalis P  (875 aa)
+ initn:  92 init1:  60 opt:  86  Z-score: 122.5  bits: 31.2 E(91): 0.0047
+Smith-Waterman score: 86; 25.3% identity (55.8% similar) in 95 aa overlap (19-107:256-348)
+
+                           10        20        30        40        
+sp|P04             MAKISVAAAALLVLMALGHATAFRATVTTTVVEEENQEECREQMQRQQ
+                                     :: .... . .  :. :.. : : ...:: 
+sp|Q8M NHLKGQIAQQLEDTRHRLEDEERKRSSLENHAHTLEVELESLKVQLEEESEARLELERQL
+         230       240       250       260       270       280     
+
+       50        60        70              80        90       100  
+sp|P04 MLSHCRMYMRQQMEESPYQTMP------RRGMEPHMSECCEQLEGMDESCRCEGLRMMMM
+         ..      ..  :.  :.        :: :  ..::  ::::.. .  .: .:. .  
+sp|Q8M TKANGDAASWKSKYEAELQAHVDEVEELRRKMAQKISEYGEQLEALLN--KCSALEKQKA
+         290       300       310       320       330         340   
+
+            110       120       130       140                      
+sp|P04 RMQQEEMQPRGEQMRRMMRLAENIPSRCNLSPMRCPMGGSIAGF                
+       :.:.:                                                       
+sp|Q8M RLQSEVEVLIMDLEKATAHAQALEKRVSQLEKINLDLKSKLEEVSMLLEQTQKDLRVKIA
+           350       360       370       380       390       400   
+
+>--
+ initn:  72 init1:  48 opt:  73  Z-score: 102.4  bits: 27.5 E(91): 0.062
+Smith-Waterman score: 73; 26.7% identity (53.3% similar) in 60 aa overlap (67-126:571-630)
+
+         40        50        60        70        80        90      
+sp|P04 QEECREQMQRQQMLSHCRMYMRQQMEESPYQTMPRRGMEPHMSECCEQLEGMDESCRCEG
+                                     :..   :.. :..:  .::.   ..     
+sp|Q8M KKYQAQITELELSLDAANKANIDLQKTIKKQALQITGLQAHYDEVHRQLQQAVDQLGVTQ
+              550       560       570       580       590       600
+
+        100       110       120       130       140                
+sp|P04 LRMMMMRMQQEEMQPRGEQMRRMMRLAENIPSRCNLSPMRCPMGGSIAGF          
+        : . .  . :::.   ::  :  : ::..                              
+sp|Q8M RRCQALTAELEEMRVNLEQALRAKRAAEQMHEEAVVRVNELTTINVNLASAKSKLETEFS
+              610       620       630       640       650       660
+
+>>sp|F5B8W4|CONB6_LUPAN Conglutin beta 6 OS=Lupinus angu  (593 aa)
+ initn: 103 init1:  69 opt:  84  Z-score: 122.4  bits: 30.6 E(91): 0.0047
+Smith-Waterman score: 84; 28.2% identity (52.9% similar) in 85 aa overlap (34-118:85-167)
+
+            10        20        30        40        50        60   
+sp|P04 ISVAAAALLVLMALGHATAFRATVTTTVVEEENQEECREQMQRQQMLSHCRMYMRQQMEE
+                                     ::..:: ::: .. .   . ..  ..  .:
+sp|F5B PRPHHQEEQEREHRREEERDREPSRGRRESEESREEEREQRREPRREREQEQQPQHGRRE
+           60        70        80        90       100       110    
+
+            70        80        90       100       110       120   
+sp|P04 SPYQTMPRRGMEPHMSECCEQLEGMDESCRCEGLRMMMMRMQQEEMQPRGEQMRRMMRLA
+          . .:::       :  :: .: . : : ..   .  : :.:: . . ::  :     
+sp|F5B EEEEWQPRRQRPQSRREEREQEQGSSSSSRRQS--AYERREQREEREQEQEQGSRSDSRR
+          120       130       140         150       160       170  
+
+           130       140                                           
+sp|P04 ENIPSRCNLSPMRCPMGGSIAGF                                     
+                                                                   
+sp|F5B QRNPYYFSSERFQTLYRNRNGQIRVLERFDKRTDRLENLQNYRIVEFQSKPNTLILPKHS
+            180       190       200       210       220       230  
+
+>>tr|Q6Y2F9|Q6Y2F9_DERPT HDM allergen OS=Dermatophagoide  (875 aa)
+ initn: 116 init1:  60 opt:  85  Z-score: 120.9  bits: 30.9 E(91): 0.0057
+Smith-Waterman score: 85; 24.2% identity (55.8% similar) in 95 aa overlap (19-107:256-348)
+
+                           10        20        30        40        
+sp|P04             MAKISVAAAALLVLMALGHATAFRATVTTTVVEEENQEECREQMQRQQ
+                                     :: .... . .  :. ... : : ...:: 
+tr|Q6Y NHLKQQIAQQLEDTRHRLEEEERKRSSLENHAHTLEVELESLKVQLDDESEARLELERQL
+         230       240       250       260       270       280     
+
+       50        60        70              80        90       100  
+sp|P04 MLSHCRMYMRQQMEESPYQTMP------RRGMEPHMSECCEQLEGMDESCRCEGLRMMMM
+         ..      ..  :.  :.        :: :  ..::  ::::.. .  .: .:. .  
+tr|Q6Y TKANGDAASWKSKYEAELQAHADEVEELRRKMAQKISEYEEQLEALLN--KCSSLEKQKS
+         290       300       310       320       330         340   
+
+            110       120       130       140                      
+sp|P04 RMQQEEMQPRGEQMRRMMRLAENIPSRCNLSPMRCPMGGSIAGF                
+       :.:.:                                                       
+tr|Q6Y RLQSEVEVLIMDLEKAAAHAQQLEKRVAQLEKINLDLKDKLEEVTMLMEQAQKELRIKIG
+           350       360       370       380       390       400   
+
+>--
+ initn:  78 init1:  51 opt:  65  Z-score: 90.0  bits: 25.2 E(91):  0.3
+Smith-Waterman score: 65; 25.0% identity (53.3% similar) in 60 aa overlap (67-126:571-630)
+
+         40        50        60        70        80        90      
+sp|P04 QEECREQMQRQQMLSHCRMYMRQQMEESPYQTMPRRGMEPHMSECCEQLEGMDESCRCEG
+                                     :..    .. :..:  .::.   ..     
+tr|Q6Y KKYQAQITELELSLDAANKANIDLQKTIKKQALQITELQAHYDEVHRQLQQAVDQLGVTQ
+              550       560       570       580       590       600
+
+        100       110       120       130       140                
+sp|P04 LRMMMMRMQQEEMQPRGEQMRRMMRLAENIPSRCNLSPMRCPMGGSIAGF          
+        : . .. . :::.   ::  :  : ::..                              
+tr|Q6Y RRCQALQAELEEMRIALEQASRAKRQAEQLHEEAVVRVNELTTINVNLASAKSKLESEFS
+              610       620       630       640       650       660
+
+>>sp|Q967Z0|MYSP_DERFA Paramyosin (Fragment) OS=Dermatop  (692 aa)
+ initn: 116 init1:  60 opt:  83  Z-score: 119.7  bits: 30.3 E(91): 0.0067
+Smith-Waterman score: 83; 24.2% identity (55.8% similar) in 95 aa overlap (19-107:170-262)
+
+                           10        20        30        40        
+sp|P04             MAKISVAAAALLVLMALGHATAFRATVTTTVVEEENQEECREQMQRQQ
+                                     :: .... . .  :. ... : : ...:: 
+sp|Q96 NHLKTQIAQQLEDTRHRLEEEERKRASLENHAHTLEVELESLKVQLDEESEARLELERQL
+     140       150       160       170       180       190         
+
+       50        60        70              80        90       100  
+sp|P04 MLSHCRMYMRQQMEESPYQTMP------RRGMEPHMSECCEQLEGMDESCRCEGLRMMMM
+         ..      ..  :.  :.        :: :  ..::  ::::.. .  .: .:. .  
+sp|Q96 TKANGDAASWKSKYEAELQAHADEVEELRRKMAQKISEYEEQLEALLN--KCSSLEKQKS
+     200       210       220       230       240         250       
+
+            110       120       130       140                      
+sp|P04 RMQQEEMQPRGEQMRRMMRLAENIPSRCNLSPMRCPMGGSIAGF                
+       :.:.:                                                       
+sp|Q96 RLQSEVEVLIMDLEKATRHAQQLEKRVAQLEKINLDLKNKLEEVTMLMEQAQKELRVKIA
+       260       270       280       290       300       310       
+
+>--
+ initn:  77 init1:  51 opt:  65  Z-score: 91.9  bits: 25.2 E(91): 0.24
+Smith-Waterman score: 65; 16.0% identity (54.0% similar) in 100 aa overlap (30-129:302-398)
+
+                10        20        30        40        50         
+sp|P04  MAKISVAAAALLVLMALGHATAFRATVTTTVVEEENQEECREQMQRQQMLSHCRMYMRQ
+                                     :.. :. :.: : .. . : :.:    .:.
+sp|Q96 KATRHAQQLEKRVAQLEKINLDLKNKLEEVTMLMEQAQKELRVKIAELQKLQHEYEKLRD
+             280       290       300       310       320       330 
+
+      60        70        80        90       100       110         
+sp|P04 QMEESPYQTMPRRGMEPHMSECCEQLEGMDESCRCEGLRMMMMRMQQEEMQPRGEQMRRM
+       : ..   ..   . .   ..:   ::.   .  . . ...  .. ...:..   .. . .
+sp|Q96 QRDQLAREN---KKLTDDLAEAKSQLNDAHRRIHEQEIEIKRLENERDELSAAYKEAETL
+             340          350       360       370       380        
+
+     120       130       140                                       
+sp|P04 MRLAENIPSRCNLSPMRCPMGGSIAGF                                 
+        .  :   .:                                                  
+sp|Q96 RKQEEAKNQRLIAELAQVRHDYEKRLAQKDEEIEALRKQYQIEIEQLNMRLAEAEAKLKT
+      390       400       410       420       430       440        
+
+>--
+ initn:  69 init1:  51 opt:  65  Z-score: 91.9  bits: 25.2 E(91): 0.24
+Smith-Waterman score: 65; 25.0% identity (53.3% similar) in 60 aa overlap (67-126:485-544)
+
+         40        50        60        70        80        90      
+sp|P04 QEECREQMQRQQMLSHCRMYMRQQMEESPYQTMPRRGMEPHMSECCEQLEGMDESCRCEG
+                                     :..    .. :..:  .::.   ..     
+sp|Q96 KKYQAQITELELSLDAANKANIDLQKTIKKQALQITELQAHYDEVHRQLQQAVDQLGVTQ
+          460       470       480       490       500       510    
+
+        100       110       120       130       140                
+sp|P04 LRMMMMRMQQEEMQPRGEQMRRMMRLAENIPSRCNLSPMRCPMGGSIAGF          
+        : . .. . :::.   ::  :  : ::..                              
+sp|Q96 RRCQALQAELEEMRIALEQANRAKRQAEQLHEEAVVRVNELTTINVNLASAKSKLESEFS
+          520       530       540       550       560       570    
+
+>>sp|F5B8W0|CONB2_LUPAN Conglutin beta 2 OS=Lupinus angu  (603 aa)
+ initn:  93 init1:  61 opt:  77  Z-score: 111.5  bits: 28.6 E(91): 0.019
+Smith-Waterman score: 77; 25.2% identity (45.4% similar) in 119 aa overlap (11-124:19-136)
+
+                       10        20        30        40        50  
+sp|P04         MAKISVAAAALLVLMALGHATAFRATVTTTVVEEENQEECREQMQRQQMLSH
+                         .:. ...: : . . .. .    .: ..: :.  : :    :
+sp|F5B MANMRVKFPTLVLLLGIVFLMAVSIGIAYGEKNAIKNHERPQEREQEERDPRQ-QPRPRH
+               10        20        30        40        50          
+
+             60        70        80        90          100         
+sp|P04 CRMYMRQQMEESPYQTMPRRGMEPHMSECCEQLEGMDESCRC---EGLRMMMMRMQQEEM
+        .   :.. .:   .  : ::         :. :   :  :    :   .   : ..:: 
+sp|F5B QEEQEREHGREEERNREPSRGRSESEESREEEREQRREPSRGREQEQQPQHGRREEEEEW
+      60        70        80        90       100       110         
+
+     110         120       130       140                           
+sp|P04 QPRGE--QMRRMMRLAENIPSRCNLSPMRCPMGGSIAGF                     
+       ::: .  : ::  :  :                                           
+sp|F5B QPRRQRPQSRREEREQEQGSSSSSGRQSGYERREQREEREQQQEQDSRSESRRQRNPYYF
+     120       130       140       150       160       170         
+
+>>sp|F5B8V9|CONB1_LUPAN Conglutin beta 1 OS=Lupinus angu  (611 aa)
+ initn:  74 init1:  74 opt:  74  Z-score: 106.7  bits: 27.8 E(91): 0.035
+Smith-Waterman score: 74; 32.5% identity (70.0% similar) in 40 aa overlap (33-72:86-125)
+
+             10        20        30        40        50        60  
+sp|P04 KISVAAAALLVLMALGHATAFRATVTTTVVEEENQEECREQMQRQQMLSHCRMYMRQQME
+                                     .::..:. ::. ..... .. :   ::. :
+sp|F5B RQQEEQEREHRREEKHDGEPSRGRSQSEESQEEEHERRREHHREREQEQQPRPQRRQEEE
+          60        70        80        90       100       110     
+
+             70        80        90       100       110       120  
+sp|P04 ESPYQTMPRRGMEPHMSECCEQLEGMDESCRCEGLRMMMMRMQQEEMQPRGEQMRRMMRL
+       :   . .:::                                                  
+sp|F5B EEEEEWQPRRQRPQSRREEREEREQEQGSSSGSQRGSGDERRQHRERRVHREEREQEQDS
+         120       130       140       150       160       170     
+
+>>sp|P49064|ALBU_FELCA Serum albumin OS=Felis catus GN=A  (608 aa)
+ initn:  45 init1:  45 opt:  58  Z-score: 82.1  bits: 23.2 E(91): 0.84
+Smith-Waterman score: 59; 20.0% identity (53.3% similar) in 45 aa overlap (48-92:81-125)
+
+        20        30        40        50        60        70       
+sp|P04 GHATAFRATVTTTVVEEENQEECREQMQRQQMLSHCRMYMRQQMEESPYQTMPRRGMEPH
+                                     :  ..:.  ... . ..   .   :    .
+sp|P49 FSQYLQQCPFEDHVKLVNEVTEFAKGCVADQSAANCEKSLHELLGDKLCTVASLRDKYGE
+               60        70        80        90       100       110
+
+        80        90       100       110       120       130       
+sp|P04 MSECCEQLEGMDESCRCEGLRMMMMRMQQEEMQPRGEQMRRMMRLAENIPSRCNLSPMRC
+       :..:::. :   . :                                             
+sp|P49 MADCCEKKEPERNECFLQHKDDNPGFGQLVTPEADAMCTAFHENEQRFLGKYLYEIARRH
+              120       130       140       150       160       170
+
+>>sp|P49822|ALBU_CANLF Serum albumin OS=Canis lupus fami  (608 aa)
+ initn:  58 init1:  46 opt:  57  Z-score: 80.5  bits: 22.9 E(91):    1
+Smith-Waterman score: 57; 24.4% identity (61.0% similar) in 41 aa overlap (79-118:459-499)
+
+       50        60        70        80        90       100        
+sp|P04 MLSHCRMYMRQQMEESPYQTMPRRGMEPHMSECCEQLEGMDESCRCEGLRMMMMRMQ-QE
+                                     ..::.. :.   ::  . : ... :.   .
+sp|P49 NALLVRYTKKAPQVSTPTLVEVSRKLGKVGTKCCKKPESERMSCAEDFLSVVLNRLCVLH
+      430       440       450       460       470       480        
+
+       110       120       130       140                           
+sp|P04 EMQPRGEQMRRMMRLAENIPSRCNLSPMRCPMGGSIAGF                     
+       :  : .:.. .                                                 
+sp|P49 EKTPVSERVTKCCSESLVNRRPCFSGLEVDETYVPKEFNAETFTFHADLCTLPEAEKQVK
+      490       500       510       520       530       540        
+
+>>sp|Q9NJA9|MYSP_ANISI Paramyosin OS=Anisakis simplex GN  (869 aa)
+ initn:  51 init1:  51 opt:  56  Z-score: 76.2  bits: 22.6 E(91):  1.8
+Smith-Waterman score: 56; 34.6% identity (69.2% similar) in 26 aa overlap (39-64:216-241)
+
+       10        20        30        40        50        60        
+sp|P04 AALLVLMALGHATAFRATVTTTVVEEENQEECREQMQRQQMLSHCRMYMRQQMEESPYQT
+                                     : ..:  . . :.: .. . ::.:::    
+sp|Q9N SNKVEDLNKHVNDLAQQRQRLQAENSDLLAEIHDQKVQLDNLQHVKYQLAQQLEESRRRL
+         190       200       210       220       230       240     
+
+       70        80        90       100       110       120        
+sp|P04 MPRRGMEPHMSECCEQLEGMDESCRCEGLRMMMMRMQQEEMQPRGEQMRRMMRLAENIPS
+                                                                   
+sp|Q9N EDAERERSQMQAQLHQVQLELDSVRVALDEESAARVEAEHKLSLANTEITQWKSKFDAEV
+         250       260       270       280       290       300     
+
+>>sp|P02769|ALBU_BOVIN Serum albumin OS=Bos taurus GN=AL  (607 aa)
+ initn:  58 init1:  38 opt:  54  Z-score: 75.9  bits: 22.1 E(91):  1.8
+Smith-Waterman score: 56; 20.3% identity (48.6% similar) in 74 aa overlap (64-134:443-516)
+
+            40        50        60        70        80        90   
+sp|P04 EENQEECREQMQRQQMLSHCRMYMRQQMEESPYQTMPRRGMEPHMSECCEQLEGMDESCR
+                                     .:  .   :..    ..:: . :.    : 
+sp|P02 QNCDQFEKLGEYGFQNALIVRYTRKVPQVSTPTLVEVSRSLGKVGTRCCTKPESERMPCT
+            420       430       440       450       460       470  
+
+           100        110         120       130       140          
+sp|P04 CEGLRMMMMRMQ-QEEMQPRGEQMRR--MMRLAENIPSRCNLSPMRCPMGGSIAGF    
+        . : ... :.   .:  : .:.. .     :..  :    :.:                
+sp|P02 EDYLSLILNRLCVLHEKTPVSEKVTKCCTESLVNRRPCFSALTPDETYVPKAFDEKLFTF
+            480       490       500       510       520       530  
+
+sp|P02 HADICTLPDTEKQIKKQTALVELLKHKPKATEEQLKTVMENFVAFVDKCCAADDKEACFA
+            540       550       560       570       580       590  
+
+>>sp|P19121|ALBU_CHICK Serum albumin OS=Gallus gallus GN  (615 aa)
+ initn:  53 init1:  53 opt:  53  Z-score: 74.3  bits: 21.8 E(91):  2.2
+Smith-Waterman score: 57; 25.6% identity (60.5% similar) in 43 aa overlap (55-93:245-287)
+
+           30        40        50        60        70          80  
+sp|P04 ATVTTTVVEEENQEECREQMQRQQMLSHCRMYMRQQMEESPYQTMPRRGMEPH--MSECC
+                                     .:. :.. ..:.. . .   .     .:::
+sp|P19 EKAKGVSVKQQYFCGILKQFGDRVFQARQLIYLSQKYPKAPFSEVSKFVHDSIGVHKECC
+          220       230       240       250       260       270    
+
+               90       100       110       120       130       140
+sp|P04 E--QLEGMDESCRCEGLRMMMMRMQQEEMQPRGEQMRRMMRLAENIPSRCNLSPMRCPMG
+       :  ..: ::.  :                                               
+sp|P19 EGDMVECMDDMARMMSNLCSQQDVFSGKIKDCCEKPIVERSQCIMEAEFDEKPADLPSLV
+          280       290       300       310       320       330    
+
+>>sp|Q09095|AVEA_AVESA Avenin-A (Fragment) OS=Avena sati  (36 aa)
+ initn:  38 init1:  29 opt:  37  Z-score: 71.7  bits: 17.2 E(91):  3.1
+Smith-Waterman score: 37; 33.3% identity (80.0% similar) in 15 aa overlap (107-121:3-17)
+
+         80        90       100       110       120       130      
+sp|P04 HMSECCEQLEGMDESCRCEGLRMMMMRMQQEEMQPRGEQMRRMMRLAENIPSRCNLSPMR
+                                     :..::  ::.. ...               
+sp|Q09                             PSEQYQPYPEQQQPFLQQQPLELQQQQXXLVL
+                                           10        20        30  
+
+        140      
+sp|P04 CPMGGSIAGF
+                 
+sp|Q09 FLQK      
+                 
+
+>>tr|A0A0B5I8T6|A0A0B5I8T6_9ACTN Alkyl hydroperoxide red  (599 aa)
+ initn:  59 init1:  39 opt:  47  Z-score: 65.2  bits: 20.1 E(91):    7
+Smith-Waterman score: 53; 25.0% identity (59.1% similar) in 44 aa overlap (98-140:456-499)
+
+        70        80        90       100       110       120       
+sp|P04 TMPRRGMEPHMSECCEQLEGMDESCRCEGLRMMMMRMQQEEMQPRGEQMRRMMRLAENIP
+                                     :.  .:. .: .: ..  .: . . .:  :
+tr|A0A EVTTLATDLREPSDAVLVGGDIVVVESARHRLTRLRLPEEAVQVESAAYRTQREATEVAP
+         430       440       450       460       470       480     
+
+       130        140                                              
+sp|P04 SRCNLSPM-RCPMGGSIAGF                                        
+       .:  :. . . : :                                              
+tr|A0A GRLRLDVVFQAPTGQKLDERYGPSTRLLVSSTPPELLLGGEGTGTDLFRELELNPDVTEG
+         490       500       510       520       530       540     
+
+
+  2>>>sp|P0C8Y8|2SS2_BEREX 2S sulfur-rich seed storage protein 2 OS=Bertholletia excelsa GN=BE2S2 PE=3 SV=1 - 154 aa
+Library: ../../cdep.fasta
+    86627 residues in    91 sequences
+
+Statistics: (shuffled [483]) MLE statistics: Lambda= 0.1478;  K=0.00669
+ statistics sampled from 28 (28) to 483 sequences
+Algorithm: FASTA (3.8 Nov 2011) [optimized]
+Parameters: BL50 matrix (15:-5), open/ext: -12/-2
+ ktup: 2, E-join: 1 (0.495), E-opt: 0.2 (0.28), width:  16
+ Scan time:  0.020
+
+The best scores are:                                      opt bits E(91)
+sp|F5B8W5|CONB7_LUPAN Conglutin beta 7 OS=Lupinus  ( 605)  115 32.7  0.0012
+sp|F5B8W4|CONB6_LUPAN Conglutin beta 6 OS=Lupinus  ( 593)  102 29.9  0.0081
+sp|F5B8W0|CONB2_LUPAN Conglutin beta 2 OS=Lupinus  ( 603)  101 29.7  0.0095
+sp|F5B8W3|CONB5_LUPAN Conglutin beta 5 OS=Lupinus  ( 637)   91 27.6   0.044
+sp|F5B8V9|CONB1_LUPAN Conglutin beta 1 OS=Lupinus  ( 611)   81 25.5    0.19
+sp|Q967Z0|MYSP_DERFA Paramyosin (Fragment) OS=Derm ( 692)   79 25.0    0.28
+tr|Q6Y2F9|Q6Y2F9_DERPT HDM allergen OS=Dermatophag ( 875)   79 25.0    0.36
+sp|Q8MUF6|MYSP_BLOTA Paramyosin OS=Blomia tropical ( 875)   75 24.2    0.65
+sp|P19121|ALBU_CHICK Serum albumin OS=Gallus gallu ( 615)   70 23.1    0.94
+sp|P49064|ALBU_FELCA Serum albumin OS=Felis catus  ( 608)   69 22.9     1.1
+sp|O43290|SNUT1_HUMAN U4/U6.U5 tri-snRNP-associate ( 800)   61 21.2     4.6
+tr|A0A0M0JAY4|A0A0M0JAY4_9EUKA Calcium-binding all ( 694)   57 20.3       7
+tr|B3IXL2|B3IXL2_ARAHY Main allergen Ara h1 OS=Ara ( 614)   56 20.1     7.2
+sp|P43237|ALL11_ARAHY Allergen Ara h 1, clone P17  ( 614)   56 20.1     7.2
+
+>>sp|F5B8W5|CONB7_LUPAN Conglutin beta 7 OS=Lupinus angu  (605 aa)
+ initn: 120 init1:  78 opt: 115  Z-score: 133.1  bits: 32.7 E(91): 0.0012
+Smith-Waterman score: 115; 27.1% identity (58.5% similar) in 118 aa overlap (32-146:70-183)
+
+              10        20        30         40        50        60
+sp|P0C AKMSVVAAALLALLVLGQATAFRTTVTTTLEEEQEENP-RGRSEQQCREQMERQQQLNHC
+                                     :::....: ::: :.. :.. ::... . :
+sp|F5B RPGEREHEERDPRQQPRPRKQEEQEREHRREEEHDRDPSRGRRESEERQEEERERRREPC
+      40        50        60        70        80        90         
+
+               70        80        90       100       110          
+sp|P0C RMYLRQQMEESPYQNPRPLRRGEEPHLDECCEQLERMDEMCRCEGLRMMLRRQR--EEME
+       :   ....:..: .. :  .. ::    .  .   : .:  . .:     :.:   :. .
+sp|F5B R---EREQEQQPQHGRREEEEEEEEWQPRRLRPQSRKEEREQEQGSSSSSRKQSGYERRQ
+     100          110       120       130       140       150      
+
+      120       130       140       150                            
+sp|P0C LQGEQMQRIMRKAENLLSRCNLSPQRCPMGGYTAWL                        
+        . .. ::  .. :.  :: .   :: :                                
+sp|F5B YHERREQRDEKEKEQD-SRSDSRRQRNPYHFSSERFQTRYRNRNGQIRVLERFDQRTNRL
+        160       170        180       190       200       210     
+
+>--
+ initn:  89 init1:  75 opt:  75  Z-score: 87.0  bits: 24.2 E(91): 0.45
+Smith-Waterman score: 75; 48.1% identity (70.4% similar) in 27 aa overlap (58-84:37-62)
+
+        30        40        50        60        70        80       
+sp|P0C TTTLEEEQEENPRGRSEQQCREQMERQQQLNHCRMYLRQQMEESPYQNPRPLRRGEEPHL
+                                     :: :   :.. :..: :.::: :. ::   
+sp|F5B RFPTLVLLLGILFLMAVSIGIAYGEKDVIKNHERPGEREHEERDPRQQPRP-RKQEEQER
+         10        20        30        40        50         60     
+
+        90       100       110       120       130       140       
+sp|P0C DECCEQLERMDEMCRCEGLRMMLRRQREEMELQGEQMQRIMRKAENLLSRCNLSPQRCPM
+                                                                   
+sp|F5B EHRREEEHDRDPSRGRRESEERQEEERERRREPCREREQEQQPQHGRREEEEEEEEWQPR
+          70        80        90       100       110       120     
+
+>>sp|F5B8W4|CONB6_LUPAN Conglutin beta 6 OS=Lupinus angu  (593 aa)
+ initn: 106 init1:  77 opt: 102  Z-score: 118.2  bits: 29.9 E(91): 0.0081
+Smith-Waterman score: 102; 33.8% identity (57.7% similar) in 71 aa overlap (58-126:37-107)
+
+        30        40        50        60        70        80       
+sp|P0C TTTLEEEQEENPRGRSEQQCREQMERQQQLNHCRMYLRQQMEESPYQNPRPLRRGEEPHL
+                                     :: :   :.: :..: :.::: .. :. . 
+sp|F5B RFPTLVLLLGIVFLMAVSIGIAYGEKNVIKNHERPQEREQEERDPRQQPRPHHQEEQERE
+         10        20        30        40        50        60      
+
+        90       100         110       120       130       140     
+sp|P0C DECCEQLERMDEMCRCEGL--RMMLRRQREEMELQGEQMQRIMRKAENLLSRCNLSPQRC
+        .  :. .:     : :.   :   :.::.: . . :: :.                   
+sp|F5B HRREEERDREPSRGRRESEESREEEREQRREPRREREQEQQPQHGRREEEEEWQPRRQRP
+         70        80        90       100       110       120      
+
+         150                                                       
+sp|P0C PMGGYTAWL                                                   
+                                                                   
+sp|F5B QSRREEREQEQGSSSSSRRQSAYERREQREEREQEQEQGSRSDSRRQRNPYYFSSERFQT
+        130       140       150       160       170       180      
+
+>--
+ initn: 118 init1:  68 opt:  82  Z-score: 95.2  bits: 25.7 E(91): 0.16
+Smith-Waterman score: 82; 24.8% identity (52.4% similar) in 105 aa overlap (32-128:114-217)
+
+              10        20        30        40        50           
+sp|P0C AKMSVVAAALLALLVLGQATAFRTTVTTTLEEEQEENPRGRSEQQCREQMERQQ------
+                                     :::.: .:: .  :. ::. :..:      
+sp|F5B SEESREEEREQRREPRREREQEQQPQHGRREEEEEWQPRRQRPQSRREEREQEQGSSSSS
+            90       100       110       120       130       140   
+
+            60        70        80        90       100       110   
+sp|P0C --QLNHCRMYLRQQMEESPYQNPRPLRRGEEPHLDECCEQLERMDEMCRCEGLRMMLRRQ
+         :  . :   :.. :.   :. :   : ..       :... . .  :   .:.. : .
+sp|F5B RRQSAYERREQREEREQEQEQGSRSDSRRQRNPYYFSSERFQTLYRN-RNGQIRVLERFD
+           150       160       170       180       190        200  
+
+           120       130       140       150                       
+sp|P0C REEMELQGEQMQRIMRKAENLLSRCNLSPQRCPMGGYTAWL                   
+       ..  .:.. :  ::.                                             
+sp|F5B KRTDRLENLQNYRIVEFQSKPNTLILPKHSDADYILVVLNGSATITIVNPDKRQSYNLEN
+            210       220       230       240       250       260  
+
+>>sp|F5B8W0|CONB2_LUPAN Conglutin beta 2 OS=Lupinus angu  (603 aa)
+ initn: 110 init1:  77 opt: 101  Z-score: 116.9  bits: 29.7 E(91): 0.0095
+Smith-Waterman score: 101; 35.4% identity (51.9% similar) in 79 aa overlap (52-126:31-107)
+
+              30        40        50        60        70        80 
+sp|P0C AFRTTVTTTLEEEQEENPRGRSEQQCREQMERQQQLNHCRMYLRQQMEESPYQNPRPLRR
+                                     :..   :: :   :.: :..: :.:::  :
+sp|F5B MANMRVKFPTLVLLLGIVFLMAVSIGIAYGEKNAIKNHERPQEREQEERDPRQQPRP--R
+               10        20        30        40        50          
+
+              90       100           110       120       130       
+sp|P0C GEEPHLDECCEQLERMDEMCR----CEGLRMMLRRQREEMELQGEQMQRIMRKAENLLSR
+        .: .  :  .. ::  :  :     :  :   :.::.:     :: :.           
+sp|F5B HQEEQEREHGREEERNREPSRGRSESEESREEEREQRREPSRGREQEQQPQHGRREEEEE
+       60        70        80        90       100       110        
+
+       140       150                                               
+sp|P0C CNLSPQRCPMGGYTAWL                                           
+                                                                   
+sp|F5B WQPRRQRPQSRREEREQEQGSSSSSGRQSGYERREQREEREQQQEQDSRSESRRQRNPYY
+      120       130       140       150       160       170        
+
+>--
+ initn: 130 init1:  68 opt:  86  Z-score: 99.7  bits: 26.5 E(91): 0.088
+Smith-Waterman score: 86; 24.8% identity (54.3% similar) in 105 aa overlap (32-128:114-217)
+
+              10        20        30        40        50           
+sp|P0C AKMSVVAAALLALLVLGQATAFRTTVTTTLEEEQEENPRGRSEQQCREQMERQQ------
+                                     :::.: .:: .  :. ::. :..:      
+sp|F5B SEESREEEREQRREPSRGREQEQQPQHGRREEEEEWQPRRQRPQSRREEREQEQGSSSSS
+            90       100       110       120       130       140   
+
+            60        70        80        90       100       110   
+sp|P0C --QLNHCRMYLRQQMEESPYQNPRPLRRGEEPHLDECCEQLERMDEMCRCEGLRMMLRRQ
+         : .. :   :.. :..  :. :   : ..       :... . .  :   .:.. : .
+sp|F5B GRQSGYERREQREEREQQQEQDSRSESRRQRNPYYFSYERFQTLYKN-RNGQIRVLERFD
+           150       160       170       180       190        200  
+
+           120       130       140       150                       
+sp|P0C REEMELQGEQMQRIMRKAENLLSRCNLSPQRCPMGGYTAWL                   
+       ..  .:.. :  ::.                                             
+sp|F5B QRTNRLENLQNYRIVEFQSKPNTLILPKHSDADYILVVLNGRATITIVNPDKRQAYNLEH
+            210       220       230       240       250       260  
+
+>>sp|F5B8W3|CONB5_LUPAN Conglutin beta 5 OS=Lupinus angu  (637 aa)
+ initn: 111 init1:  76 opt:  91  Z-score: 105.0  bits: 27.6 E(91): 0.044
+Smith-Waterman score: 91; 28.0% identity (58.9% similar) in 107 aa overlap (32-132:70-174)
+
+              10        20        30         40        50        60
+sp|P0C AKMSVVAAALLALLVLGQATAFRTTVTTTLEEEQEENP-RGRSEQQCREQMERQQQLNHC
+                                     :.:....: :::::..  .. ::... .: 
+sp|F5B RPEERQEEERDPRQPPRSRQQEEQEREHRREKERDREPSRGRSESKQSQEEERERRKEHD
+      40        50        60        70        80        90         
+
+               70         80        90         100       110       
+sp|P0C RMYLRQQMEESPY-QNPRPLRRGEEPHLDECCEQ--LERMDEMCRCEGLRMMLRRQR--E
+       :   :.: ..  : .  .  ..::: .  .  .:   .: .:  . .:     :::   :
+sp|F5B RE--REQEQQPQYGRRHEEEEKGEEEEEGQARRQRPQRRREEREQEQGSSSESRRQSGDE
+     100         110       120       130       140       150       
+
+         120       130       140       150                         
+sp|P0C EMELQGEQMQRIMRKAENLLSRCNLSPQRCPMGGYTAWL                     
+       . . . .. ::  :. :                                           
+sp|F5B RRHRHEKREQREEREQEQGSSSGRQSDYGRRQRHEGREQREEREQEQGSSSESHRLRNPY
+       160       170       180       190       200       210       
+
+>>sp|F5B8V9|CONB1_LUPAN Conglutin beta 1 OS=Lupinus angu  (611 aa)
+ initn:  95 init1:  78 opt:  81  Z-score: 93.8  bits: 25.5 E(91): 0.19
+Smith-Waterman score: 95; 33.9% identity (64.4% similar) in 59 aa overlap (32-89:68-119)
+
+              10        20        30         40        50        60
+sp|P0C AKMSVVAAALLALLVLGQATAFRTTVTTTLEEEQEENP-RGRSEQQCREQMERQQQLNHC
+                                     ::... .: ::::...  .. :.... .: 
+sp|F5B PPKEREEEEHEPRQQPRPRQQEEQEREHRREEKHDGEPSRGRSQSEESQEEEHERRREHH
+        40        50        60        70        80        90       
+
+               70        80        90       100       110       120
+sp|P0C RMYLRQQMEESPYQNPRPLRRGEEPHLDECCEQLERMDEMCRCEGLRMMLRRQREEMELQ
+       :       :.   :.::: :: :: . .:                               
+sp|F5B R-------EREQEQQPRPQRRQEEEEEEEEWQPRRQRPQSRREEREEREQEQGSSSGSQR
+              100       110       120       130       140       150
+
+>>sp|Q967Z0|MYSP_DERFA Paramyosin (Fragment) OS=Dermatop  (692 aa)
+ initn: 108 init1:  57 opt:  79  Z-score: 90.5  bits: 25.0 E(91): 0.28
+Smith-Waterman score: 82; 24.5% identity (59.2% similar) in 98 aa overlap (44-137:188-283)
+
+            20        30        40        50         60            
+sp|P0C LLVLGQATAFRTTVTTTLEEEQEENPRGRSEQQCREQMERQ-QQLNHCRMYLRQQME---
+                                     :.. : ..:::  . :      ....:   
+sp|Q96 EEEERKRASLENHAHTLEVELESLKVQLDEESEARLELERQLTKANGDAASWKSKYEAEL
+       160       170       180       190       200       210       
+
+      70        80        90       100       110       120         
+sp|P0C ESPYQNPRPLRRGEEPHLDECCEQLERMDEMCRCEGLRMMLRRQREEMELQGEQMQRIMR
+       ..  .. . :::    ...:  :::: .  . .: .:. .  : . :.:.   ....  :
+sp|Q96 QAHADEVEELRRKMAQKISEYEEQLEAL--LNKCSSLEKQKSRLQSEVEVLIMDLEKATR
+       220       230       240         250       260       270     
+
+     130       140       150                                       
+sp|P0C KAENLLSRCNLSPQRCPMGGYTAWL                                   
+       .:..: .:                                                    
+sp|Q96 HAQQLEKRVAQLEKINLDLKNKLEEVTMLMEQAQKELRVKIAELQKLQHEYEKLRDQRDQ
+         280       290       300       310       320       330     
+
+>--
+ initn: 110 init1:  57 opt:  79  Z-score: 90.5  bits: 25.0 E(91): 0.28
+Smith-Waterman score: 79; 32.7% identity (63.5% similar) in 52 aa overlap (84-134:493-544)
+
+            60        70        80        90        100       110  
+sp|P0C QQQLNHCRMYLRQQMEESPYQNPRPLRRGEEPHLDECCEQLER-MDEMCRCEGLRMMLRR
+                                     . : ::  .::.. .:..   .   . :. 
+sp|Q96 ELELSLDAANKANIDLQKTIKKQALQITELQAHYDEVHRQLQQAVDQLGVTQRRCQALQA
+            470       480       490       500       510       520  
+
+            120       130       140       150                      
+sp|P0C QREEMELQGEQMQRIMRKAENLLSRCNLSPQRCPMGGYTAWL                  
+       . :::..  :: .:  :.::.:                                      
+sp|Q96 ELEEMRIALEQANRAKRQAEQLHEEAVVRVNELTTINVNLASAKSKLESEFSALQADYDE
+            530       540       550       560       570       580  
+
+>>tr|Q6Y2F9|Q6Y2F9_DERPT HDM allergen OS=Dermatophagoide  (875 aa)
+ initn: 109 init1:  57 opt:  79  Z-score: 88.7  bits: 25.0 E(91): 0.36
+Smith-Waterman score: 79; 32.7% identity (63.5% similar) in 52 aa overlap (84-134:579-630)
+
+            60        70        80        90        100       110  
+sp|P0C QQQLNHCRMYLRQQMEESPYQNPRPLRRGEEPHLDECCEQLER-MDEMCRCEGLRMMLRR
+                                     . : ::  .::.. .:..   .   . :. 
+tr|Q6Y ELELSLDAANKANIDLQKTIKKQALQITELQAHYDEVHRQLQQAVDQLGVTQRRCQALQA
+      550       560       570       580       590       600        
+
+            120       130       140       150                      
+sp|P0C QREEMELQGEQMQRIMRKAENLLSRCNLSPQRCPMGGYTAWL                  
+       . :::..  :: .:  :.::.:                                      
+tr|Q6Y ELEEMRIALEQASRAKRQAEQLHEEAVVRVNELTTINVNLASAKSKLESEFSALQADYDE
+      610       620       630       640       650       660        
+
+>>sp|Q8MUF6|MYSP_BLOTA Paramyosin OS=Blomia tropicalis P  (875 aa)
+ initn:  99 init1:  50 opt:  75  Z-score: 84.1  bits: 24.2 E(91): 0.65
+Smith-Waterman score: 75; 31.5% identity (59.3% similar) in 54 aa overlap (82-134:577-630)
+
+              60        70        80        90        100       110
+sp|P0C ERQQQLNHCRMYLRQQMEESPYQNPRPLRRGEEPHLDECCEQLER-MDEMCRCEGLRMML
+                                     : . : ::  .::.. .:..   .   . :
+sp|Q8M ITELELSLDAANKANIDLQKTIKKQALQITGLQAHYDEVHRQLQQAVDQLGVTQRRCQAL
+        550       560       570       580       590       600      
+
+              120       130       140       150                    
+sp|P0C RRQREEMELQGEQMQRIMRKAENLLSRCNLSPQRCPMGGYTAWL                
+         . :::... ::  :  : ::..                                    
+sp|Q8M TAELEEMRVNLEQALRAKRAAEQMHEEAVVRVNELTTINVNLASAKSKLETEFSALQNDY
+        610       620       630       640       650       660      
+
+>>sp|P19121|ALBU_CHICK Serum albumin OS=Gallus gallus GN  (615 aa)
+ initn:  53 init1:  53 opt:  70  Z-score: 81.1  bits: 23.1 E(91): 0.94
+Smith-Waterman score: 72; 21.2% identity (57.5% similar) in 113 aa overlap (35-145:295-397)
+
+           10        20        30        40        50        60    
+sp|P0C SVVAAALLALLVLGQATAFRTTVTTTLEEEQEENPRGRSEQQCREQMERQQQLNHCRMYL
+                                     :..   :. .. :.. . ...:   : :  
+sp|P19 DSIGVHKECCEGDMVECMDDMARMMSNLCSQQDVFSGKIKDCCEKPIVERSQ---CIM--
+          270       280       290       300       310              
+
+           70        80        90       100       110       120    
+sp|P0C RQQMEESPYQNPRPLRRGEEPHLDECCEQLERMDEMCRCEGLRMMLRRQREEMELQGEQM
+       . ...:.: . :  ...  : .  : :...:   .    :   .. . .:.. :.. . .
+sp|P19 EAEFDEKPADLPSLVEKYIEDK--EVCKSFEAGHDAFMAE---FVYEYSRRHPEFSIQLI
+     320       330       340         350          360       370    
+
+          130       140         150                                
+sp|P0C QRIMRKAENLLSRCNLS--PQRCPMGGYTAWL                            
+       .:: .  :.:: .:  .  : .:                                     
+sp|P19 MRIAKGYESLLEKCCKTDNPAECYANAQEQLNQHIKETQDVVKTNCDLLHDHGEADFLKS
+          380       390       400       410       420       430    
+
+>>sp|P49064|ALBU_FELCA Serum albumin OS=Felis catus GN=A  (608 aa)
+ initn:  61 init1:  40 opt:  69  Z-score: 80.0  bits: 22.9 E(91):  1.1
+Smith-Waterman score: 69; 23.1% identity (52.8% similar) in 108 aa overlap (43-146:144-248)
+
+             20        30        40        50        60        70  
+sp|P0C ALLVLGQATAFRTTVTTTLEEEQEENPRGRSEQQCREQMERQQQLNHCRMYLRQQMEESP
+                                     .. .:    : .:..     :: .  .. :
+sp|P49 CCEKKEPERNECFLQHKDDNPGFGQLVTPEADAMCTAFHENEQRF--LGKYLYEIARRHP
+           120       130       140       150         160       170 
+
+              80          90       100        110       120        
+sp|P0C Y-QNPRPLRRGEEPH--LDECCEQLERMDEMC-RCEGLRMMLRRQREEMELQGEQMQRIM
+       :   :. :  .:: .  . ::::  ..   .  . ..::  .  .  . .:.  ..:.. 
+sp|P49 YFYAPELLYYAEEYKGVFTECCEAADKAACLTPKVDALREKVLASSAKERLKCASLQKFG
+             180       190       200       210       220       230 
+
+      130       140       150                                      
+sp|P0C RKAENLLSRCNLSPQRCPMGGYTAWL                                  
+       ..: .  :   :: :. :                                          
+sp|P49 ERAFKAWSVARLS-QKFPKAEFAEISKLVTDLAKIHKECCHGDLLECADDRADLAKYICE
+             240        250       260       270       280       290
+
+>>sp|O43290|SNUT1_HUMAN U4/U6.U5 tri-snRNP-associated pr  (800 aa)
+ initn:  48 init1:  48 opt:  61  Z-score: 68.7  bits: 21.2 E(91):  4.6
+Smith-Waterman score: 61; 29.1% identity (54.5% similar) in 55 aa overlap (24-77:331-385)
+
+                      10        20        30        40         50  
+sp|P0C        MAKMSVVAAALLALLVLGQATAFRTTVTTTLEEEQEENPRG-RSEQQCREQME
+                                     :. ..   :: . : :.. : ::    .  
+sp|O43 EKNVELRKKKPDYLPYAEDESVDDLAQQKPRSILSKYDEELEGERPHSFRLEQGGTADGL
+              310       320       330       340       350       360
+
+             60        70        80        90       100       110  
+sp|P0C RQQQLNHCRMYLRQQMEESPYQNPRPLRRGEEPHLDECCEQLERMDEMCRCEGLRMMLRR
+       :...:.. :  :: : .     .::                                   
+sp|O43 RERELEEIRAKLRLQAQSLSTVGPRLASEYLTPEEMVTFKKTKRRVKKIRKKEKEVVVRA
+              370       380       390       400       410       420
+
+>>tr|A0A0M0JAY4|A0A0M0JAY4_9EUKA Calcium-binding allerge  (694 aa)
+ initn:  46 init1:  46 opt:  57  Z-score: 65.2  bits: 20.3 E(91):    7
+Smith-Waterman score: 66; 21.7% identity (55.1% similar) in 138 aa overlap (2-134:102-238)
+
+                                            10        20         30
+sp|P0C                              MAKMSVVAAALLALLVLGQATA-FRTTVTTT
+                                     ::  :  ::  : . ..: :: : ......
+tr|A0A QTASGGDFANVFINAPGFFGFLNRNTKLDEAKERVELAAKEAAIRVAQETADFAAAASAA
+              80        90       100       110       120       130 
+
+               40        50            60        70        80      
+sp|P0C LEEEQEENPRGRSEQQCREQ----MERQQQLNHCRMYLRQQMEESPYQNPRPLRRGEEPH
+             ..  .:.:.. .:.     .....:..    :. . :..     .  .. ::  
+tr|A0A AASSAADGAIARAERDAKEHNADAAQKSRELEEQAATLKAEAEKQKQVLRKQQQKLEEQM
+             140       150       160       170       180       190 
+
+         90       100       110       120       130       140      
+sp|P0C LDECCEQLERMDEMCRCEGLRMMLRRQREEMELQGEQMQRIMRKAENLLSRCNLSPQRCP
+       :    :. :: ..  . :. :   . . . ..:. :. ..  : ::.:            
+tr|A0A LAVQAEK-ERREREAKEESERKEAEAKAKLLKLEKEKERERRRLAEELYKTQEQLLQANL
+              200       210       220       230       240       250
+
+        150                                                        
+sp|P0C MGGYTAWL                                                    
+                                                                   
+tr|A0A TLNKDGVPVILDRYIENNPAGFELKYGTLDDFRGGLKVLLGADVPPPDQVLSGMEAEHTK
+              260       270       280       290       300       310
+
+>>tr|B3IXL2|B3IXL2_ARAHY Main allergen Ara h1 OS=Arachis  (614 aa)
+ initn:  44 init1:  44 opt:  56  Z-score: 65.0  bits: 20.1 E(91):  7.2
+Smith-Waterman score: 62; 27.9% identity (42.6% similar) in 61 aa overlap (54-103:367-427)
+
+            30        40        50        60        70        80   
+sp|P0C RTTVTTTLEEEQEENPRGRSEQQCREQMERQQQLNHCRMYLRQQMEESPYQNPRPLRRGE
+                                     :.  .: .   ..  ::    ::  :: ::
+tr|B3I GEQEERGQRRRSTRSSDNEGVIVKVSKEHVQELTKHAKSVSKKGSEEEDITNPINLRDGE
+        340       350       360       370       380       390      
+
+                       90       100       110       120       130  
+sp|P0C -----------EPHLDECCEQLERMDEMCRCEGLRMMLRRQREEMELQGEQMQRIMRKAE
+                  : . :.   ::. .: :  :                             
+tr|B3I PDLSNNFGRLFEVKPDKKNPQLQDLDMMLTCVEIKEGALMLPHFNSKAMVIVVVNKGTGN
+        400       410       420       430       440       450      
+
+            140       150                                          
+sp|P0C NLLSRCNLSPQRCPMGGYTAWL                                      
+                                                                   
+tr|B3I LELVAVRKEQQQRGRREQEWEEEEEDEEEEGSNREVRRYTARLKEGDVFIMPAAHPVAIN
+        460       470       480       490       500       510      
+
+>--
+ initn:  66 init1:  36 opt:  59  Z-score: 68.4  bits: 20.8 E(91):  4.7
+Smith-Waterman score: 59; 26.7% identity (55.0% similar) in 60 aa overlap (35-87:464-523)
+
+           10        20        30        40        50        60    
+sp|P0C SVVAAALLALLVLGQATAFRTTVTTTLEEEQEENPRGRSEQQCREQMERQQQLNHCRMYL
+                                     .:.. ::: ::. .:. : ... .  :   
+tr|B3I ALMLPHFNSKAMVIVVVNKGTGNLELVAVRKEQQQRGRREQEWEEEEEDEEEEGSNREVR
+           440       450       460       470       480       490   
+
+             70             80        90       100       110       
+sp|P0C RQ--QMEES-----PYQNPRPLRRGEEPHLDECCEQLERMDEMCRCEGLRMMLRRQREEM
+       :   ...:.     :  .:  .  . : ::                              
+tr|B3I RYTARLKEGDVFIMPAAHPVAINASSELHLLGFGINAENNHRIFLAGDKDNVIDQIEKQA
+           500       510       520       530       540       550   
+
+>>sp|P43237|ALL11_ARAHY Allergen Ara h 1, clone P17 OS=A  (614 aa)
+ initn:  44 init1:  44 opt:  56  Z-score: 65.0  bits: 20.1 E(91):  7.2
+Smith-Waterman score: 62; 27.9% identity (42.6% similar) in 61 aa overlap (54-103:367-427)
+
+            30        40        50        60        70        80   
+sp|P0C RTTVTTTLEEEQEENPRGRSEQQCREQMERQQQLNHCRMYLRQQMEESPYQNPRPLRRGE
+                                     :.  .: .   ..  ::    ::  :: ::
+sp|P43 GEQEERGQRRRSTRSSDNEGVIVKVSKEHVQELTKHAKSVSKKGSEEEDITNPINLRDGE
+        340       350       360       370       380       390      
+
+                       90       100       110       120       130  
+sp|P0C -----------EPHLDECCEQLERMDEMCRCEGLRMMLRRQREEMELQGEQMQRIMRKAE
+                  : . :.   ::. .: :  :                             
+sp|P43 PDLSNNFGRLFEVKPDKKNPQLQDLDMMLTCVEIKEGALMLPHFNSKAMVIVVVNKGTGN
+        400       410       420       430       440       450      
+
+            140       150                                          
+sp|P0C NLLSRCNLSPQRCPMGGYTAWL                                      
+                                                                   
+sp|P43 LELVAVRKEQQQRGRREQEWEEEEEDEEEEGSNREVRRYTARLKEGDVFIMPAAHPVAIN
+        460       470       480       490       500       510      
+
+>--
+ initn:  66 init1:  36 opt:  59  Z-score: 68.4  bits: 20.8 E(91):  4.7
+Smith-Waterman score: 59; 26.7% identity (55.0% similar) in 60 aa overlap (35-87:464-523)
+
+           10        20        30        40        50        60    
+sp|P0C SVVAAALLALLVLGQATAFRTTVTTTLEEEQEENPRGRSEQQCREQMERQQQLNHCRMYL
+                                     .:.. ::: ::. .:. : ... .  :   
+sp|P43 ALMLPHFNSKAMVIVVVNKGTGNLELVAVRKEQQQRGRREQEWEEEEEDEEEEGSNREVR
+           440       450       460       470       480       490   
+
+             70             80        90       100       110       
+sp|P0C RQ--QMEES-----PYQNPRPLRRGEEPHLDECCEQLERMDEMCRCEGLRMMLRRQREEM
+       :   ...:.     :  .:  .  . : ::                              
+sp|P43 RYTARLKEGDVFIMPAAHPVAINASSELHLLGFGINAENNHRIFLAGDKDNVIDQIEKQA
+           500       510       520       530       540       550   
+
+
+  3>>>tr|B6EU55|B6EU55_BEREX 2S albumin OS=Bertholletia excelsa PE=2 SV=1 - 146 aa
+Library: ../../cdep.fasta
+    86627 residues in    91 sequences
+
+Statistics: (shuffled [480]) MLE statistics: Lambda= 0.2008;  K=0.02341
+ statistics sampled from 22 (22) to 480 sequences
+Algorithm: FASTA (3.8 Nov 2011) [optimized]
+Parameters: BL50 matrix (15:-5), open/ext: -12/-2
+ ktup: 2, E-join: 1 (0.502), E-opt: 0.2 (0.267), width:  16
+ Scan time:  0.040
+
+The best scores are:                                      opt bits E(91)
+sp|F5B8W5|CONB7_LUPAN Conglutin beta 7 OS=Lupinus  ( 605)   97 34.6 0.00032
+sp|F5B8W0|CONB2_LUPAN Conglutin beta 2 OS=Lupinus  ( 603)   81 29.9  0.0079
+sp|F5B8W4|CONB6_LUPAN Conglutin beta 6 OS=Lupinus  ( 593)   80 29.6  0.0095
+sp|Q967Z0|MYSP_DERFA Paramyosin (Fragment) OS=Derm ( 692)   80 29.6   0.011
+sp|F5B8V9|CONB1_LUPAN Conglutin beta 1 OS=Lupinus  ( 611)   76 28.5   0.022
+sp|Q8MUF6|MYSP_BLOTA Paramyosin OS=Blomia tropical ( 875)   77 28.8   0.026
+tr|Q6Y2F9|Q6Y2F9_DERPT HDM allergen OS=Dermatophag ( 875)   77 28.8   0.026
+sp|Q9NJA9|MYSP_ANISI Paramyosin OS=Anisakis simple ( 869)   56 22.7     1.7
+sp|P02769|ALBU_BOVIN Serum albumin OS=Bos taurus G ( 607)   54 22.1     1.8
+sp|P49064|ALBU_FELCA Serum albumin OS=Felis catus  ( 608)   54 22.1     1.8
+sp|P49822|ALBU_CANLF Serum albumin OS=Canis lupus  ( 608)   53 21.8     2.2
+sp|P19121|ALBU_CHICK Serum albumin OS=Gallus gallu ( 615)   53 21.8     2.2
+tr|A0A0B5I8T6|A0A0B5I8T6_9ACTN Alkyl hydroperoxide ( 599)   47 20.1       7
+sp|P43238|ALL12_ARAHY Allergen Ara h 1, clone P41B ( 626)   47 20.1     7.3
+sp|Q09095|AVEA_AVESA Avenin-A (Fragment) OS=Avena  (  36)   32 15.7     8.4
+
+>>sp|F5B8W5|CONB7_LUPAN Conglutin beta 7 OS=Lupinus angu  (605 aa)
+ initn:  88 init1:  57 opt:  97  Z-score: 143.4  bits: 34.6 E(91): 0.00032
+Smith-Waterman score: 97; 29.0% identity (54.8% similar) in 93 aa overlap (34-118:93-180)
+
+            10        20        30        40        50        60   
+tr|B6E ISVAAAALLVLMALGHATAFRATVTTTVVEEENQEECREQMQRQQMLSHCRMYMRQQMEE
+                                     :. .: :::. :.::      .. :.. ::
+sp|F5B QEREHRREEEHDRDPSRGRRESEERQEEERERRREPCREREQEQQP-----QHGRREEEE
+             70        80        90       100            110       
+
+            70        80        90               100       110     
+tr|B6E SPYQTMPRRGMEPHMSECCEQLEGMDESCRCEG--------LRRMMRMMQQKEMQPRGEQ
+          . .:::      .:  :: .: . : : ..         :: .:  ..::.. :...
+sp|F5B EEEEWQPRRLRPQSRKEEREQEQGSSSSSRKQSGYERRQYHERREQRDEKEKEQDSRSDS
+       120       130       140       150       160       170       
+
+         120       130       140                                   
+tr|B6E MRRMMRLAENIPSRCNLSPMRCPMGGSIAGF                             
+        :.                                                         
+sp|F5B RRQRNPYHFSSERFQTRYRNRNGQIRVLERFDQRTNRLENLQNYRIVEFQSNPNTLILPK
+       180       190       200       210       220       230       
+
+>>sp|F5B8W0|CONB2_LUPAN Conglutin beta 2 OS=Lupinus angu  (603 aa)
+ initn: 114 init1:  61 opt:  81  Z-score: 118.4  bits: 29.9 E(91): 0.0079
+Smith-Waterman score: 81; 30.3% identity (55.1% similar) in 89 aa overlap (34-118:85-173)
+
+            10        20        30        40        50        60   
+tr|B6E ISVAAAALLVLMALGHATAFRATVTTTVVEEENQEECREQMQRQQMLSHCRMYMRQQMEE
+                                     ::..:: ::: .. .   . ..  ..  .:
+sp|F5B PRPRHQEEQEREHGREEERNREPSRGRSESEESREEEREQRREPSRGREQEQQPQHGRRE
+           60        70        80        90       100       110    
+
+            70        80        90         100         110         
+tr|B6E SPYQTMPRRGMEPHMSECCEQLEGMDESC-RCEGL-RRMMRMM--QQKEMQPRGEQMRRM
+          . .:::       :  :: .: . :  :  :  :: .:    ::.:.. :.:. :. 
+sp|F5B EEEEWQPRRQRPQSRREEREQEQGSSSSSGRQSGYERREQREEREQQQEQDSRSESRRQR
+          120       130       140       150       160       170    
+
+     120       130       140                                       
+tr|B6E MRLAENIPSRCNLSPMRCPMGGSIAGF                                 
+                                                                   
+sp|F5B NPYYFSYERFQTLYKNRNGQIRVLERFDQRTNRLENLQNYRIVEFQSKPNTLILPKHSDA
+          180       190       200       210       220       230    
+
+>>sp|F5B8W4|CONB6_LUPAN Conglutin beta 6 OS=Lupinus angu  (593 aa)
+ initn: 103 init1:  69 opt:  80  Z-score: 117.0  bits: 29.6 E(91): 0.0095
+Smith-Waterman score: 80; 25.6% identity (55.6% similar) in 90 aa overlap (34-121:85-174)
+
+            10        20        30        40        50        60   
+tr|B6E ISVAAAALLVLMALGHATAFRATVTTTVVEEENQEECREQMQRQQMLSHCRMYMRQQMEE
+                                     ::..:: ::: .. .   . ..  ..  .:
+sp|F5B PRPHHQEEQEREHRREEERDREPSRGRRESEESREEEREQRREPRREREQEQQPQHGRRE
+           60        70        80        90       100       110    
+
+            70        80        90         100       110       120 
+tr|B6E SPYQTMPRRGMEPHMSECCEQLEGMDESCRCEGL--RRMMRMMQQKEMQPRGEQMRRMMR
+          . .:::       :  :: .: . : : ..   :: .:  ...:..  ...  : .:
+sp|F5B EEEEWQPRRQRPQSRREEREQEQGSSSSSRRQSAYERREQREEREQEQEQGSRSDSRRQR
+          120       130       140       150       160       170    
+
+             130       140                                         
+tr|B6E LAENIPSRCNLSPMRCPMGGSIAGF                                   
+                                                                   
+sp|F5B NPYYFSSERFQTLYRNRNGQIRVLERFDKRTDRLENLQNYRIVEFQSKPNTLILPKHSDA
+          180       190       200       210       220       230    
+
+>>sp|Q967Z0|MYSP_DERFA Paramyosin (Fragment) OS=Dermatop  (692 aa)
+ initn: 104 init1:  60 opt:  80  Z-score: 115.8  bits: 29.6 E(91): 0.011
+Smith-Waterman score: 80; 21.4% identity (56.4% similar) in 117 aa overlap (19-129:170-283)
+
+                           10        20        30        40        
+tr|B6E             MAKISVAAAALLVLMALGHATAFRATVTTTVVEEENQEECREQMQRQQ
+                                     :: .... . .  :. ... : : ...:: 
+sp|Q96 NHLKTQIAQQLEDTRHRLEEEERKRASLENHAHTLEVELESLKVQLDEESEARLELERQL
+     140       150       160       170       180       190         
+
+       50        60        70              80        90       100  
+tr|B6E MLSHCRMYMRQQMEESPYQTMP------RRGMEPHMSECCEQLEGMDESCRCEGLRRMMR
+         ..      ..  :.  :.        :: :  ..::  ::::.. .  .: .:...  
+sp|Q96 TKANGDAASWKSKYEAELQAHADEVEELRRKMAQKISEYEEQLEALLN--KCSSLEKQKS
+     200       210       220       230       240         250       
+
+            110       120       130       140                      
+tr|B6E MMQQKEMQPRGEQMRRMMRLAENIPSRCNLSPMRCPMGGSIAGF                
+        .:. :..    ....  : :... .:                                 
+sp|Q96 RLQS-EVEVLIMDLEKATRHAQQLEKRVAQLEKINLDLKNKLEEVTMLMEQAQKELRVKI
+       260        270       280       290       300       310      
+
+>>sp|F5B8V9|CONB1_LUPAN Conglutin beta 1 OS=Lupinus angu  (611 aa)
+ initn:  76 init1:  74 opt:  76  Z-score: 110.5  bits: 28.5 E(91): 0.022
+Smith-Waterman score: 82; 24.7% identity (53.6% similar) in 97 aa overlap (33-118:86-182)
+
+             10        20        30        40        50        60  
+tr|B6E KISVAAAALLVLMALGHATAFRATVTTTVVEEENQEECREQMQRQQMLSHCRMYMRQQME
+                                     .::..:. ::. ..... .. :   ::. :
+sp|F5B RQQEEQEREHRREEKHDGEPSRGRSQSEESQEEEHERRREHHREREQEQQPRPQRRQEEE
+          60        70        80        90       100       110     
+
+             70        80                   90       100       110 
+tr|B6E ESPYQTMPRRGMEPHMSECCEQLE-----------GMDESCRCEGLRRMMRMMQQKEMQP
+       :   . .:::       :  :. :           :  .  : .  ::. :  ...:.. 
+sp|F5B EEEEEWQPRRQRPQSRREEREEREQEQGSSSGSQRGSGDERRQHRERRVHREEREQEQDS
+         120       130       140       150       160       170     
+
+             120       130       140                               
+tr|B6E RGEQMRRMMRLAENIPSRCNLSPMRCPMGGSIAGF                         
+       :... :.                                                     
+sp|F5B RSDSRRQRNPYHFSSNRFQTYYRNRNGQIRVLERFNQRTNRLENLQNYRIIEFQSKPNTL
+         180       190       200       210       220       230     
+
+>>sp|Q8MUF6|MYSP_BLOTA Paramyosin OS=Blomia tropicalis P  (875 aa)
+ initn:  82 init1:  60 opt:  77  Z-score: 109.2  bits: 28.8 E(91): 0.026
+Smith-Waterman score: 77; 25.0% identity (55.0% similar) in 80 aa overlap (19-92:256-335)
+
+                           10        20        30        40        
+tr|B6E             MAKISVAAAALLVLMALGHATAFRATVTTTVVEEENQEECREQMQRQQ
+                                     :: .... . .  :. :.. : : ...:: 
+sp|Q8M NHLKGQIAQQLEDTRHRLEDEERKRSSLENHAHTLEVELESLKVQLEEESEARLELERQL
+         230       240       250       260       270       280     
+
+       50        60        70              80        90       100  
+tr|B6E MLSHCRMYMRQQMEESPYQTMP------RRGMEPHMSECCEQLEGMDESCRCEGLRRMMR
+         ..      ..  :.  :.        :: :  ..::  ::::.. ..:          
+sp|Q8M TKANGDAASWKSKYEAELQAHVDEVEELRRKMAQKISEYGEQLEALLNKCSALEKQKARL
+         290       300       310       320       330       340     
+
+            110       120       130       140                      
+tr|B6E MMQQKEMQPRGEQMRRMMRLAENIPSRCNLSPMRCPMGGSIAGF                
+                                                                   
+sp|Q8M QSEVEVLIMDLEKATAHAQALEKRVSQLEKINLDLKSKLEEVSMLLEQTQKDLRVKIADL
+         350       360       370       380       390       400     
+
+>>tr|Q6Y2F9|Q6Y2F9_DERPT HDM allergen OS=Dermatophagoide  (875 aa)
+ initn: 104 init1:  60 opt:  77  Z-score: 109.2  bits: 28.8 E(91): 0.026
+Smith-Waterman score: 77; 23.8% identity (55.0% similar) in 80 aa overlap (19-92:256-335)
+
+                           10        20        30        40        
+tr|B6E             MAKISVAAAALLVLMALGHATAFRATVTTTVVEEENQEECREQMQRQQ
+                                     :: .... . .  :. ... : : ...:: 
+tr|Q6Y NHLKQQIAQQLEDTRHRLEEEERKRSSLENHAHTLEVELESLKVQLDDESEARLELERQL
+         230       240       250       260       270       280     
+
+       50        60        70              80        90       100  
+tr|B6E MLSHCRMYMRQQMEESPYQTMP------RRGMEPHMSECCEQLEGMDESCRCEGLRRMMR
+         ..      ..  :.  :.        :: :  ..::  ::::.. ..:          
+tr|Q6Y TKANGDAASWKSKYEAELQAHADEVEELRRKMAQKISEYEEQLEALLNKCSSLEKQKSRL
+         290       300       310       320       330       340     
+
+            110       120       130       140                      
+tr|B6E MMQQKEMQPRGEQMRRMMRLAENIPSRCNLSPMRCPMGGSIAGF                
+                                                                   
+tr|Q6Y QSEVEVLIMDLEKAAAHAQQLEKRVAQLEKINLDLKDKLEEVTMLMEQAQKELRIKIGEL
+         350       360       370       380       390       400     
+
+>>sp|Q9NJA9|MYSP_ANISI Paramyosin OS=Anisakis simplex GN  (869 aa)
+ initn:  51 init1:  51 opt:  56  Z-score: 76.4  bits: 22.7 E(91):  1.7
+Smith-Waterman score: 56; 34.6% identity (69.2% similar) in 26 aa overlap (39-64:216-241)
+
+       10        20        30        40        50        60        
+tr|B6E AALLVLMALGHATAFRATVTTTVVEEENQEECREQMQRQQMLSHCRMYMRQQMEESPYQT
+                                     : ..:  . . :.: .. . ::.:::    
+sp|Q9N SNKVEDLNKHVNDLAQQRQRLQAENSDLLAEIHDQKVQLDNLQHVKYQLAQQLEESRRRL
+         190       200       210       220       230       240     
+
+       70        80        90       100       110       120        
+tr|B6E MPRRGMEPHMSECCEQLEGMDESCRCEGLRRMMRMMQQKEMQPRGEQMRRMMRLAENIPS
+                                                                   
+sp|Q9N EDAERERSQMQAQLHQVQLELDSVRVALDEESAARVEAEHKLSLANTEITQWKSKFDAEV
+         250       260       270       280       290       300     
+
+>>sp|P02769|ALBU_BOVIN Serum albumin OS=Bos taurus GN=AL  (607 aa)
+ initn:  58 init1:  38 opt:  54  Z-score: 76.1  bits: 22.1 E(91):  1.8
+Smith-Waterman score: 54; 40.0% identity (66.7% similar) in 15 aa overlap (78-92:111-125)
+
+        50        60        70        80        90       100       
+tr|B6E QMLSHCRMYMRQQMEESPYQTMPRRGMEPHMSECCEQLEGMDESCRCEGLRRMMRMMQQK
+                                     :..:::. :   . :               
+sp|P02 ESHAGCEKSLHTLFGDELCKVASLRETYGDMADCCEKQEPERNECFLSHKDDSPDLPKLK
+               90       100       110       120       130       140
+
+       110       120       130       140                           
+tr|B6E EMQPRGEQMRRMMRLAENIPSRCNLSPMRCPMGGSIAGF                     
+                                                                   
+sp|P02 PDPNTLCDEFKADEKKFWGKYLYEIARRHPYFYAPELLYYANKYNGVFQECCQAEDKGAC
+              150       160       170       180       190       200
+
+>>sp|P49064|ALBU_FELCA Serum albumin OS=Felis catus GN=A  (608 aa)
+ initn:  45 init1:  45 opt:  54  Z-score: 76.1  bits: 22.1 E(91):  1.8
+Smith-Waterman score: 59; 20.0% identity (53.3% similar) in 45 aa overlap (48-92:81-125)
+
+        20        30        40        50        60        70       
+tr|B6E GHATAFRATVTTTVVEEENQEECREQMQRQQMLSHCRMYMRQQMEESPYQTMPRRGMEPH
+                                     :  ..:.  ... . ..   .   :    .
+sp|P49 FSQYLQQCPFEDHVKLVNEVTEFAKGCVADQSAANCEKSLHELLGDKLCTVASLRDKYGE
+               60        70        80        90       100       110
+
+        80        90       100       110       120       130       
+tr|B6E MSECCEQLEGMDESCRCEGLRRMMRMMQQKEMQPRGEQMRRMMRLAENIPSRCNLSPMRC
+       :..:::. :   . :                                             
+sp|P49 MADCCEKKEPERNECFLQHKDDNPGFGQLVTPEADAMCTAFHENEQRFLGKYLYEIARRH
+              120       130       140       150       160       170
+
+>>sp|P49822|ALBU_CANLF Serum albumin OS=Canis lupus fami  (608 aa)
+ initn:  58 init1:  46 opt:  53  Z-score: 74.5  bits: 21.8 E(91):  2.2
+Smith-Waterman score: 53; 24.4% identity (58.5% similar) in 41 aa overlap (79-118:459-499)
+
+       50        60        70        80        90       100        
+tr|B6E MLSHCRMYMRQQMEESPYQTMPRRGMEPHMSECCEQLEGMDESCRCEGLRRMM-RMMQQK
+                                     ..::.. :.   ::  . :  .. :.   .
+sp|P49 NALLVRYTKKAPQVSTPTLVEVSRKLGKVGTKCCKKPESERMSCAEDFLSVVLNRLCVLH
+      430       440       450       460       470       480        
+
+       110       120       130       140                           
+tr|B6E EMQPRGEQMRRMMRLAENIPSRCNLSPMRCPMGGSIAGF                     
+       :  : .:.. .                                                 
+sp|P49 EKTPVSERVTKCCSESLVNRRPCFSGLEVDETYVPKEFNAETFTFHADLCTLPEAEKQVK
+      490       500       510       520       530       540        
+
+>>sp|P19121|ALBU_CHICK Serum albumin OS=Gallus gallus GN  (615 aa)
+ initn:  53 init1:  53 opt:  53  Z-score: 74.4  bits: 21.8 E(91):  2.2
+Smith-Waterman score: 57; 25.6% identity (60.5% similar) in 43 aa overlap (55-93:245-287)
+
+           30        40        50        60        70          80  
+tr|B6E ATVTTTVVEEENQEECREQMQRQQMLSHCRMYMRQQMEESPYQTMPRRGMEPH--MSECC
+                                     .:. :.. ..:.. . .   .     .:::
+sp|P19 EKAKGVSVKQQYFCGILKQFGDRVFQARQLIYLSQKYPKAPFSEVSKFVHDSIGVHKECC
+          220       230       240       250       260       270    
+
+               90       100       110       120       130       140
+tr|B6E E--QLEGMDESCRCEGLRRMMRMMQQKEMQPRGEQMRRMMRLAENIPSRCNLSPMRCPMG
+       :  ..: ::.  :                                               
+sp|P19 EGDMVECMDDMARMMSNLCSQQDVFSGKIKDCCEKPIVERSQCIMEAEFDEKPADLPSLV
+          280       290       300       310       320       330    
+
+>>tr|A0A0B5I8T6|A0A0B5I8T6_9ACTN Alkyl hydroperoxide red  (599 aa)
+ initn:  59 init1:  39 opt:  47  Z-score: 65.2  bits: 20.1 E(91):    7
+Smith-Waterman score: 47; 37.5% identity (62.5% similar) in 24 aa overlap (18-41:143-166)
+
+                            10        20        30        40       
+tr|B6E              MAKISVAAAALLVLMALGHATAFRATVTTTVVEEENQEECREQMQRQ
+                                     :::.:.:. :    .:.: .   :      
+tr|A0A ATWKQYAVRAWPTLVVIDPEGYVVAQHAGEGHANAIRTLVEELEAEHEAKGTLRRGDGPY
+            120       130       140       150       160       170  
+
+        50        60        70        80        90       100       
+tr|B6E QMLSHCRMYMRQQMEESPYQTMPRRGMEPHMSECCEQLEGMDESCRCEGLRRMMRMMQQK
+                                                                   
+tr|A0A VAPEPVATDLRFPGKAVVLGNGNFLVSDTTRHQLVELAEDGETVVRRIGEGVFREPQGLA
+            180       190       200       210       220       230  
+
+>>sp|P43238|ALL12_ARAHY Allergen Ara h 1, clone P41B OS=  (626 aa)
+ initn:  47 init1:  47 opt:  47  Z-score: 64.9  bits: 20.1 E(91):  7.3
+Smith-Waterman score: 47; 24.5% identity (52.8% similar) in 53 aa overlap (64-113:28-77)
+
+            40        50        60        70        80           90
+tr|B6E EENQEECREQMQRQQMLSHCRMYMRQQMEESPYQTMPRRGMEPHMSEC---CEQLEGMDE
+                                     ::::   ..  .:  ..:   :.:     .
+sp|P43    MRGRVSPLMLLLGILVLASVSATHAKSSPYQ---KKTENPCAQRCLQSCQQEPDDLK
+                  10        20        30           40        50    
+
+              100       110       120       130       140          
+tr|B6E SCRCEGLRRMMRMMQQKEMQPRGEQMRRMMRLAENIPSRCNLSPMRCPMGGSIAGF    
+       .  ::.    ...  .  ..:::                                     
+sp|P43 QKACESRCTKLEYDPRCVYDPRGHTGTTNQRSPPGERTRGRQPGDYDDDRRQPRREEGGR
+           60        70        80        90       100       110    
+
+>>sp|Q09095|AVEA_AVESA Avenin-A (Fragment) OS=Avena sati  (36 aa)
+ initn:  38 init1:  29 opt:  32  Z-score: 63.7  bits: 15.7 E(91):  8.4
+Smith-Waterman score: 36; 27.8% identity (61.1% similar) in 18 aa overlap (59-76:3-20)
+
+       30        40        50        60        70        80        
+tr|B6E TTVVEEENQEECREQMQRQQMLSHCRMYMRQQMEESPYQTMPRRGMEPHMSECCEQLEGM
+                                     .:..  : : .:   ..:            
+sp|Q09                             PSEQYQPYPEQQQPFLQQQPLELQQQQXXLVL
+                                           10        20        30  
+
+       90       100       110       120       130       140      
+tr|B6E DESCRCEGLRRMMRMMQQKEMQPRGEQMRRMMRLAENIPSRCNLSPMRCPMGGSIAGF
+                                                                 
+sp|Q09 FLQK                                                      
+                                                                 
+
+
+  4>>>tr|B6EU54|B6EU54_BEREX 2S albumin OS=Bertholletia excelsa PE=2 SV=1 - 145 aa
+Library: ../../cdep.fasta
+    86627 residues in    91 sequences
+
+Statistics: (shuffled [468]) MLE statistics: Lambda= 0.2146;  K=0.03019
+ statistics sampled from 18 (18) to 468 sequences
+Algorithm: FASTA (3.8 Nov 2011) [optimized]
+Parameters: BL50 matrix (15:-5), open/ext: -12/-2
+ ktup: 2, E-join: 1 (0.486), E-opt: 0.2 (0.25), width:  16
+ Scan time:  0.030
+
+The best scores are:                                      opt bits E(91)
+sp|Q967Z0|MYSP_DERFA Paramyosin (Fragment) OS=Derm ( 692)   60 24.7    0.33
+sp|Q8MUF6|MYSP_BLOTA Paramyosin OS=Blomia tropical ( 875)   60 24.7    0.41
+tr|Q6Y2F9|Q6Y2F9_DERPT HDM allergen OS=Dermatophag ( 875)   60 24.7    0.41
+sp|F5B8W4|CONB6_LUPAN Conglutin beta 6 OS=Lupinus  ( 593)   57 23.8    0.53
+sp|P49064|ALBU_FELCA Serum albumin OS=Felis catus  ( 608)   57 23.8    0.55
+sp|F5B8W0|CONB2_LUPAN Conglutin beta 2 OS=Lupinus  ( 603)   56 23.5    0.67
+sp|P49822|ALBU_CANLF Serum albumin OS=Canis lupus  ( 608)   56 23.5    0.68
+sp|F5B8V9|CONB1_LUPAN Conglutin beta 1 OS=Lupinus  ( 611)   56 23.5    0.68
+sp|P02769|ALBU_BOVIN Serum albumin OS=Bos taurus G ( 607)   55 23.2    0.84
+sp|F5B8W5|CONB7_LUPAN Conglutin beta 7 OS=Lupinus  ( 605)   53 22.6     1.3
+sp|P19121|ALBU_CHICK Serum albumin OS=Gallus gallu ( 615)   53 22.6     1.3
+sp|Q09095|AVEA_AVESA Avenin-A (Fragment) OS=Avena  (  36)   39 18.2     1.5
+sp|P43238|ALL12_ARAHY Allergen Ara h 1, clone P41B ( 626)   52 22.3     1.6
+sp|O23878|13S1_FAGES 13S globulin seed storage pro ( 565)   51 21.9     1.8
+sp|O14638|ENPP3_HUMAN Ectonucleotide pyrophosphata ( 875)   49 21.3     4.3
+
+>>sp|Q967Z0|MYSP_DERFA Paramyosin (Fragment) OS=Dermatop  (692 aa)
+ initn:  80 init1:  60 opt:  60  Z-score: 89.4  bits: 24.7 E(91): 0.33
+Smith-Waterman score: 60; 45.5% identity (72.7% similar) in 22 aa overlap (70-91:228-249)
+
+      40        50        60        70        80        90         
+tr|B6E PEQMQRQQMLSHCRMYMRQMMKESPYQTMPRRGMEPHMSECCEQLEGMDESCRCEGLRMM
+                                     :: :  ..::  ::::.. ..:        
+sp|Q96 QLTKANGDAASWKSKYEAELQAHADEVEELRRKMAQKISEYEEQLEALLNKCSSLEKQKS
+       200       210       220       230       240       250       
+
+     100       110       120       130       140                   
+tr|B6E MRMMQQQEMQPRGEQMRMMMRMAENLPSRCNLSPQRCPMAGSMAGF              
+                                                                   
+sp|Q96 RLQSEVEVLIMDLEKATRHAQQLEKRVAQLEKINLDLKNKLEEVTMLMEQAQKELRVKIA
+       260       270       280       290       300       310       
+
+>>sp|Q8MUF6|MYSP_BLOTA Paramyosin OS=Blomia tropicalis P  (875 aa)
+ initn:  87 init1:  60 opt:  60  Z-score: 87.5  bits: 24.7 E(91): 0.41
+Smith-Waterman score: 60; 45.5% identity (72.7% similar) in 22 aa overlap (70-91:314-335)
+
+      40        50        60        70        80        90         
+tr|B6E PEQMQRQQMLSHCRMYMRQMMKESPYQTMPRRGMEPHMSECCEQLEGMDESCRCEGLRMM
+                                     :: :  ..::  ::::.. ..:        
+sp|Q8M QLTKANGDAASWKSKYEAELQAHVDEVEELRRKMAQKISEYGEQLEALLNKCSALEKQKA
+           290       300       310       320       330       340   
+
+     100       110       120       130       140                   
+tr|B6E MRMMQQQEMQPRGEQMRMMMRMAENLPSRCNLSPQRCPMAGSMAGF              
+                                                                   
+sp|Q8M RLQSEVEVLIMDLEKATAHAQALEKRVSQLEKINLDLKSKLEEVSMLLEQTQKDLRVKIA
+           350       360       370       380       390       400   
+
+>>tr|Q6Y2F9|Q6Y2F9_DERPT HDM allergen OS=Dermatophagoide  (875 aa)
+ initn: 108 init1:  60 opt:  60  Z-score: 87.5  bits: 24.7 E(91): 0.41
+Smith-Waterman score: 60; 45.5% identity (72.7% similar) in 22 aa overlap (70-91:314-335)
+
+      40        50        60        70        80        90         
+tr|B6E PEQMQRQQMLSHCRMYMRQMMKESPYQTMPRRGMEPHMSECCEQLEGMDESCRCEGLRMM
+                                     :: :  ..::  ::::.. ..:        
+tr|Q6Y QLTKANGDAASWKSKYEAELQAHADEVEELRRKMAQKISEYEEQLEALLNKCSSLEKQKS
+           290       300       310       320       330       340   
+
+     100       110       120       130       140                   
+tr|B6E MRMMQQQEMQPRGEQMRMMMRMAENLPSRCNLSPQRCPMAGSMAGF              
+                                                                   
+tr|Q6Y RLQSEVEVLIMDLEKAAAHAQQLEKRVAQLEKINLDLKDKLEEVTMLMEQAQKELRIKIG
+           350       360       370       380       390       400   
+
+>>sp|F5B8W4|CONB6_LUPAN Conglutin beta 6 OS=Lupinus angu  (593 aa)
+ initn: 103 init1:  49 opt:  57  Z-score: 85.6  bits: 23.8 E(91): 0.53
+Smith-Waterman score: 59; 26.8% identity (46.3% similar) in 82 aa overlap (33-111:45-122)
+
+             10        20        30        40        50        60  
+tr|B6E NISVVAAALLVLLVLGHATAFRATVTTTVVEEENQDCPEQMQRQQMLSHCRMYMRQMMKE
+                                     :.:..: :.:. : .   : .   :.  .:
+sp|F5B LGIVFLMAVSIGIAYGEKNVIKNHERPQEREQEERD-PRQQPRPH---HQEEQEREHRRE
+           20        30        40        50            60        70
+
+             70        80        90          100       110         
+tr|B6E SPYQTMPRRGMEPHMSECCEQLEGMDESCRC---EGLRMMMRMMQQQEMQPRGEQMRMMM
+          .  : :: .       :. :   :  :    :   .  :  ...: :::        
+sp|F5B EERDREPSRGRRESEESREEEREQRREPRREREQEQQPQHGRREEEEEWQPRRQRPQSRR
+               80        90       100       110       120       130
+
+     120       130       140                                       
+tr|B6E RMAENLPSRCNLSPQRCPMAGSMAGF                                  
+                                                                   
+sp|F5B EEREQEQGSSSSSRRQSAYERREQREEREQEQEQGSRSDSRRQRNPYYFSSERFQTLYRN
+              140       150       160       170       180       190
+
+>>sp|P49064|ALBU_FELCA Serum albumin OS=Felis catus GN=A  (608 aa)
+ initn:  45 init1:  45 opt:  57  Z-score: 85.4  bits: 23.8 E(91): 0.55
+Smith-Waterman score: 65; 20.0% identity (55.6% similar) in 45 aa overlap (47-91:81-125)
+
+         20        30        40        50        60        70      
+tr|B6E LGHATAFRATVTTTVVEEENQDCPEQMQRQQMLSHCRMYMRQMMKESPYQTMPRRGMEPH
+                                     :  ..:.  ..... ..   .   :    .
+sp|P49 FSQYLQQCPFEDHVKLVNEVTEFAKGCVADQSAANCEKSLHELLGDKLCTVASLRDKYGE
+               60        70        80        90       100       110
+
+         80        90       100       110       120       130      
+tr|B6E MSECCEQLEGMDESCRCEGLRMMMRMMQQQEMQPRGEQMRMMMRMAENLPSRCNLSPQRC
+       :..:::. :   . :                                             
+sp|P49 MADCCEKKEPERNECFLQHKDDNPGFGQLVTPEADAMCTAFHENEQRFLGKYLYEIARRH
+              120       130       140       150       160       170
+
+>>sp|F5B8W0|CONB2_LUPAN Conglutin beta 2 OS=Lupinus angu  (603 aa)
+ initn:  69 init1:  44 opt:  56  Z-score: 83.8  bits: 23.5 E(91): 0.67
+Smith-Waterman score: 65; 23.9% identity (45.0% similar) in 109 aa overlap (6-111:18-122)
+
+                           10        20        30        40        
+tr|B6E             MANISVVAAALLVLLVLGHATAFRATVTTTVVEEENQDCPEQMQRQQM
+                        :   :. . .. :. .:..        :.:..: :.:. : . 
+sp|F5B MANMRVKFPTLVLLLGIVFLMAVSIGIAYGEKNAIKNHERPQEREQEERD-PRQQPRPR-
+               10        20        30        40        50          
+
+       50        60        70        80        90          100     
+tr|B6E LSHCRMYMRQMMKESPYQTMPRRGMEPHMSECCEQLEGMDESCRC---EGLRMMMRMMQQ
+         : .   :.  .:   .  : ::         :. :   :  :    :   .  :  ..
+sp|F5B --HQEEQEREHGREEERNREPSRGRSESEESREEEREQRREPSRGREQEQQPQHGRREEE
+         60        70        80        90       100       110      
+
+         110       120       130       140                         
+tr|B6E QEMQPRGEQMRMMMRMAENLPSRCNLSPQRCPMAGSMAGF                    
+       .: :::                                                      
+sp|F5B EEWQPRRQRPQSRREEREQEQGSSSSSGRQSGYERREQREEREQQQEQDSRSESRRQRNP
+        120       130       140       150       160       170      
+
+>>sp|P49822|ALBU_CANLF Serum albumin OS=Canis lupus fami  (608 aa)
+ initn:  58 init1:  46 opt:  56  Z-score: 83.7  bits: 23.5 E(91): 0.68
+Smith-Waterman score: 56; 25.6% identity (61.5% similar) in 39 aa overlap (78-115:459-497)
+
+        50        60        70        80        90       100       
+tr|B6E MLSHCRMYMRQMMKESPYQTMPRRGMEPHMSECCEQLEGMDESCRCEGLRMMM-RMMQQQ
+                                     ..::.. :.   ::  . : ... :.   .
+sp|P49 NALLVRYTKKAPQVSTPTLVEVSRKLGKVGTKCCKKPESERMSCAEDFLSVVLNRLCVLH
+      430       440       450       460       470       480        
+
+        110       120       130       140                          
+tr|B6E EMQPRGEQMRMMMRMAENLPSRCNLSPQRCPMAGSMAGF                     
+       :  : .:..                                                   
+sp|P49 EKTPVSERVTKCCSESLVNRRPCFSGLEVDETYVPKEFNAETFTFHADLCTLPEAEKQVK
+      490       500       510       520       530       540        
+
+>>sp|F5B8V9|CONB1_LUPAN Conglutin beta 1 OS=Lupinus angu  (611 aa)
+ initn:  53 init1:  53 opt:  56  Z-score: 83.7  bits: 23.5 E(91): 0.68
+Smith-Waterman score: 59; 23.1% identity (51.9% similar) in 104 aa overlap (12-114:10-110)
+
+               10        20        30        40        50        60
+tr|B6E MANISVVAAALLVLLVLGHATAFRATVTTTVVEEENQDCPEQMQRQQMLSHCRMYMRQMM
+                  ...:.:: .  . :..  .  :..    : . .:..   . :.  :  .
+sp|F5B   MAKMRVRLPMLILLLGVVFLLAASIGIAYGEKDFTKNPPK-EREEEEHEPRQQPRPRQ
+                 10        20        30        40         50       
+
+               70        80        90       100        110         
+tr|B6E KESPYQTMPRRGMEPHMSECCEQLEGMDESCRCEGLRMMMRMMQ-QQEMQPRGEQMRMMM
+       .:   :   .:  : : .:  .     .:: . :  :   .  . .::.::: ..     
+sp|F5B QEE--QEREHRREEKHDGEPSRGRSQSEESQEEEHERRREHHREREQEQQPRPQRRQEEE
+        60          70        80        90       100       110     
+
+     120       130       140                                       
+tr|B6E RMAENLPSRCNLSPQRCPMAGSMAGF                                  
+                                                                   
+sp|F5B EEEEEWQPRRQRPQSRREEREEREQEQGSSSGSQRGSGDERRQHRERRVHREEREQEQDS
+         120       130       140       150       160       170     
+
+>>sp|P02769|ALBU_BOVIN Serum albumin OS=Bos taurus GN=AL  (607 aa)
+ initn:  58 init1:  38 opt:  55  Z-score: 82.0  bits: 23.2 E(91): 0.84
+Smith-Waterman score: 56; 18.4% identity (50.6% similar) in 87 aa overlap (55-126:161-247)
+
+           30        40        50        60        70              
+tr|B6E ATVTTTVVEEENQDCPEQMQRQQMLSHCRMYMRQMMKESPYQTMPRRGMEPH-----MSE
+                                     :. .. .. ::   :.  .  .     ..:
+sp|P02 DDSPDLPKLKPDPNTLCDEFKADEKKFWGKYLYEIARRHPYFYAPELLYYANKYNGVFQE
+              140       150       160       170       180       190
+
+      80                  90       100       110       120         
+tr|B6E CCE----------QLEGMDESCRCEGLRMMMRMMQQQEMQPRGEQMRMMMRMAENLPSRC
+       ::.          ..: : :.    . :. .:  . :..  :. .   . :.....:   
+sp|P02 CCQAEDKGACLLPKIETMREKVLASSARQRLRCASIQKFGERALKAWSVARLSQKFPKAE
+              200       210       220       230       240       250
+
+     130       140                                                 
+tr|B6E NLSPQRCPMAGSMAGF                                            
+                                                                   
+sp|P02 FVEVTKLVTDLTKVHKECCHGDLLECADDRADLAKYICDNQDTISSKLKECCDKPLLEKS
+              260       270       280       290       300       310
+
+>>sp|F5B8W5|CONB7_LUPAN Conglutin beta 7 OS=Lupinus angu  (605 aa)
+ initn:  73 init1:  49 opt:  53  Z-score: 78.7  bits: 22.6 E(91):  1.3
+Smith-Waterman score: 66; 23.2% identity (53.7% similar) in 82 aa overlap (33-114:93-169)
+
+             10        20        30        40        50        60  
+tr|B6E NISVVAAALLVLLVLGHATAFRATVTTTVVEEENQDCPEQMQRQQMLSHCRMYMRQMMKE
+                                     :.. . : :. :.::      .. :.  .:
+sp|F5B QEREHRREEEHDRDPSRGRRESEERQEEERERRREPCREREQEQQ-----PQHGRREEEE
+             70        80        90       100            110       
+
+             70        80        90       100       110       120  
+tr|B6E SPYQTMPRRGMEPHMSECCEQLEGMDESCRCEGLRMMMRMMQQQEMQPRGEQMRMMMRMA
+          . .:::      .:  :: .: . : : ..     .. ...:.. . :.        
+sp|F5B EEEEWQPRRLRPQSRKEEREQEQGSSSSSRKQSGYERRQYHERREQRDEKEKEQDSRSDS
+       120       130       140       150       160       170       
+
+            130       140                                          
+tr|B6E ENLPSRCNLSPQRCPMAGSMAGF                                     
+                                                                   
+sp|F5B RRQRNPYHFSSERFQTRYRNRNGQIRVLERFDQRTNRLENLQNYRIVEFQSNPNTLILPK
+       180       190       200       210       220       230       
+
+>>sp|P19121|ALBU_CHICK Serum albumin OS=Gallus gallus GN  (615 aa)
+ initn:  64 init1:  53 opt:  53  Z-score: 78.6  bits: 22.6 E(91):  1.3
+Smith-Waterman score: 62; 24.6% identity (52.6% similar) in 57 aa overlap (54-108:245-298)
+
+            30        40        50        60        70          80 
+tr|B6E RATVTTTVVEEENQDCPEQMQRQQMLSHCRMYMRQMMKESPYQTMPRRGMEPH--MSECC
+                                     .:. : . ..:.. . .   .     .:::
+sp|P19 EKAKGVSVKQQYFCGILKQFGDRVFQARQLIYLSQKYPKAPFSEVSKFVHDSIGVHKECC
+          220       230       240       250       260       270    
+
+              90       100       110       120       130       140 
+tr|B6E EQLEGMDESCRCEGLRMMMRMMQQQEMQPRGEQMRMMMRMAENLPSRCNLSPQRCPMAGS
+       :   :    :  .  :::  . .::..                                 
+sp|P19 E---GDMVECMDDMARMMSNLCSQQDVFSGKIKDCCEKPIVERSQCIMEAEFDEKPADLP
+             280       290       300       310       320       330 
+
+>>sp|Q09095|AVEA_AVESA Avenin-A (Fragment) OS=Avena sati  (36 aa)
+ initn:  46 init1:  30 opt:  39  Z-score: 77.3  bits: 18.2 E(91):  1.5
+Smith-Waterman score: 39; 54.5% identity (72.7% similar) in 11 aa overlap (34-44:3-13)
+
+            10        20        30        40        50        60   
+tr|B6E ISVVAAALLVLLVLGHATAFRATVTTTVVEEENQDCPEQMQRQQMLSHCRMYMRQMMKES
+                                     :. :  :::.:                   
+sp|Q09                             PSEQYQPYPEQQQPFLQQQPLELQQQQXXLVL
+                                           10        20        30  
+
+            70        80        90       100       110       120   
+tr|B6E PYQTMPRRGMEPHMSECCEQLEGMDESCRCEGLRMMMRMMQQQEMQPRGEQMRMMMRMAE
+                                                                   
+sp|Q09 FLQK                                                        
+                                                                   
+
+>>sp|P43238|ALL12_ARAHY Allergen Ara h 1, clone P41B OS=  (626 aa)
+ initn:  52 init1:  52 opt:  52  Z-score: 76.8  bits: 22.3 E(91):  1.6
+Smith-Waterman score: 52; 25.5% identity (52.7% similar) in 55 aa overlap (61-112:26-77)
+
+               40        50        60        70        80          
+tr|B6E VVEEENQDCPEQMQRQQMLSHCRMYMRQMMKESPYQTMPRRGMEPHMSEC---CEQLEGM
+                                     : ::::   ..  .:  ..:   :.:    
+sp|P43      MRGRVSPLMLLLGILVLASVSATHAKSSPYQ---KKTENPCAQRCLQSCQQEPDD
+                    10        20        30           40        50  
+
+        90       100       110       120       130       140       
+tr|B6E DESCRCEGLRMMMRMMQQQEMQPRGEQMRMMMRMAENLPSRCNLSPQRCPMAGSMAGF  
+        ..  ::.    ...  .  ..:::                                   
+sp|P43 LKQKACESRCTKLEYDPRCVYDPRGHTGTTNQRSPPGERTRGRQPGDYDDDRRQPRREEG
+             60        70        80        90       100       110  
+
+>>sp|O23878|13S1_FAGES 13S globulin seed storage protein  (565 aa)
+ initn:  49 init1:  49 opt:  51  Z-score: 75.9  bits: 21.9 E(91):  1.8
+Smith-Waterman score: 51; 24.1% identity (51.9% similar) in 54 aa overlap (39-92:120-172)
+
+       10        20        30        40        50        60        
+tr|B6E AALLVLLVLGHATAFRATVTTTVVEEENQDCPEQMQRQQMLSHCRMYMRQMMKESPYQTM
+                                     ::: .: .. . . .    :  ..:  .  
+sp|O23 GGLLLPSYSNAPYITFVEQGRGVQGVVVPGCPETFQSESEFEYPQSQRDQRSRQSESEES
+      90       100       110       120       130       140         
+
+       70        80        90       100       110       120        
+tr|B6E PRRGMEPHMSECCEQLEGMDESCRCEGLRMMMRMMQQQEMQPRGEQMRMMMRMAENLPSR
+        :  .. ..::  :  .: :.  :                                    
+sp|O23 SRGDQRTRQSESEEFSRG-DQRTRQSESEEFSRGDQRTRQSESEEFSRGDQRTRQSESEE
+     150       160        170       180       190       200        
+
+>>sp|O14638|ENPP3_HUMAN Ectonucleotide pyrophosphatase/p  (875 aa)
+ initn:  73 init1:  48 opt:  49  Z-score: 69.1  bits: 21.3 E(91):  4.3
+Smith-Waterman score: 49; 25.0% identity (65.6% similar) in 32 aa overlap (102-133:625-656)
+
+              80        90       100       110       120       130 
+tr|B6E GMEPHMSECCEQLEGMDESCRCEGLRMMMRMMQQQEMQPRGEQMRMMMRMAENLPSRCNL
+                                     ..... ..  :. ::: :  . ..:.  . 
+sp|O14 LTQEEITATVKVNLPFGRPRVLQKNVDHCLLYHREYVSGFGKAMRMPMWSSYTVPQLGDT
+          600       610       620       630       640       650    
+
+             140                                                   
+tr|B6E SPQRCPMAGSMAGF                                              
+       ::                                                          
+sp|O14 SPLPPTVPDCLRADVRVPPSESQKCSFYLADKNITHGFLYPPASNRTSDSQYDALITSNL
+          660       670       680       690       700       710    
+
+
+
+591 residues in 4 query   sequences
+86627 residues in 91 library sequences
+ Tcomplib [36.3.8d Apr, 2016(preload9)] (8 proc in memory [0G])
+ start: Sun Jun 19 21:41:43 2016 done: Sun Jun 19 21:41:43 2016
+ Total Scan time:  0.110 Total Display time:  0.080
+
+Function used was FASTA [36.3.8d Apr, 2016(preload9)]

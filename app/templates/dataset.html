@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+	
+	{% if isAllergen %}
+		<h3>Allergen Data Set</h1>
+	{% else %}
+		<h3>Non-allergen Data Set</h1>
+	{% endif %}
+
+	{% if data %}
+		{{data}}
+  	{% endif %}
+{% endblock %}

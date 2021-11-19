@@ -1,0 +1,65 @@
+# ./fasta36 -f -12 -g -2 ../../brazil_nuts.fasta ../../cdep.fasta
+FASTA searches a protein or DNA sequence data bank
+ version 36.3.8d Apr, 2016(preload9)
+Please cite:
+ W.R. Pearson & D.J. Lipman PNAS (1988) 85:2444-2448
+
+Query: ../../brazil_nuts.fasta
+  1>>>sp|P04403|2SS1_BEREX 2S sulfur-rich seed storage protein 1 OS=Bertholletia excelsa GN=BE2S1 PE=1 SV=2 - 146 aa
+Library: ../../cdep.fasta
+    86627 residues in    91 sequences
+
+Statistics: (shuffled [485]) MLE statistics: Lambda= 0.1981;  K=0.02217
+ statistics sampled from 23 (23) to 485 sequences
+Algorithm: FASTA (3.8 Nov 2011) [optimized]
+Parameters: BL50 matrix (15:-5), open/ext: -12/-2
+ ktup: 2, E-join: 1 (0.495), E-opt: 0.2 (0.253), width:  16
+ Scan time:  0.020
+
+The best scores are:                                      opt bits E(91)
+sp|F5B8W5|CONB7_LUPAN Conglutin beta 7 OS=Lupinus  ( 605)   93 33.2 0.00081
+sp|Q8MUF6|MYSP_BLOTA Paramyosin OS=Blomia tropical ( 875)   86 31.2  0.0047
+sp|F5B8W4|CONB6_LUPAN Conglutin beta 6 OS=Lupinus  ( 593)   84 30.6  0.0047
+tr|Q6Y2F9|Q6Y2F9_DERPT HDM allergen OS=Dermatophag ( 875)   85 30.9  0.0057
+sp|Q967Z0|MYSP_DERFA Paramyosin (Fragment) OS=Derm ( 692)   83 30.3  0.0067
+sp|F5B8W0|CONB2_LUPAN Conglutin beta 2 OS=Lupinus  ( 603)   77 28.6   0.019
+sp|F5B8V9|CONB1_LUPAN Conglutin beta 1 OS=Lupinus  ( 611)   74 27.8   0.035
+sp|P49064|ALBU_FELCA Serum albumin OS=Felis catus  ( 608)   58 23.2    0.84
+sp|P49822|ALBU_CANLF Serum albumin OS=Canis lupus  ( 608)   57 22.9       1
+sp|Q9NJA9|MYSP_ANISI Paramyosin OS=Anisakis simple ( 869)   56 22.6     1.8
+...(Resto de alineamientos eliminados)...
+
+>>sp|F5B8W5|CONB7_LUPAN Conglutin beta 7 OS=Lupinus angu  (605 aa)
+ initn:  88 init1:  57 opt:  93  Z-score: 136.2  bits: 33.2 E(91): 0.00081
+Smith-Waterman score: 93; 27.4% identity (53.7% similar) in 95 aa overlap (34-125:93-182)
+
+            10        20        30        40        50        60   
+sp|P04 ISVAAAALLVLMALGHATAFRATVTTTVVEEENQEECREQMQRQQMLSHCRMYMRQQMEE
+                                     :. .: :::. :.::      .. :.. ::
+sp|F5B QEREHRREEEHDRDPSRGRRESEERQEEERERRREPCREREQEQQP-----QHGRREEEE
+             70        80        90       100            110       
+
+            70        80        90          100       110       120
+sp|P04 SPYQTMPRRGMEPHMSECCEQLEGMDESCRCEG---LRMMMMRMQQEEMQPRGEQMRRMM
+          . .:::      .:  :: .: . : : ..    :..  : .:.. . . .. :   
+sp|F5B EEEEWQPRRLRPQSRKEEREQEQGSSSSSRKQSGYERRQYHERREQRDEKEKEQDSRSDS
+       120       130       140       150       160       170       
+
+              130       140                                        
+sp|P04 RLAENIPSRCNLSPMRCPMGGSIAGF                                  
+       :  .:                                                       
+sp|F5B RRQRNPYHFSSERFQTRYRNRNGQIRVLERFDQRTNRLENLQNYRIVEFQSNPNTLILPK
+       180       190       200       210       220       230       
+
+...(Resto de alineamientos eliminados)...
+
+591 residues in 4 query   sequences
+86627 residues in 91 library sequences
+ Tcomplib [36.3.8d Apr, 2016(preload9)] (8 proc in memory [0G])
+ start: Sun Jun 19 21:41:43 2016 done: Sun Jun 19 21:41:43 2016
+ Total Scan time:  0.110 Total Display time:  0.080
+
+Function used was FASTA [36.3.8d Apr, 2016(preload9)]
+
+
+
