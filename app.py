@@ -18,7 +18,7 @@ Fecha: 30-06-2016 (ultima modificacion: 21/05/2017)
 import os
 import sys
 
-sys.path.insert(0,os.path.dirname(__file__))
+sys.path.insert(0, os.path.dirname(__file__))
 
 from app import app as application
 
