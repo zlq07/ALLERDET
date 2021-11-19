@@ -1,6 +1,6 @@
-#!/usr/bin/env python3.5
+#!venv/bin/python3
 # -*- coding: utf-8 -*-
-'''
+"""
 ----------------------------------------------------------
 UNIVERSIDAD DE SEVILLA
 ESCUELA TÉCNICA SUPERIOR DE INGENIERÍA INFORMÁTICA
@@ -12,9 +12,9 @@ Aprendizaje Automático.
 
 Autor: Francisco Manuel García Moreno
 Tutor: Miguel Ángel Gutiérrez Naranjo
-Fecha: 30-06-2016 (ultima modificacion: 21/05/2017)
+Fecha: 30-06-2016 (ultima modificacion: 27/04/2017)
 ----------------------------------------------------------
-'''
+"""
 
 import os
 import math

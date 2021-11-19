@@ -1,4 +1,7 @@
-'''
+#!venv/bin/python3
+# -*- coding: utf-8 -*-
+
+"""
 ----------------------------------------------------------
 UNIVERSIDAD DE SEVILLA
 ESCUELA TÉCNICA SUPERIOR DE INGENIERÍA INFORMÁTICA
@@ -12,7 +15,7 @@ Autor: Francisco Manuel García Moreno
 Tutor: Miguel Ángel Gutiérrez Naranjo
 Fecha: 30-06-2016 (ultima modificacion: 27/04/2017)
 ----------------------------------------------------------
-'''
+"""
 
 from flask import Markup,render_template, flash, request
 from app import app
