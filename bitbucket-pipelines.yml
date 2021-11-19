@@ -7,13 +7,13 @@ image: python:3.9
 
 pipelines:
   default:
-#    - step:
-#        name: Test
-#        script:
-#          #- cd food-allergy-prediction
+    - step:
+        name: Test
+        script:
+          #- cd food-allergy-prediction
 #          - pip install -r requirements.txt
 #          - ./run.py #cambiar por un archivo de test
-
+           - chmod +x app/alignments/fasta-36.3.8d/bin/fasta36
     - step:
         name: Build
         script:
