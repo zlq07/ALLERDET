@@ -10,17 +10,17 @@ pipelines:
     - step:
         name: Test
         script:
-          - cd food-allergy-prediction
+          #- cd food-allergy-prediction
           - pip install -r requirements.txt
           - ./app.py
 
     - step:
         name: Build
         script:
-          - cd food-allergy-prediction
+          #- cd food-allergy-prediction
           - git archive --format=tar.gz main -o food-allergy-prediction.tar.gz
         artifacts:
-          - food-allergy-prediction/food-allergy-prediction.tar.gz
+          - food-allergy-prediction.tar.gz
 
     - step:
         name: Deploy to production
@@ -32,4 +32,4 @@ pipelines:
             variables:
               HEROKU_API_KEY: $HEROKU_API_KEY
               HEROKU_APP_NAME: $HEROKU_APP_NAME
-              ZIP_FILE: food-allergy-prediction/food-allergy-prediction.tar.gz
+              ZIP_FILE: food-allergy-prediction.tar.gz
