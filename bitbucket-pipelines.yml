@@ -18,7 +18,7 @@ pipelines:
         name: Build
         script:
           #- cd food-allergy-prediction
-          - git archive --format=tar.gz main -o food-allergy-prediction.tar.gz
+          - git archive --format=tar.gz master -o food-allergy-prediction.tar.gz
         artifacts:
           - food-allergy-prediction.tar.gz
 
