@@ -18,7 +18,8 @@ Fecha: 30-06-2016 (ultima modificacion: 27/04/2017)
 
 import os
 import os.path
-from sys import platform
+# from sys import platform
+import platform
 from collections import Counter
 
 try:
@@ -67,7 +68,7 @@ def create_alignments_files(aligPos=True, aligNeg=True, aligTest=False
     else:
         print("no existe path: "+workingDir+alignsPath)
 
-    print("Operating System:", platform)
+    print("Operating System:", platform, "Machine:", platform.machine())
 
     #es necesario el archivo de alineamiento positivo
     if alignsPath+posSecFile != "":
