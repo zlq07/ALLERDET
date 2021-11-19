@@ -10,7 +10,7 @@ pipelines:
     - step:
         name: Test
         script:
-          - /bin/sh -c chmod +x app/alignments/fasta-36.3.8d/bin/fasta36
+          - /bin/sh -c "chmod +x app/alignments/fasta-36.3.8d/bin/fasta36"
 #        script:
           #- cd food-allergy-prediction
 #          - pip install -r requirements.txt
