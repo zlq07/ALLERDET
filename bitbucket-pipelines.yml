@@ -7,12 +7,12 @@ image: python:3.9
 
 pipelines:
   default:
-    - step:
-        name: Test
-        script:
-          #- cd food-allergy-prediction
-          - pip install -r requirements.txt
-          - ./run.py
+#    - step:
+#        name: Test
+#        script:
+#          #- cd food-allergy-prediction
+#          - pip install -r requirements.txt
+#          - ./run.py
 
     - step:
         name: Build
