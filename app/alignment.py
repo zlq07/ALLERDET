@@ -67,6 +67,8 @@ def create_alignments_files(aligPos=True, aligNeg=True, aligTest=False
     else:
         print("no existe path: "+workingDir+alignsPath)
 
+    print("Operating System:", platform)
+
     #es necesario el archivo de alineamiento positivo
     if alignsPath+posSecFile != "":
         #crear archivo del alineamiento positivo
@@ -76,7 +78,6 @@ def create_alignments_files(aligPos=True, aligNeg=True, aligTest=False
             if verbose:
                 print("Ejecutando comando: "+cmd)
             # os.system(cmd)
-            print("Operating System:", platform)
             os.popen(cmd).read()
             if verbose:
                 print("Se ha creado correctamente el archivo del alineamiento"
