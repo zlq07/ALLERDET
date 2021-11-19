@@ -25,4 +25,5 @@ import sys
 from app import app as application
 
 if __name__ == '__main__':
-    application.run(debug=False, host="0.0.0.0", port=5000) #host visible desde internet
+    port = int(os.environ.get("PORT", 5000))
+    application.run(debug=False, host="0.0.0.0", port=port) #host visible desde internet
