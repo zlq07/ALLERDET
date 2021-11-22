@@ -18,7 +18,7 @@ Fecha: 30-06-2016 (ultima modificacion: 27/04/2017)
 
 import os
 import os.path
-# from sys import platform
+from sys import platform as pt
 import platform
 from collections import Counter
 
@@ -64,11 +64,11 @@ def create_alignments_files(aligPos=True, aligNeg=True, aligTest=False
 
     if os.path.exists(workingDir+alignsPath):
         alignsPath=workingDir+alignsPath
-        fastaProgramPath=alignsPath+fastaProgramPath
+        fastaProgramPath=alignsPath+fastaProgramPath if pt=="darwin" else "fasta-36.3.8d_linux32/bin/fasta36"
     else:
         print("no existe path: "+workingDir+alignsPath)
 
-    print("Operating System:", platform, "Machine:", platform.machine())
+    print("Operating System:", pt, "Machine:", platform.machine())
 
     #es necesario el archivo de alineamiento positivo
     if alignsPath+posSecFile != "":
