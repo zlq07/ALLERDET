@@ -22,4 +22,4 @@ from wtforms.validators import DataRequired
 from wtforms.widgets import TextArea
 
 class AminoacidSequencesForm(FlaskForm):
-    sequences = StringField('sequences', validators=[DataRequired()], widget=TextArea())    
+    sequences = StringField('sequences', validators=[DataRequired()], widget=TextArea())
