@@ -28,7 +28,7 @@ from .predict import predict
 #     return e
 
 @app.route('/', methods=['GET','POST'])
-@app.route('/index', methods=['GET','POST'])
+# @app.route('/index', methods=['GET','POST'])
 def index():
     form = AminoacidSequencesForm()
     if request.method == "POST" and form.validate_on_submit():
