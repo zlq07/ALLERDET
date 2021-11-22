@@ -10,7 +10,7 @@ pipelines:
     - step:
         name: Test
         script:
-          - sudo apt-get install fasta3
+          - apt install fasta3
           - /usr/bin/fasta36 -f -12 -g -2 app/alignments/created_test.fasta app/alignments/allergens_data_set.fasta > app/alignments/a_cdp.txt
 #          - /bin/sh -c "chmod +x app/alignments/fasta-36.3.8h_linux64/bin/fasta36"
 #          - /bin/sh -c "app/alignments/fasta-36.3.8h_linux64/bin/fasta36 -f -12 -g -2 app/alignments/created_test.fasta app/alignments/allergens_data_set.fasta > app/alignments/a_cdp.txt"
