@@ -10,8 +10,8 @@ pipelines:
     - step:
         name: Test
         script:
-          - /bin/sh -c "chmod +x ./app/alignments/fasta-36.3.8d_linux64/bin/fasta36"
-          - /bin/sh -c "./app/alignments/fasta-36.3.8d_linux64/bin/fasta36 -f -12 -g -2 app/alignments/created_test.fasta app/alignments/allergens_data_set.fasta > app/alignments/a_cdp.txt"
+          - /bin/sh -c "chmod +x ./app/app/alignments/fasta-36.3.8d_linux64/bin/fasta36"
+          - /bin/sh -c "./app/app/alignments/fasta-36.3.8d_linux64/bin/fasta36 -f -12 -g -2 /app/app/alignments/created_test.fasta /app/app/alignments/allergens_data_set.fasta > /app/app/alignments/a_cdp.txt"
 #        script:
           #- cd food-allergy-prediction
 #          - pip install -r requirements.txt
