@@ -64,7 +64,7 @@ def create_alignments_files(aligPos=True, aligNeg=True, aligTest=False
 
     if os.path.exists(workingDir+alignsPath):
         alignsPath=workingDir+alignsPath
-        fastaProgramPath=alignsPath+fastaProgramPath if pt=="darwin" else "fasta-36.3.8d_linux32/bin/fasta36"
+        fastaProgramPath=alignsPath+"fasta-36.3.8d_macosxuniv/bin/fasta36" if pt=="darwin" else alignsPath+"fasta-36.3.8d_linux32/bin/fasta36"
     else:
         print("no existe path: "+workingDir+alignsPath)
 
