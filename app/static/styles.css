@@ -101,3 +101,12 @@ footer {
   background-color: #f9f9f9; /*#efefef;*/
   text-align: center;
 }
+
+#cite{
+  position: absolute;
+  right: 0;
+  bottom: 15%;
+  left: 0;
+  padding: 1rem;
+}
+
