@@ -14,7 +14,7 @@ h1{
 textarea {
   margin-top: 10px;
   width: 900px;
-  height: 400px;
+  height: 300px;
   -moz-border-bottom-colors: none;
   -moz-border-left-colors: none;
   -moz-border-right-colors: none;
@@ -105,7 +105,7 @@ footer {
 #cite{
   position: absolute;
   right: 0;
-  bottom: 15%;
+  bottom: 10%;
   left: 0;
   padding: 1rem;
 }
