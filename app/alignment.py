@@ -147,6 +147,7 @@ def splitFastaSeqs(filename, id_is_complete_decp_line=True):
         for l in lines:
             l = l.strip()
             m=l.split(">")
+
             if(len(m)>1):
                 id = m[1]
                 if not id_is_complete_decp_line:
@@ -160,6 +161,11 @@ def splitFastaSeqs(filename, id_is_complete_decp_line=True):
                     seq = ''
             elif(len(m) == 1):
                 seq += l
+
+        #add last protein
+        if seq != '':
+            seqs.append(seq)
+            seq = ''
     return seqIds, seqs
 
 def how_many_seqs_from_a_are_duplicated_in_b(filenameA, filenameB):
@@ -198,9 +204,9 @@ def create_fasta_file_without_duplications(filenames, resultFilename='alignments
             rs = [sid[i], s]
             if not any(s==x[1] for x in res) and s not in seqsNotIn and rs not in res:
                 res.append(rs)
-                if len(res) > maxSec:
+                if len(res) >= maxSec:
                     break
-        if len(res) > maxSec:
+        if len(res) >= maxSec:
             break
 
     #push the content
