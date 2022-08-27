@@ -19,7 +19,9 @@ from collections import Counter
 
 try:
     from app.predict import predict
+    from app.predict import prediction_test
     from app.predict import tuning_model
+    from app.predict import tuning_model_performance
     from app.predict import show_learning_methods_performance
     from app.alignment import splitFastaSeqs
     from app.alignment import how_many_seqs_from_a_are_duplicated_in_b
@@ -182,6 +184,19 @@ if __name__ == '__main__':
     ##----------------------------------------------------------------------------------------
     ## Crear Datasets
     ##----------------------------------------------------------------------------------------
+    #keep 1000 allergen sequences from allertop
+    # create_fasta_file_without_duplications([aAllerTop]
+    #                                              , 'app/alignments/allergens_allertop_1000.fasta'
+    #                                              , maxSec=1000)
+
+    # keep 500 allergen sequences of previous file from allertop
+    # create_fasta_file_without_duplications(['app/alignments/allergens_allertop_1000.fasta']
+    #                                        , 'app/alignments/allergens_allertop_500_1000.fasta'
+    #                                        , maxSec=500)
+
+    #keep 2500 non-allergen sequences from allerhunter
+    # create_fasta_file_without_duplications([naAllerHunter]
+    #                                              , 'app/alignments/nonallergens_allerhunter_2500.fasta', maxSec=2500)
 
     #
     # # combina diferentes datasets de alérgenos sin duplicaciones
@@ -196,22 +211,25 @@ if __name__ == '__main__':
     # combina diferentes datasets de alérgenos sin duplicaciones
     # our allergen dataset
     create_fasta_file_without_duplications([
-                                            aUnitprot2022, aCOMPARE, aAllerTop, aAllerHunter]
+                                            aUnitprot2022, aCOMPARE, aAllerTop, aAllerHunter, aAllerHunterInd, aAllerHunterTest]
                                                 #aAllerTop, aAllerHunter, aUnitprot2, aAllerdictorA]
                                                  , myAllergenDataset
-                                                 , splitFastaSeqs('app/alignments/allergens_allertop_1000.fasta')[1]
-                                                , 3000
+                                                    #exclude the following:
+                                                 #, splitFastaSeqs('app/alignments/allergens_allertop_1000.fasta')[1]
+                                                , maxSec=4000
                                                  )
     sid, s = splitFastaSeqs(myAllergenDataset)
-    print("Nuestro conjunto total de entrenamiento de allergens: " + str(len(s)))
+    print("Our allergen train dataset: " + str(len(s)))
 
-    # # dataset non allergens de uniprot
-    # create_fasta_file_without_duplications(['app/alignments/unitprot/non/plant_nonallergen.fasta'
-    #                                            , 'app/alignments/unitprot/non/cowmilk_nonallergen.fasta'
-    #                                            , 'app/alignments/unitprot/non/eggs_nonallergen.fasta'
-    #                                            , 'app/alignments/unitprot/non/salmo-nonallergen.fasta'
-    #                                             , naAllerTop]
-    #                                        , 'app/alignments/nonallergens_data_set.fasta', maxSec=2130)
+    # dataset non allergens
+    create_fasta_file_without_duplications(['app/alignments/unitprot/non/plant_nonallergen.fasta'
+                                               , 'app/alignments/unitprot/non/cowmilk_nonallergen.fasta'
+                                               , 'app/alignments/unitprot/non/eggs_nonallergen.fasta'
+                                               , 'app/alignments/unitprot/non/salmo-nonallergen.fasta'
+                                                , naAllerTop, naAllerHunter]
+                                           , myNonAllergenDataset, maxSec=3000)
+    sid, s = splitFastaSeqs(myNonAllergenDataset)
+    print("Our non-allergen train dataset: " + str(len(s)))
 
 
 
@@ -219,79 +237,87 @@ if __name__ == '__main__':
 
     # create allergen dataset for testing from different sources
     exclusion=splitFastaSeqs(myAllergenDataset)[1]
-    exclusion.extend(splitFastaSeqs(myValidationDataset)[1])
-    # exclusion.extend(splitFastaSeqs(myTestDataset)[1])
-    create_fasta_file_without_duplications([aAllerTop
-                                                     #aUnitprotReviews
-                                                     # , aUnitprot2
-                                                     , aAllerHunter
-                                                     ,aAllerHunterInd
-                                                      ,aAllerHunterTest
-                                                    ]
-                                                 , myTestDataset, exclusion)
-
-    # creacion del conjunto de test de alérgenos
-    exclusion=splitFastaSeqs(myAllergenDataset)[1]
     # exclusion.extend(splitFastaSeqs(myValidationDataset)[1])
-    create_fasta_file_without_duplications([myTestDataset]
-                                                 , myTestDataset, exclusion, 800)
+    # exclusion.extend(splitFastaSeqs(myTestDataset)[1])
+    create_fasta_file_without_duplications([
+                                            aUnitprot2022
+                                               , aCOMPARE
+                                               , aAllerTop
+                                                , aAllerHunter
+                                                , aAllerHunterInd
+                                                , aAllerHunterTest
+                                            ]
+                                                 , myTestDataset, exclusion, maxSec=2000)
+    sid, s = splitFastaSeqs(myTestDataset)
+    print("Our Test allergens: " + str(len(s)))
+
+    # creacion del conjunto de test de no alérgenos
+    exclusion=splitFastaSeqs(myNonAllergenDataset)[1]
+    create_fasta_file_without_duplications(['app/alignments/unitprot/non/plant_nonallergen.fasta'
+                                               , 'app/alignments/unitprot/non/cowmilk_nonallergen.fasta'
+                                               , 'app/alignments/unitprot/non/eggs_nonallergen.fasta'
+                                               , 'app/alignments/unitprot/non/salmo-nonallergen.fasta'
+                                                , naAllerTop, naAllerHunter
+                                                    ]
+                                                 , myNonAllergenTestDataset, exclusion, 2000)
+    sid, s = splitFastaSeqs(myNonAllergenTestDataset)
+    print("Our non-allergen test dataset: " + str(len(s)))
 
 
+    #possible crash. It is better to execute the command directly from cmd in the folder alignments/
+    # create_alignments_files(aligPos=True, aligNeg=True, aligTest=True, testSecFile='test_allergens_data_set.fasta', verbose=True)
+    # create_alignments_files(posSecFile="allergens_data_set.fasta", negSecFile="nonallergens_data_set.fasta")
 
-    # # creacion del conjunto de test de no alérgenos
-    # exclusion=splitFastaSeqs(myNonAllergenDataset)[1]
-    # create_fasta_file_without_duplications(['alignments/unitprot/non/plant_nonallergen.fasta'
-    #                                            , 'alignments/unitprot/non/cowmilk_nonallergen.fasta'
-    #                                            , 'alignments/unitprot/non/eggs_nonallergen.fasta'
-    #                                            , 'alignments/unitprot/non/salmo-nonallergen.fasta'
-    #                                             , naAllerTop, naAllerHunter
-    #                                                 ]
-    #                                              , myNonAllergenTestDataset, exclusion, 800)
-
-
-    # #separo 1000 secuencias de alérgenos de allertop
-    # create_fasta_file_without_duplications([aAllerTop]
-    #                                              , 'alignments/allergens_allertop_1000.fasta'
-    #                                              , maxSec=1000)
-
-    # # separo 500 secuencias de alérgenos de allertop
-    # create_fasta_file_without_duplications(['alignments/allergens_allertop_1000.fasta']
-    #                                        , 'alignments/allergens_allertop_500_1000.fasta'
-    #                                        , maxSec=500)
-
-    # #separo 2500 secuencias de no alérgenos de allerhunter
-    # create_fasta_file_without_duplications([naAllerHunter]
-    #                                              , 'alignments/nonallergens_allerhunter_2500.fasta', maxSec=2500)
-
-    #create_alignments_files(aligPos=True, aligNeg=True, aligTest=True, testSecFile='test_allergens_data_set.fasta', verbose=True)
-
-
-
-    #create_alignments_files(posSecFile="allergens_data_set.fasta", negSecFile="nonallergens_data_set.fasta")
 
     ##----------------------------------------------------------------------------------------
     ## Performance predicciones
     ##----------------------------------------------------------------------------------------
+    tuning_model_performance("dt", verbose=False)
+    tuning_model_performance("nb", verbose=True)
+    tuning_model_performance("knn", verbose=True)
+    tuning_model_performance("mlp", verbose=True)
+    tuning_model_performance("rbm", verbose=True, reduction=100)
+
+    cp, pt = predict(method="rbm", params={'rbm__n_iter': 20, 'rbm__n_components': 1000, 'rbm__learning_rate': 0.001
+        , "mod": "dt"
+        , "mod_par": {'criterion': 'gini', 'max_depth': 10, 'min_samples_leaf': 100}}, m=2
+                     , showAllPredictions=False, featToExtract= [True, True, False, True], webApp=False, testAlFile="a_cdp_review.txt"
+                     , plotPosAlgn=True, plotNegAlgn=True, plotAIO=True)
+    counter = Counter(cp)
+    print(str(counter))
+    print("Accuracy: " + str((counter['allergen'] * 100) / len(cp)))
+
+    prediction_test("rbm", {'rbm__n_iter': 20, 'rbm__n_components': 1000, 'rbm__learning_rate': 0.001
+        , "mod": "dt"
+        , "mod_par": {'criterion': 'gini', 'max_depth': 10, 'min_samples_leaf': 100}}, 2,  [True, True, False, True])
+
+
+    tuning_model("dt", verbose=True)
+    tuning_model("nb")
+    tuning_model("knn")
+    tuning_model("mlp")
     # tuning_model("knn", ['precision'])
     # tuning_model("rbm", [None])
 
     #Pruebas de predicción de alérgenos
 
-    print("Prueba Alérgenos kNN")
-    cp,pt = predict(method="knn", params={'metric': 'euclidean', 'weights': 'uniform'
-        , 'algorithm': 'auto', 'leaf_size': 1, 'p': 1, 'n_neighbors': 3}, showAllPredictions=False, featToExtract=[True,True, True, True]
-        , webApp=False, plotPosAlgn=False, plotNegAlgn=False, plotTestAlgn=False, plotAIO=False, figSameColor=False)
+    # print("Prueba Alérgenos kNN")
+    # cp,pt = predict(method="knn", params={'metric': 'euclidean', 'weights': 'uniform'
+    #     , 'algorithm': 'auto', 'leaf_size': 1, 'p': 1, 'n_neighbors': 3}, showAllPredictions=False, featToExtract=[True,True, True, True]
+    #     , webApp=False, plotPosAlgn=False, plotNegAlgn=False, plotTestAlgn=False, plotAIO=False, figSameColor=False)
+    # counter = Counter(cp)
+    # print(str(counter))
+    # print("Accuracy: " + str((counter['allergen']*100)/len(cp)))
+
+    print("Prueba Alérgenos DT")
+    cp,pt = predict(method="dt", params={'criterion': 'gini', 'max_depth': 10, 'min_samples_leaf': 30}
+                    , m=2, featToExtract=[True,True, False, True]
+                    , showAllPredictions=False, webApp=False
+                    , testAlFile="a_cdp_review.txt")
     counter = Counter(cp)
     print(str(counter))
     print("Accuracy: " + str((counter['allergen']*100)/len(cp)))
 
-    # print("Prueba Alérgenos DT")
-    # cp,pt = predict(method="dt", params={'criterion': 'gini', 'max_depth': 10, 'min_samples_leaf': 8}
-    #                 , showAllPredictions=False, featToExtract=[True,True], webApp=False)
-    # counter = Counter(cp)
-    # print(str(counter))
-    # print("Accuracy: " + str((counter['allergen']*100)/len(cp)))
-    #
     # print("Prueba Alérgenos RF")
     # cp,pt = predict(method="rf", params={}
     #                 , showAllPredictions=False, featToExtract=[True,True], webApp=False)

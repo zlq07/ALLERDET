@@ -176,8 +176,6 @@ if __name__ == '__main__':
     print(str(counter))
     print("Accuracy: " + str((counter['allergen'] * 100) / len(cp)))
 
-
-
     prediction_test("rbm", {'rbm__n_iter': 20, 'rbm__n_components': 1000, 'rbm__learning_rate': 0.001
             , "mod": "dt"
             , "mod_par": {'criterion': 'gini', 'max_depth': 5, 'min_samples_leaf': 3}}, 2, [True, True, True])

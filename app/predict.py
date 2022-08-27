@@ -55,7 +55,7 @@ except SystemError:
     from preprocessing import extract_all_features_and_classifications
     from preprocessing import features_for_extracting_to_string
 
-def tuning_model(method, score='precision', featToExtract=[True, True], m=1, kfolds=10, posAlFile="a_cdep.txt"
+def tuning_model(method, score='accuracy', featToExtract=[True, True], m=1, kfolds=10, posAlFile="a_cdep.txt"
                  , negAlFile="a_cden.txt", testAlFile="", reduction=0, verbose=False):
     if verbose:
         print("Extrayendo features..")
@@ -118,7 +118,7 @@ def tuning_model(method, score='precision', featToExtract=[True, True], m=1, kfo
 
     model = create_prediction_model(method)
     if score != None:
-        clf = GridSearchCV(model, tuned_parameters, cv=kfolds, scoring='%s_macro' % score)
+        clf = GridSearchCV(model, tuned_parameters, cv=kfolds, scoring=score) #scoring='%s_macro' % score)
     else:
         clf = GridSearchCV(model, tuned_parameters, cv=kfolds)
 
@@ -239,7 +239,7 @@ def create_prediction_model(method, params={}):
         ni=20
         nc=100
         mod="dt"
-        modpar={'criterion': 'gini', 'max_depth': 5, 'min_samples_leaf': 3}
+        modpar={'criterion': 'gini', 'max_depth': 10, 'min_samples_leaf': 100}
         param = params.get("model")
         if param != None:
             mod=param
@@ -910,15 +910,20 @@ def prediction_test(method, params, m=1, feats=[True, True]):
     # test de alérgenos
     cp, pt = predict(method=method, params=params, m=m, featToExtract=feats, webApp=False, testAlFile="a_cdp.txt")
     counter = Counter(cp)
-    # print(str(counter))
-    set = (counter['allergen'] * 100) / len(cp)
+    print("allergen test", str(counter))
+    correct_allergens = counter['allergen']
+    set = (correct_allergens * 100) / len(cp)
+    total_test_allergens = len(cp)
 
     # test de no alérgenos
     cp, pt = predict(method=method, params=params, m=m, featToExtract=feats, webApp=False, testAlFile="a_cdpn.txt")
     counter = Counter(cp)
-    # print(str(counter))
-    spt = (counter['non-allergen'] * 100) / len(cp)
-    act = (set + spt) / 2
+    print("non-allergen test", str(counter))
+    total_test_nonallergens = len(cp)
+    correct_nonallergens = counter['non-allergen']
+
+    spt = (correct_nonallergens * 100) / len(cp)
+    act = ((correct_allergens+correct_nonallergens)/(total_test_allergens+total_test_nonallergens))* 100#(set + spt) / 2
 
     print("With our test data set >> Accuracy = " + str("%.2f" % act) + "%, Sensitivity = " + str("%.2f" % set)
           + "%" + ", Specification = " + str("%.2f" % spt) + "%")
@@ -926,10 +931,12 @@ def prediction_test(method, params, m=1, feats=[True, True]):
     print("With CV (k-fold=10) + Stratification")
     ac, se, sp, ppv, f1Score, mcc = show_learning_methods_performance(feats, method=method, params=params,
                                                                       kFolds=10)
+    # print("With CV (k-fold=10) + Stratification >> Accuracy = "+ str("%.2f" % ac) + "%, Sensitivity = " + str("%.2f" % se)
+    #       + "%" + ", Specification = " + str("%.2f" % sp) + "%"+ ", F1-Score = " + str("%.2f" % f1Score) + "%")
 
     return act, set, spt, ac, se, sp, ppv, f1Score, mcc
 
-def tuning_model_performance(method, combs=[],score='precision', minM=1, maxM=5, reduction=0, verbose=False):
+def tuning_model_performance(method, combs=[],score='accuracy', minM=1, maxM=5, reduction=0, verbose=False):
     featCombs = [[True], [False, True], [True, True], [False, False, True], [False, False, False, True]
         , [True, False, True], [True, True, True], [True, True, False, True], [True, True, True, True]
         , [False, False, True, True], [True, False, False, True]] if len(combs) == 0 else combs
@@ -942,7 +949,7 @@ def tuning_model_performance(method, combs=[],score='precision', minM=1, maxM=5,
         for comb in featCombs:
             if verbose:
                 print("checking with m=" + str(m) + " and feats: " + str(comb))
-            bestParams, _, _, _, _, _, _ = tuning_model(method, score, comb, m, reduction=reduction)
+            bestParams, _, _, _, _, _, _ = tuning_model(method, score, comb, m, reduction=reduction, verbose=verbose)
 
             if verbose:
                 print("best params: " + str(bestParams) + "\n")
@@ -957,13 +964,18 @@ def tuning_model_performance(method, combs=[],score='precision', minM=1, maxM=5,
 
 def print_best_tuning_params(bests):
     maxTestAccuracy = sys.float_info.min
+    maxSensitivityTestAccuracy = maxTestAccuracy
     maxCVAccuracy = maxTestAccuracy
     maxTestParams = None
+    maxSensitivityTestParams = None
     maxParams = None
     for b in bests:
         if b["act"] > maxTestAccuracy:
             maxTestAccuracy = b["act"]
             maxTestParams = b
+        if b["set"] > maxSensitivityTestAccuracy:
+            maxSensitivityTestAccuracy = b["set"]
+            maxSensitivityTestParams = b
         if b["ac"] > maxCVAccuracy:
             maxCVAccuracy = b["ac"]
             maxParams = b
@@ -971,9 +983,14 @@ def print_best_tuning_params(bests):
     print("Mejor tuning para CV: " + str(maxParams))
     print("Accuracy = " + str("%.2f" % maxParams["ac"]) + "%, Sensitivity = " + str("%.2f" % maxParams["se"])
           + "%" + ", Specification = " + str("%.2f" % maxParams["sp"]) + "%")
-    print("Mejor tuning con conjunto de prueba propio: " + str(maxTestParams))
+    print("Mejor tuning con conjunto de prueba propio (acc best metrics): " + str(maxTestParams))
     print("Accuracy = " + str("%.2f" % maxTestParams["act"]) + "%, Sensitivity = " + str(
         "%.2f" % maxTestParams["set"])
           + "%" + ", Specification = " + str("%.2f" % maxTestParams["spt"]) + "%")
+    print("Mejor tuning con conjunto de prueba propio (sensitivity best metric): " + str(maxSensitivityTestParams))
+    print("Accuracy = " + str("%.2f" % maxSensitivityTestParams["act"]) + "%, Sensitivity = " + str(
+        "%.2f" % maxSensitivityTestParams["set"])
+          + "%" + ", Specification = " + str("%.2f" % maxSensitivityTestParams["spt"]) + "%")
+
     print("Todos los tunings:")
     print(bests)

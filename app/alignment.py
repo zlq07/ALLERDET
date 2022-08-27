@@ -20,6 +20,7 @@ import os
 import os.path
 from sys import platform as pt
 import platform
+import random
 from collections import Counter
 
 try:
@@ -34,7 +35,7 @@ def create_alignments_files(aligPos=True, aligNeg=True, aligTest=False
                             , negAlFile="a_cden.txt"
                             , testSecFile="created_test.fasta"
                             , testAlFile="a_cdp.txt"
-                            , alignsPath="/alignments/"
+                            , alignsPath="/app/alignments/"
                             , fastaProgramPath="fasta-36.3.8d/bin/fasta36"
                             , fParam="-12", gParam="-2", verbose=True):
     '''
@@ -185,7 +186,7 @@ def how_many_seqs_from_a_are_duplicated_in_b(filenameA, filenameB):
             duplicated.append([sidA[i], a])
     return duplicated
 
-def create_fasta_file_without_duplications(filenames, resultFilename='alignments/result.fasta', seqsNotIn=[], maxSec=5000):
+def create_fasta_file_without_duplications(filenames, resultFilename='alignments/result.fasta', seqsNotIn=[], maxSec=5000, shuffle=False):
     '''
     Crea un fichero con extension .fasta sin incluir duplicaciones de secuencias a partir de las secuencias
     extraidas de los archivos FASTA proporcionados.
@@ -204,10 +205,17 @@ def create_fasta_file_without_duplications(filenames, resultFilename='alignments
             rs = [sid[i], s]
             if not any(s==x[1] for x in res) and s not in seqsNotIn and rs not in res:
                 res.append(rs)
-                if len(res) >= maxSec:
+                if not shuffle and len(res) >= maxSec:
                     break
-        if len(res) >= maxSec:
+        if not shuffle and len(res) >= maxSec:
             break
+
+    #shuffle
+    if shuffle:
+        random.shuffle(res)
+        if maxSec > 0:
+            res = res[:maxSec]
+
 
     #push the content
     content = ""
