@@ -276,7 +276,7 @@ if __name__ == '__main__':
     tuning_model_performance("nb", verbose=True)
     tuning_model_performance("knn", verbose=True)
     tuning_model_performance("mlp", verbose=True)
-    tuning_model_performance("rbm", verbose=True, reduction=100)
+    tuning_model_performance("rbm", verbose=True)
 
     cp, pt = predict(method="rbm", params={'rbm__n_iter': 20, 'rbm__n_components': 1000, 'rbm__learning_rate': 0.001
         , "mod": "dt"
