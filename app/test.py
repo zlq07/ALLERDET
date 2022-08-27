@@ -44,12 +44,12 @@ if __name__ == '__main__':
     ##----------------------------------------------------------
     ## Data set
     ##----------------------------------------------------------
-    aAllerTop = 'app/alignments/reduced_all_allergens.fasta'
-    naAllerTop = 'app/alignments/reduced_all_nonallergens.fasta'
-    aAllerdictorA = 'app/alignments/allerdictor/A/alg.fa'
-    naAllerdictorA = 'app/alignments/allerdictor/A/nlg.fa'
-    aAllerdictorB = 'app/alignments/allerdictor/B/alg.fa'
-    aAllerdictorC = 'app/alignments/allerdictor/C/alg.fa'
+    aAllerTop = 'app/alignments/allertop/reduced_all_allergens.fasta'
+    naAllerTop = 'app/alignments/allertop/reduced_all_nonallergens.fasta'
+    # aAllerdictorA = 'app/alignments/allerdictor/A/alg.fa'
+    # naAllerdictorA = 'app/alignments/allerdictor/A/nlg.fa'
+    # aAllerdictorB = 'app/alignments/allerdictor/B/alg.fa'
+    # aAllerdictorC = 'app/alignments/allerdictor/C/alg.fa'
     aAllerHunter = 'app/alignments/AllerHunter/trainingdata/training.allergen.fa'
     naAllerHunter = 'app/alignments/AllerHunter/trainingdata/training.putative_non_allergen.fa'
     aAllerHunterTest = 'app/alignments/AllerHunter/testingdata/testing.allergen.fa'
@@ -59,10 +59,7 @@ if __name__ == '__main__':
     aAllerPred3 = 'app/alignments/allerpred/testa3.fasta'
     aAllerPred4 = 'app/alignments/allerpred/testa4.fasta'
     aAllerPred5 = 'app/alignments/allerpred/testa5.fasta'
-    aUnitprot = 'app/alignments/unitprot/cdep91allergens.fasta'
-    aUnitprot2 = 'app/alignments/unitprot/uniprot-allergen.fasta'
     naUniprot = 'app/alignments/unitprot/nonallergens-uniprot.fasta'
-    aUnitprotReviews = 'app/alignments/unitprot/uniprot-allergy+OR+atopy+OR+allergen+OR+allergome.fasta'
     aUnitprot2022 = 'app/alignments/unitprot/uniprot-allergen2022.fasta'
     aCOMPARE = 'app/alignments/COMPARE/COMPARE-2022-FastA-Seq.fasta'
 
@@ -211,12 +208,21 @@ if __name__ == '__main__':
     # combina diferentes datasets de alérgenos sin duplicaciones
     # our allergen dataset
     create_fasta_file_without_duplications([
-                                            aUnitprot2022, aCOMPARE, aAllerTop, aAllerHunter, aAllerHunterInd, aAllerHunterTest]
+                                            aUnitprot2022,
+        aCOMPARE,
+        aAllerTop,
+        aAllerHunter,
+        aAllerHunterInd,
+        aAllerHunterTest
+
+    ]
                                                 #aAllerTop, aAllerHunter, aUnitprot2, aAllerdictorA]
                                                  , myAllergenDataset
                                                     #exclude the following:
                                                  #, splitFastaSeqs('app/alignments/allergens_allertop_1000.fasta')[1]
-                                                , maxSec=4000
+                                                , maxSec=80.0
+                                                # , maxSec=20000
+                                                , shuffle=True
                                                  )
     sid, s = splitFastaSeqs(myAllergenDataset)
     print("Our allergen train dataset: " + str(len(s)))
@@ -227,11 +233,11 @@ if __name__ == '__main__':
                                                , 'app/alignments/unitprot/non/eggs_nonallergen.fasta'
                                                , 'app/alignments/unitprot/non/salmo-nonallergen.fasta'
                                                 , naAllerTop, naAllerHunter]
-                                           , myNonAllergenDataset, maxSec=3000)
+                                           , myNonAllergenDataset, maxSec=80.0
+                                           , shuffle=True
+                                           )
     sid, s = splitFastaSeqs(myNonAllergenDataset)
     print("Our non-allergen train dataset: " + str(len(s)))
-
-
 
 
 
@@ -247,7 +253,9 @@ if __name__ == '__main__':
                                                 , aAllerHunterInd
                                                 , aAllerHunterTest
                                             ]
-                                                 , myTestDataset, exclusion, maxSec=2000)
+                                                 , myTestDataset, exclusion
+                                                , maxSec=1000
+    )
     sid, s = splitFastaSeqs(myTestDataset)
     print("Our Test allergens: " + str(len(s)))
 
@@ -259,7 +267,7 @@ if __name__ == '__main__':
                                                , 'app/alignments/unitprot/non/salmo-nonallergen.fasta'
                                                 , naAllerTop, naAllerHunter
                                                     ]
-                                                 , myNonAllergenTestDataset, exclusion, 2000)
+                                                 , myNonAllergenTestDataset, exclusion, 1000)
     sid, s = splitFastaSeqs(myNonAllergenTestDataset)
     print("Our non-allergen test dataset: " + str(len(s)))
 

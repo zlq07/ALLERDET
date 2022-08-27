@@ -35,7 +35,7 @@ def create_alignments_files(aligPos=True, aligNeg=True, aligTest=False
                             , negAlFile="a_cden.txt"
                             , testSecFile="created_test.fasta"
                             , testAlFile="a_cdp.txt"
-                            , alignsPath="/app/alignments/"
+                            , alignsPath="/alignments/"
                             , fastaProgramPath="fasta-36.3.8d/bin/fasta36"
                             , fParam="-12", gParam="-2", verbose=True):
     '''
@@ -205,16 +205,22 @@ def create_fasta_file_without_duplications(filenames, resultFilename='alignments
             rs = [sid[i], s]
             if not any(s==x[1] for x in res) and s not in seqsNotIn and rs not in res:
                 res.append(rs)
-                if not shuffle and len(res) >= maxSec:
-                    break
-        if not shuffle and len(res) >= maxSec:
-            break
+                # if not shuffle:
+                #     if (type(maxSec) == int and len(res) >= maxSec) or (type(maxSec) == float and len(res) >= int(len(res)*(maxSec/100))) :
+                #         break
+        # if not shuffle:
+        #     if (type(maxSec) == int and len(res) >= maxSec) or (
+        #             type(maxSec) == float and len(res) >= int(len(res) * (maxSec / 100))):
+        #         break
 
     #shuffle
     if shuffle:
         random.shuffle(res)
-        if maxSec > 0:
-            res = res[:maxSec]
+    if maxSec > 0:
+        if (type(maxSec) == float):
+            maxSec = int(len(res) * (maxSec/100))
+        res = res[:maxSec]
+
 
 
     #push the content

@@ -688,10 +688,11 @@ def predict(X_train=[], y_train=[], protInfo_train=[], X_test=[], y_test=[], pro
             , testSecFile="created_test.fasta"
             , testAlFile="a_cdp.txt"
             , testClass="allergen"
-            , featToExtract=[True,True]
-            , method="knn"
-            , params={'algorithm': 'auto', 'metric': 'minkowski', 'weights': 'distance', 'p': 3
-                , 'leaf_size': 1, 'n_neighbors': 7}
+            , featToExtract=[True,True, False, True]
+            , method="rbm"
+            , params={'rbm__n_iter': 20, 'rbm__n_components': 1000, 'rbm__learning_rate': 0.001
+        , "mod": "dt"
+        , "mod_par": {'criterion': 'gini', 'max_depth': 10, 'min_samples_leaf': 100}}
             , plotAIO=False
             , webApp=False
             , plotPosAlgn=False, plotNegAlgn=False, plotTestAlgn=False
