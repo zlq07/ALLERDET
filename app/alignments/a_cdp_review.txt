@@ -1,0 +1,506 @@
+# fasta-36.3.8d_macosxuniv/bin/fasta36 -f -12 -g -2 review_test.fasta allergens_data_set.fasta
+FASTA searches a protein or DNA sequence data bank
+ version 36.3.8d Apr, 2016(preload9)
+Please cite:
+ W.R. Pearson & D.J. Lipman PNAS (1988) 85:2444-2448
+
+Query: review_test.fasta
+  1>>>sp|Q43804|OLEO1_PRUDU Oleosin 1 OS=Prunus dulcis OX=3755 GN=OLE1 PE=2 SV=1 - 148 aa
+Library: allergens_data_set.fasta
+  1701480 residues in  4000 sequences
+
+Statistics:  Expectation_n fit: rho(ln(x))= 7.5036+/-0.0037; mu= 1.7266+/- 0.196
+ mean_var=50.8806+/-10.791, 0's: 5 Z-trim(87.1): 18  B-trim: 39 in 1/48
+ Lambda= 0.179804
+ statistics sampled from 896 (909) to 896 sequences
+Algorithm: FASTA (3.8 Nov 2011) [optimized]
+Parameters: BL50 matrix (15:-5), open/ext: -12/-2
+ ktup: 2, E-join: 1 (0.591), E-opt: 0.2 (0.227), width:  16
+ Scan time:  0.060
+
+The best scores are:                                      opt bits E(4000)
+sp|Q84T91|OLE13_CORAV Oleosin Cor a 13 OS=Corylus  ( 140)  666 180.0 5.4e-47
+sp|Q9XHP2|OLEL_SESIN Oleosin L OS=Sesamum indicum  ( 145)  632 171.2 2.6e-44
+sp|Q45W87|OL111_ARAHY Oleosin Ara h 11.0101 OS=Ara ( 137)  612 166.0 8.6e-43
+sp|Q45W86|OL112_ARAHY Oleosin Ara h 11.0102 OS=Ara ( 137)  590 160.3 4.5e-41
+sp|Q647G3|OLE15_ARAHY Oleosin Ara h 15.0101 OS=Ara ( 166)  452 124.4 3.5e-30
+sp|C0HM28|OLE15_CORAV Oleosin Cor a 15 OS=Corylus  ( 169)  343 96.1 1.2e-21
+sp|Q647G5|OL101_ARAHY Oleosin Ara h 10.0101 OS=Ara ( 169)  335 94.0 4.9e-21
+sp|Q647G4|OL102_ARAHY Oleosin Ara h 10.0102 (Fragm ( 150)  323 91.0 3.6e-20
+sp|Q84T21|OLE12_CORAV Oleosin Cor a 12 OS=Corylus  ( 159)  317 89.4 1.1e-19
+sp|Q9AXI0|OL142_ARAHY Oleosin Ara h 14.0102 OS=Ara ( 176)  306 86.5 9.5e-19
+sp|Q9AXI1|OL141_ARAHY Oleosin Ara h 14.0101 OS=Ara ( 176)  304 86.0 1.4e-18
+sp|Q6J1J8|OL143_ARAHY Oleosin Ara h 14.0103 OS=Ara ( 176)  303 85.7 1.6e-18
+sp|Q9FUJ9|OLEH1_SESIN Oleosin H1 OS=Sesamum indicu ( 166)  284 80.8 4.6e-17
+sp|Q9ZQ80|NDRP1_ARATH Nodulin-related protein 1 OS ( 187)   75 26.6     1.1
+sp|A3R044|SSU1_ARTBC Sulfite efflux pump SSU1 OS=A ( 375)   78 27.0     1.7
+sp|P80207|ALL1_BRAJU Allergen Bra j 1-E OS=Brassic ( 129)   66 24.4     3.4
+AAA34285.1 Putative pre-gamma-gliadin B-I [Triticu ( 304)   72 25.5     3.7
+sp|P08079|GDB0_WHEAT Gamma-gliadin (Fragment) OS=T ( 251)   70 25.1     4.1
+sp|Q53HY0|CONB1_LUPAL Conglutin beta 1 OS=Lupinus  ( 531)   74 25.8     5.5
+CAA44473.1 Putative LMW glutenin [Triticum turgidu ( 285)   69 24.8     5.8
+sp|A0A0A0MS00|LV332_HUMAN Probable non-functional  ( 114)   62 23.4       6
+AAA34274.1 Allergen gamma-gliadin B precursor [Tri ( 291)   69 24.8       6
+sp|Q94F58|NAC89_ARATH NAC domain-containing protei ( 340)   70 25.0     6.2
+
+>>sp|Q84T91|OLE13_CORAV Oleosin Cor a 13 OS=Corylus avel  (140 aa)
+ initn: 677 init1: 665 opt: 666  Z-score: 940.8  bits: 180.0 E(4000): 5.4e-47
+Smith-Waterman score: 666; 81.7% identity (96.8% similar) in 126 aa overlap (19-144:13-138)
+
+               10        20        30        40        50        60
+sp|Q43 MADQHFQQPLHFQGSYGQQQPRSYQVAKAATAVTAGGSLLVLSGLVLAGTVIALTIATPL
+                         .::::.::.:::::.:::::::: :::.:::::::::.::::
+sp|Q84       MAEHPRQLQDPAHQPRSHQVVKAATAATAGGSLLVPSGLILAGTVIALTLATPL
+                     10        20        30        40        50    
+
+               70        80        90       100       110       120
+sp|Q43 LVIFSPVLVPALITVALITMGFLTSGGFGVAAVTVLSWIYKYVTGKQPPGADQLDQARHK
+       .::::::::::.:::.:: ::::.::::::::::::::::.::::..::::::::.:: :
+sp|Q84 FVIFSPVLVPAVITVSLIIMGFLASGGFGVAAVTVLSWIYRYVTGRHPPGADQLDHARMK
+           60        70        80        90       100       110    
+
+              130       140        
+sp|Q43 LAGKARDIKDRAEQFGQQHVPSGQQQSS
+       ::.:::..:::::::::::: ..:    
+sp|Q84 LASKAREMKDRAEQFGQQHVTGSQGS  
+          120       130       140  
+
+>>sp|Q9XHP2|OLEL_SESIN Oleosin L OS=Sesamum indicum OX=4  (145 aa)
+ initn: 669 init1: 612 opt: 632  Z-score: 892.8  bits: 171.2 E(4000): 2.6e-44
+Smith-Waterman score: 632; 70.2% identity (90.1% similar) in 141 aa overlap (4-144:3-143)
+
+               10        20        30        40        50        60
+sp|Q43 MADQHFQQPLHFQGSYGQQQPRSYQVAKAATAVTAGGSLLVLSGLVLAGTVIALTIATPL
+          .:. :  . .. . : :::. .:.::::::::::::::::::.::::::::::::::
+sp|Q9X  MAEHYGQQQQTRAPHLQLQPRAQRVVKAATAVTAGGSLLVLSGLTLAGTVIALTIATPL
+                10        20        30        40        50         
+
+               70        80        90       100       110       120
+sp|Q43 LVIFSPVLVPALITVALITMGFLTSGGFGVAAVTVLSWIYKYVTGKQPPGADQLDQARHK
+       :::::::::::.::. :.  :::.::::::::..::::::.:.:::.:::::::..:. :
+sp|Q9X LVIFSPVLVPAVITIFLLGAGFLASGGFGVAALSVLSWIYRYLTGKHPPGADQLESAKTK
+      60        70        80        90       100       110         
+
+              130       140        
+sp|Q43 LAGKARDIKDRAEQFGQQHVPSGQQQSS
+       ::.:::..:::::::.:: : ..:    
+sp|Q9X LASKAREMKDRAEQFSQQPVAGSQTS  
+     120       130       140       
+
+>>sp|Q45W87|OL111_ARAHY Oleosin Ara h 11.0101 OS=Arachis  (137 aa)
+ initn: 618 init1: 576 opt: 612  Z-score: 865.4  bits: 166.0 E(4000): 8.6e-43
+Smith-Waterman score: 612; 70.0% identity (87.1% similar) in 140 aa overlap (8-147:3-137)
+
+               10        20        30        40        50        60
+sp|Q43 MADQHFQQPLHFQGSYGQQQPRSYQVAKAATAVTAGGSLLVLSGLVLAGTVIALTIATPL
+              . :.. :   :.:::: :..::.:::.::::::.:.:::::::::.::  :::
+sp|Q45      MAEALYYGGRQRQEQPRSTQLVKATTAVVAGGSLLILAGLVLAGTVIGLTTITPL
+                    10        20        30        40        50     
+
+               70        80        90       100       110       120
+sp|Q43 LVIFSPVLVPALITVALITMGFLTSGGFGVAAVTVLSWIYKYVTGKQPPGADQLDQARHK
+       .::::::::::.:::::. .:::.::::::::.:::.:::.:::::.::::.::: ::::
+sp|Q45 FVIFSPVLVPAVITVALLGLGFLASGGFGVAAITVLTWIYRYVTGKHPPGANQLDTARHK
+          60        70        80        90       100       110     
+
+              130       140        
+sp|Q43 LAGKARDIKDRAEQFGQQHVPSGQQQSS
+       : ::::.:::    ::::.. :: : : 
+sp|Q45 LMGKAREIKD----FGQQQT-SGAQAS 
+         120           130         
+
+>>sp|Q45W86|OL112_ARAHY Oleosin Ara h 11.0102 OS=Arachis  (137 aa)
+ initn: 604 init1: 562 opt: 590  Z-score: 834.5  bits: 160.3 E(4000): 4.5e-41
+Smith-Waterman score: 590; 67.9% identity (87.1% similar) in 140 aa overlap (8-147:3-137)
+
+               10        20        30        40        50        60
+sp|Q43 MADQHFQQPLHFQGSYGQQQPRSYQVAKAATAVTAGGSLLVLSGLVLAGTVIALTIATPL
+              . :.. :   :.:::: :..::.:::.::::::.:.:::::.:::.::  :::
+sp|Q45      MAEALYYGGRQRQDQPRSTQLVKATTAVVAGGSLLILAGLVLAATVIGLTTITPL
+                    10        20        30        40        50     
+
+               70        80        90       100       110       120
+sp|Q43 LVIFSPVLVPALITVALITMGFLTSGGFGVAAVTVLSWIYKYVTGKQPPGADQLDQARHK
+       .::::::::::.:::::. .:::.::::::::.:::.:::.:::::.::::.::: ::::
+sp|Q45 FVIFSPVLVPAVITVALLGLGFLASGGFGVAAITVLTWIYRYVTGKHPPGANQLDTARHK
+          60        70        80        90       100       110     
+
+              130       140        
+sp|Q43 LAGKARDIKDRAEQFGQQHVPSGQQQSS
+       : .:::.:::    .:::.. :: : : 
+sp|Q45 LMSKAREIKD----YGQQQT-SGAQAS 
+         120           130         
+
+>>sp|Q647G3|OLE15_ARAHY Oleosin Ara h 15.0101 OS=Arachis  (166 aa)
+ initn: 477 init1: 444 opt: 452  Z-score: 639.0  bits: 124.4 E(4000): 3.5e-30
+Smith-Waterman score: 457; 58.0% identity (77.9% similar) in 131 aa overlap (14-135:23-153)
+
+                        10        20                 30        40  
+sp|Q43          MADQHFQQPLHFQGSYGQQQPRSY---------QVAKAATAVTAGGSLLVL
+                             :.::..   ::         :. :  :: : : :.:.:
+sp|Q64 MSDQTRTGYGGGGSYGSSYGGGGTYGSSYGTSYDPSTNQPIRQAIKFMTASTIGVSFLIL
+               10        20        30        40        50        60
+
+             50        60        70        80        90       100  
+sp|Q43 SGLVLAGTVIALTIATPLLVIFSPVLVPALITVALITMGFLTSGGFGVAAVTVLSWIYKY
+       :::.:.::::.: :::::::::::.:::: ::.:: . ::: ::: ::::...:::.:.:
+sp|Q64 SGLILTGTVIGLIIATPLLVIFSPILVPAAITLALAAGGFLFSGGCGVAAIAALSWLYSY
+               70        80        90       100       110       120
+
+            110       120       130       140        
+sp|Q43 VTGKQPPGADQLDQARHKLAGKARDIKDRAEQFGQQHVPSGQQQSS
+       ::::.: :.:.:: :.  .: ::::.::::...             
+sp|Q64 VTGKHPAGSDRLDYAKGVIADKARDVKDRAKDYAGAGRAQEGTPGY
+              130       140       150       160      
+
+>>sp|C0HM28|OLE15_CORAV Oleosin Cor a 15 OS=Corylus avel  (169 aa)
+ initn: 338 init1: 277 opt: 343  Z-score: 486.0  bits: 96.1 E(4000): 1.2e-21
+Smith-Waterman score: 344; 41.0% identity (70.5% similar) in 156 aa overlap (1-145:1-154)
+
+                10               20           30        40         
+sp|Q43 MAD-QHFQQPLH----FQGSY---GQQQ---PRSYQVAKAATAVTAGGSLLVLSGLVLAG
+       ::: :: ::  .    :.: .   :: :   : . .:  ..: .  :: ::.:.::..::
+sp|C0H MADYQHQQQHQRPADAFKGMFPEKGQAQVQGPSASKVIAVVTLLPLGGFLLLLAGLTFAG
+               10        20        30        40        50        60
+
+      50        60        70        80        90       100         
+sp|Q43 TVIALTIATPLLVIFSPVLVPALITVALITMGFLTSGGFGVAAVTVLSWIYKYVTGKQPP
+       :.:.:...:::.:. ::::::: :...: . ::::::.::..... :::: ::. : . :
+sp|C0H TLIGLALSTPLFVLCSPVLVPAAIVIGLAVTGFLTSGAFGITGISSLSWILKYLRGTSVP
+               70        80        90       100       110       120
+
+     110       120       130       140                    
+sp|Q43 GADQLDQARHKLAGKARDIKDRAEQFGQQHVPSGQQQSS            
+         .:...:...    :  . ..:.. ::  . .::.               
+sp|C0H --EQMEHAKRRAQDTAGHLGQKARETGQTVTGKGQEAGKTLEGGRGEEKKT
+                130       140       150       160         
+
+>>sp|Q647G5|OL101_ARAHY Oleosin Ara h 10.0101 OS=Arachis  (169 aa)
+ initn: 343 init1: 313 opt: 335  Z-score: 474.8  bits: 94.0 E(4000): 4.9e-21
+Smith-Waterman score: 335; 36.9% identity (76.9% similar) in 130 aa overlap (16-145:29-158)
+
+                            10        20        30        40       
+sp|Q43              MADQHFQQPLHFQGSYGQQQPRSYQVAKAATAVTAGGSLLVLSGLVL
+                                   : .. : . .:  . :..  ::.::...::.:
+sp|Q64 MTDRTQPHTVQVHTTAGRFGDTAAGTNRYPDRGPSTSKVIAVITGLPIGGTLLLFAGLAL
+               10        20        30        40        50        60
+
+        50        60        70        80        90       100       
+sp|Q43 AGTVIALTIATPLLVIFSPVLVPALITVALITMGFLTSGGFGVAAVTVLSWIYKYVTGKQ
+       :::...:...:::...::::.:::.:.:.: . ::::::. :..... .::...:.   .
+sp|Q64 AGTLLGLAVTTPLFILFSPVIVPAIIVVGLSVAGFLTSGACGLTGLSSFSWVMNYIRQTH
+               70        80        90       100       110       120
+
+       110       120       130       140                
+sp|Q43 PPGADQLDQARHKLAGKARDIKDRAEQFGQQHVPSGQQQSS        
+           .::..:.:..:  :  . ..... ::.    ::.           
+sp|Q64 GSVPEQLEMAKHRMADVAGYVGQKTKDVGQKTKEVGQEIQTKAQDSKRT
+              130       140       150       160         
+
+>>sp|Q647G4|OL102_ARAHY Oleosin Ara h 10.0102 (Fragment)  (150 aa)
+ initn: 323 init1: 323 opt: 323  Z-score: 459.2  bits: 91.0 E(4000): 3.6e-20
+Smith-Waterman score: 323; 37.7% identity (78.7% similar) in 122 aa overlap (16-137:29-150)
+
+                            10        20        30        40       
+sp|Q43              MADQHFQQPLHFQGSYGQQQPRSYQVAKAATAVTAGGSLLVLSGLVL
+                                   :... : . .:  . :..  ::.::...::.:
+sp|Q64 MTDRTQPHAVQVHTTAGRFGDTAAGTNRYADRGPSTSKVIAVITGLPIGGTLLLFAGLAL
+               10        20        30        40        50        60
+
+        50        60        70        80        90       100       
+sp|Q43 AGTVIALTIATPLLVIFSPVLVPALITVALITMGFLTSGGFGVAAVTVLSWIYKYVTGKQ
+       :::...:...:::...::::.::: :.:.: . ::::::. :..... .::...:.   .
+sp|Q64 AGTLLGLAVTTPLFILFSPVIVPATIVVGLSVAGFLTSGACGLTGLSSFSWVMNYIRQTH
+               70        80        90       100       110       120
+
+       110       120       130       140        
+sp|Q43 PPGADQLDQARHKLAGKARDIKDRAEQFGQQHVPSGQQQSS
+           .::..:.:..:  :  . ..... ::           
+sp|Q64 GSVPEQLEMAKHRMADVAGYVGQKTKDVGQ           
+              130       140       150           
+
+>>sp|Q84T21|OLE12_CORAV Oleosin Cor a 12 OS=Corylus avel  (159 aa)
+ initn: 314 init1: 289 opt: 317  Z-score: 450.2  bits: 89.4 E(4000): 1.1e-19
+Smith-Waterman score: 317; 36.6% identity (75.6% similar) in 131 aa overlap (11-138:18-148)
+
+                      10        20           30        40        50
+sp|Q43        MADQHFQQPLHFQGSYGQQQ---PRSYQVAKAATAVTAGGSLLVLSGLVLAGT
+                        :..:.  .:.   : . .:  . .:. .::.::.:.::.:::.
+sp|Q84 MADRPQQLQVHPQRGHGHYEGGIKNQRGGGPSAVKVMAVLAALPVGGTLLALAGLTLAGS
+               10        20        30        40        50        60
+
+               60        70        80        90       100       110
+sp|Q43 VIALTIATPLLVIFSPVLVPALITVALITMGFLTSGGFGVAAVTVLSWIYKYVTGKQPPG
+       ::.: ...::..::::::::: :.:.: . .::.::..:..... :::. .:.   .   
+sp|Q84 VIGLLVTSPLFIIFSPVLVPAAIVVGLAVASFLSSGALGLTGLSSLSWVLNYLRCASQSL
+               70        80        90       100       110       120
+
+              120       130       140         
+sp|Q43 ADQLDQARHKLAGKARDIKDRAEQFGQQHVPSGQQQSS 
+         ..:::....   :  . ..... ::.           
+sp|Q84 PREMDQAKRRMQDMAAFVGQKTREVGQEIQSRAQEGRRT
+              130       140       150         
+
+>>sp|Q9AXI0|OL142_ARAHY Oleosin Ara h 14.0102 OS=Arachis  (176 aa)
+ initn: 309 init1: 243 opt: 306  Z-score: 433.7  bits: 86.5 E(4000): 9.5e-19
+Smith-Waterman score: 306; 39.7% identity (78.5% similar) in 121 aa overlap (21-138:45-163)
+
+                         10        20        30        40        50
+sp|Q43           MADQHFQQPLHFQGSYGQQQPRSYQVAKAATAVTAGGSLLVLSGLVLAGT
+                                     : . :.  . ..: .::.::.:::: : ::
+sp|Q9A HTPTTQRVDVQRRGYDVSGGGVKTFLPDRGPSTSQIIAVLVGVPTGGTLLLLSGLSLLGT
+           20        30        40        50        60        70    
+
+               60        70        80        90       100       110
+sp|Q43 VIALTIATPLLVIFSPVLVPALITVALITMGFLTSGGFGVAAVTVLSWIYKYVTGKQPPG
+       .:.:.::::....::::.:::..:..: ..:.::.:. :....  :::. ...  .:  :
+sp|Q9A IIGLAIATPVFTFFSPVIVPAVVTIGLAVIGILTAGACGLTGLMSLSWMINFI--RQVHG
+           80        90       100       110       120         130  
+
+                 120       130       140           
+sp|Q43 A---DQLDQARHKLAGKARDIKDRAEQFGQQHVPSGQQQSS   
+       .   ::::.:....:  :  . ..... ::.             
+sp|Q9A TTVPDQLDSAKRRMADMADYVGQKTKDAGQEIQTKAQDVKRSSS
+            140       150       160       170      
+
+>>sp|Q9AXI1|OL141_ARAHY Oleosin Ara h 14.0101 OS=Arachis  (176 aa)
+ initn: 306 init1: 240 opt: 304  Z-score: 430.9  bits: 86.0 E(4000): 1.4e-18
+Smith-Waterman score: 304; 38.7% identity (77.4% similar) in 124 aa overlap (18-138:42-163)
+
+                            10        20        30        40       
+sp|Q43              MADQHFQQPLHFQGSYGQQQPRSYQVAKAATAVTAGGSLLVLSGLVL
+                                     .. : . :.  . ..: .::.::.:::: :
+sp|Q9A VQVHTPTTQRVDVPRRGYDVSGGGIKTLLPERGPSTSQIIAVLVGVPTGGTLLLLSGLSL
+              20        30        40        50        60        70 
+
+        50        60        70        80        90       100       
+sp|Q43 AGTVIALTIATPLLVIFSPVLVPALITVALITMGFLTSGGFGVAAVTVLSWIYKYVTGKQ
+        ::.:.:.::::....::::.:::..:..: . :.::.:. :....  :::. ...  .:
+sp|Q9A LGTIIGLAIATPVFTFFSPVIVPAVVTIGLAVTGILTAGACGLTGLMSLSWMINFI--RQ
+              80        90       100       110       120           
+
+       110          120       130       140           
+sp|Q43 PPGA---DQLDQARHKLAGKARDIKDRAEQFGQQHVPSGQQQSS   
+         :.   ::::......:  :  . ..... :::             
+sp|Q9A VHGTTVPDQLDSVKRRMADMADYVGQKTKDAGQQIQTKAQDVKRSSS
+     130       140       150       160       170      
+
+>>sp|Q6J1J8|OL143_ARAHY Oleosin Ara h 14.0103 OS=Arachis  (176 aa)
+ initn: 305 init1: 244 opt: 303  Z-score: 429.5  bits: 85.7 E(4000): 1.6e-18
+Smith-Waterman score: 303; 37.9% identity (77.4% similar) in 124 aa overlap (18-138:42-163)
+
+                            10        20        30        40       
+sp|Q43              MADQHFQQPLHFQGSYGQQQPRSYQVAKAATAVTAGGSLLVLSGLVL
+                                     .. : . :.  . ..: .::.::.:::: :
+sp|Q6J VQVHTPTTQRVDVPRRGYDVSGGGIKTLLPERGPSTSQIIAVLVGVPTGGTLLLLSGLSL
+              20        30        40        50        60        70 
+
+        50        60        70        80        90       100       
+sp|Q43 AGTVIALTIATPLLVIFSPVLVPALITVALITMGFLTSGGFGVAAVTVLSWIYKYVTGKQ
+        ::.:.:.::::....::::.:::..:..: . :.::.:. :....  :::. ...  .:
+sp|Q6J LGTIIGLAIATPVFIFFSPVIVPAVVTIGLAVTGILTAGACGLTGLMSLSWMINFI--RQ
+              80        90       100       110       120           
+
+       110          120       130       140           
+sp|Q43 PPGA---DQLDQARHKLAGKARDIKDRAEQFGQQHVPSGQQQSS   
+         :.   ::::......:  :  . ..... ::.             
+sp|Q6J VHGTTVPDQLDSVKRRMADMADYVGQKTKDAGQEIQTKAQDVKRSSS
+     130       140       150       160       170      
+
+>>sp|Q9FUJ9|OLEH1_SESIN Oleosin H1 OS=Sesamum indicum OX  (166 aa)
+ initn: 255 init1: 226 opt: 284  Z-score: 403.5  bits: 80.8 E(4000): 4.6e-17
+Smith-Waterman score: 284; 35.7% identity (68.6% similar) in 140 aa overlap (5-137:15-149)
+
+                         10            20        30        40      
+sp|Q43           MADQHFQQPLHFQGSYG----QQQPRSYQVAKAATAVTAGGSLLVLSGLV
+                     : :.: ...:.      :. : . :.    : .  .:.:: :.:..
+sp|Q9F MADRDRPHPHQIQVHPQHPHRYEGGVKSLLPQKGPSTTQILAIITLLPISGTLLCLAGIT
+               10        20        30        40        50        60
+
+         50        60        70        80        90          100   
+sp|Q43 LAGTVIALTIATPLLVIFSPVLVPALITVALITMGFLTSGGFGVAAVTVLSWI---YKYV
+       :.::.:.:..:::..:::::::::: : .:  . .:::::.::..... :::.   .. .
+sp|Q9F LVGTLIGLAVATPVFVIFSPVLVPAAILIAGAVTAFLTSGAFGLTGLSSLSWVLNSFRRA
+               70        80        90       100       110       120
+
+           110       120       130       140              
+sp|Q43 TGKQPPGADQLDQARHKLAGKARDIKDRAEQFGQQHVPSGQQQSS      
+       ::. :     :. :.. .   .  . ....: :.                 
+sp|Q9F TGQGP-----LEYAKRGVQEGTLYVGEKTKQAGEAIKSTAKEGGREGTART
+                   130       140       150       160      
+
+>>sp|Q9ZQ80|NDRP1_ARATH Nodulin-related protein 1 OS=Ara  (187 aa)
+ initn:  59 init1:  59 opt:  75  Z-score: 109.2  bits: 26.6 E(4000):  1.1
+Smith-Waterman score: 75; 41.7% identity (63.9% similar) in 36 aa overlap (111-146:87-120)
+
+               90       100       110       120       130       140
+sp|Q43 GFLTSGGFGVAAVTVLSWIYKYVTGKQPPGADQLDQARHKLAGKARDIKDRAEQFGQQHV
+                                     .:.::.:  :.:: . :: : : ..:.   
+sp|Q9Z PTTHRPATNAELMASAKIVAEAAQAAARHESDKLDKA--KVAGATADILDAASRYGKLDE
+         60        70        80        90         100       110    
+
+                                                                   
+sp|Q43 PSGQQQSS                                                    
+        ::  :                                                      
+sp|Q9Z KSGVGQYLEKAEQYLHKYETSHSHSSTGGTGSHGNVGGHGGGAGAPAAKKEDEKSGGGHG
+          120       130       140       150       160       170    
+
+>>sp|A3R044|SSU1_ARTBC Sulfite efflux pump SSU1 OS=Arthr  (375 aa)
+ initn:  57 init1:  57 opt:  78  Z-score: 106.1  bits: 27.0 E(4000):  1.7
+Smith-Waterman score: 78; 31.2% identity (64.1% similar) in 64 aa overlap (39-97:199-261)
+
+       10        20        30        40        50        60        
+sp|Q43 PLHFQGSYGQQQPRSYQVAKAATAVTAGGSLLVLSGLVLAGTVIALTIATPLLVIFSPV-
+                                     . .:   :. :... :...  :.. :. . 
+sp|A3R AWLLPIVAPVVAAASGGVVADSLQNDTHALITILVCYVMWGSAVPLAMVI-LVIYFQRLA
+      170       180       190       200       210        220       
+
+           70         80        90       100       110       120   
+sp|Q43 ---LVP-ALITVALITMGFLTSGGFGVAAVTVLSWIYKYVTGKQPPGADQLDQARHKLAG
+          ::: : :. ::. .: : .::::.  . :..                          
+sp|A3R IHKLVPRAAIVSALLPIGPLGQGGFGLMQLGVVAKRVFPRLDFLAPIAGDIFYVMGAFIA
+       230       240       250       260       270       280       
+
+           130       140                                           
+sp|Q43 KARDIKDRAEQFGQQHVPSGQQQSS                                   
+                                                                   
+sp|A3R MIMWGFGLIWLWFALASFTRGKFYFNIGWWAFTFPLGVFTTATTQMGKEFNSPFFDILGT
+       290       300       310       320       330       340       
+
+>>sp|P80207|ALL1_BRAJU Allergen Bra j 1-E OS=Brassica ju  (129 aa)
+ initn:  66 init1:  66 opt:  66  Z-score: 100.5  bits: 24.4 E(4000):  3.4
+Smith-Waterman score: 66; 40.0% identity (72.0% similar) in 25 aa overlap (121-145:68-92)
+
+              100       110       120       130       140          
+sp|Q43 AAVTVLSWIYKYVTGKQPPGADQLDQARHKLAGKARDIKDRAEQFGQQHVPSGQQQSS  
+                                     : : .. .:.. .: :::.  .:::     
+sp|P80 QPQGPQQRPPLLQQCCNELHQEEPLCVCPTLKGASKAVKQQIRQQGQQQGQQGQQLQHEI
+        40        50        60        70        80        90       
+
+sp|P80 SRIYQTATHLPRVCNIPRVSICPFQKTMPGPS
+       100       110       120         
+
+>>AAA34285.1 Putative pre-gamma-gliadin B-I [Triticum ae  (304 aa)
+ initn: 121 init1:  72 opt:  72  Z-score: 99.9  bits: 25.5 E(4000):  3.7
+Smith-Waterman score: 72; 61.1% identity (77.8% similar) in 18 aa overlap (4-21:52-69)
+
+                                          10        20        30   
+sp|Q43                            MADQHFQQPLHFQGSYGQQQPRSYQVAKAATAV
+                                     :. ::::  : :..::::            
+AAA342 ETSCISGLERPWQQQPLPPQQSFSQQPPFSQQQQQPLPQQPSFSQQQPPFSQQQPILSQQ
+              30        40        50        60        70        80 
+
+            40        50        60        70        80        90   
+sp|Q43 TAGGSLLVLSGLVLAGTVIALTIATPLLVIFSPVLVPALITVALITMGFLTSGGFGVAAV
+                                                                   
+AAA342 PPFSQQQQPVLPQQSPFSQQQQLVLPPQQQQQQLVQQQIPIVQPSVLQQLNPCKVFLQQQ
+              90       100       110       120       130       140 
+
+>>sp|P08079|GDB0_WHEAT Gamma-gliadin (Fragment) OS=Triti  (251 aa)
+ initn:  86 init1:  70 opt:  70  Z-score: 99.1  bits: 25.1 E(4000):  4.1
+Smith-Waterman score: 70; 55.6% identity (72.2% similar) in 18 aa overlap (4-21:125-142)
+
+                                          10        20        30   
+sp|Q43                            MADQHFQQPLHFQGSYGQQQPRSYQVAKAATAV
+                                     :.: :: . : :. ::::            
+sp|P08 QPQQPFPQTQQPQQLFPQSQQPQQQFSQPQQQFPQPQQPQQSFPQQQPPFIQPSLQQQVN
+          100       110       120       130       140       150    
+
+            40        50        60        70        80        90   
+sp|Q43 TAGGSLLVLSGLVLAGTVIALTIATPLLVIFSPVLVPALITVALITMGFLTSGGFGVAAV
+                                                                   
+sp|P08 PCKNFLLQQCKPVSLVSSLWSMIWPQSDCQVMRQQCCQQLAQIPQQLQCAAIHTIIHSII
+          160       170       180       190       200       210    
+
+>>sp|Q53HY0|CONB1_LUPAL Conglutin beta 1 OS=Lupinus albu  (531 aa)
+ initn:  50 init1:  50 opt:  74  Z-score: 96.9  bits: 25.8 E(4000):  5.5
+Smith-Waterman score: 74; 25.6% identity (58.1% similar) in 86 aa overlap (68-147:434-516)
+
+        40        50        60        70        80        90       
+sp|Q43 SLLVLSGLVLAGTVIALTIATPLLVIFSPVLVPALITVALITMGFLTSGGFGVAAVTVLS
+                                     ..::   ... . . :   :::. :     
+sp|Q53 RDQQRQQDEQEEEPEEVRRYSARLSEGDIFVIPAGYPISVNASSNLRLLGFGINAYENQR
+           410       420       430       440       450       460   
+
+       100       110       120             130       140           
+sp|Q43 WIYKYVTGKQPPGADQLDQARHKLA--GKARDI----KDRAEQFGQQHVPSGQQQSS   
+          ....:..     :::.  ..:.  :.:.::    :.. ...  . .:. ::::    
+sp|Q53 ---NFLAGSEDNVIRQLDREVKELTFPGSAEDIERLIKNQQQSYFANALPQQQQQSEKEG
+              470       480       490       500       510       520
+
+sp|Q53 RRGRRGPISSI
+              530 
+
+>>CAA44473.1 Putative LMW glutenin [Triticum turgidum su  (285 aa)
+ initn: 133 init1:  69 opt:  69  Z-score: 96.4  bits: 24.8 E(4000):  5.8
+Smith-Waterman score: 71; 25.5% identity (59.6% similar) in 47 aa overlap (100-146:183-229)
+
+      70        80        90       100       110       120         
+sp|Q43 PALITVALITMGFLTSGGFGVAAVTVLSWIYKYVTGKQPPGADQLDQARHKLAGKARDIK
+                                     :. .  .:  : .: .: ...  : ... .
+CAA444 SSCHVMQQQCCQQLSQIPEQSRYDAIRAITYSIILQEQQQGQSQQQQPQQSGQGVSQSQQ
+            160       170       180       190       200       210  
+
+     130       140                                                 
+sp|Q43 DRAEQFGQQHVPSGQQQSS                                         
+       .  .:.::    . :::                                           
+CAA444 QSQQQLGQCSFQQPQQQLGQQPQQQQVQQGTFLQPHQIAHLEVMTSIALRTLPTMCSVNV
+            220       230       240       250       260       270  
+
+>>sp|A0A0A0MS00|LV332_HUMAN Probable non-functional immu  (114 aa)
+ initn:  62 init1:  39 opt:  62  Z-score: 96.2  bits: 23.4 E(4000):    6
+Smith-Waterman score: 62; 29.3% identity (60.3% similar) in 58 aa overlap (51-108:7-61)
+
+               30        40        50        60        70        80
+sp|Q43 PRSYQVAKAATAVTAGGSLLVLSGLVLAGTVIALTIATPLLVIFSPVLVPALITVALITM
+                                     ...::. :  ..  .:. ::: ..:::  :
+sp|A0A                         MAWTPPLLVLTLCTGSVISSGPTQVPA-VSVALGQM
+                                       10        20         30     
+
+               90       100       110       120       130       140
+sp|Q43 GFLTSGGFGVAAVTVLSWIYKYVTGKQPPGADQLDQARHKLAGKARDIKDRAEQFGQQHV
+       . .:  : .. . .   : :.   :. :                                
+sp|A0A ARITCQGDSMEG-SYEHW-YQQKPGQAPVLVIYDSSDRPSRIPERFSGSKSGNTTTLTIT
+          40         50         60        70        80        90   
+
+>>AAA34274.1 Allergen gamma-gliadin B precursor [Triticu  (291 aa)
+ initn:  92 init1:  69 opt:  69  Z-score: 96.2  bits: 24.8 E(4000):    6
+Smith-Waterman score: 69; 50.0% identity (59.1% similar) in 22 aa overlap (4-25:118-139)
+
+                                          10        20        30   
+sp|Q43                            MADQHFQQPLHFQGSYGQQQPRSYQVAKAATAV
+                                     : : :: . : :. ::::   :        
+AAA342 PQQPYPQQPQQPFPQTQQPQQPFPQSKQPQQPFPQPQQPQQSFPQQQPSLIQQSLQQQLN
+        90       100       110       120       130       140       
+
+            40        50        60        70        80        90   
+sp|Q43 TAGGSLLVLSGLVLAGTVIALTIATPLLVIFSPVLVPALITVALITMGFLTSGGFGVAAV
+                                                                   
+AAA342 PCKNFLLQQCKPVSLVSSLWSIILPPSDCQVMRQQCCQQLAQIPQQLQCAAIHSVVHSII
+       150       160       170       180       190       200       
+
+>>sp|Q94F58|NAC89_ARATH NAC domain-containing protein 89  (340 aa)
+ initn:  48 init1:  48 opt:  70  Z-score: 95.9  bits: 25.0 E(4000):  6.2
+Smith-Waterman score: 70; 31.1% identity (62.2% similar) in 45 aa overlap (98-138:78-122)
+
+        70        80        90       100       110           120   
+sp|Q43 LVPALITVALITMGFLTSGGFGVAAVTVLSWIYKYVTGKQPPGADQLDQARH----KLAG
+                                     :..  . ::. : ..:  .: .    : .:
+sp|Q94 RSVEVIPDLEIYNFEPWDLPDKSIVKSDSEWFFFCARGKKYPHGSQNRRATKMGYWKATG
+        50        60        70        80        90       100       
+
+           130       140                                           
+sp|Q43 KARDIKDRAEQFGQQHVPSGQQQSS                                   
+       : ::.:. .: .: .                                             
+sp|Q94 KERDVKSGSEVIGTKRTLVFHIGRAPKGERTDWIMHEYCVKGVSLDDAMVVCRVRRNKEY
+       110       120       130       140       150       160       
+
+
+
+148 residues in 1 query   sequences
+1701480 residues in 4000 library sequences
+ Tcomplib [36.3.8d Apr, 2016(preload9)] (8 proc in memory [0G])
+ start: Fri Aug 26 20:14:03 2022 done: Fri Aug 26 20:14:03 2022
+ Total Scan time:  0.060 Total Display time:  0.010
+
+Function used was FASTA [36.3.8d Apr, 2016(preload9)]
