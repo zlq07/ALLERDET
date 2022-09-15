@@ -55,35 +55,40 @@ except SystemError:
     from preprocessing import extract_all_features_and_classifications
     from preprocessing import features_for_extracting_to_string
 
-def tuning_model(method, score='accuracy', featToExtract=[True, True], m=1, kfolds=10, posAlFile="a_cdep.txt"
-                 , negAlFile="a_cden.txt", testAlFile="", reduction=0, verbose=False):
+def tuning_model(method, score={'recall':'recall', 'accuracy':'accuracy'}, featToExtract=[True, True], m=1, kfolds=10, posAlFile="a_cdep.txt"
+                 , negAlFile="a_cden.txt", reduction=0, verbose=False, refit='accuracy'):
     if verbose:
+        print("CV score", score)
         print("Extrayendo features..")
-    f, c, ft, ct, p, pt = extract_all_features_and_classifications(featToExtract, m, posAlFile, negAlFile, testAlFile)
+    f, c, ft, ct, p, pt = extract_all_features_and_classifications(featToExtract, m, posAlFile, negAlFile, "a_cdp.txt", testClass=1)
+    _, _, fnt, cnt, _, _ = extract_all_features_and_classifications(featToExtract, m, posAlFile, negAlFile, "a_cdpn.txt", testClass=0)
+    ft = ft + fnt #test features: allergens+non-allergen
+    ct = ct + cnt #test classes: allergens+non-allergen
+
     if reduction > 0:
         #misma proporción de alérgenos que de no alérgenos al reducir los conjuntos
-        lastClass='non-allergen'
-        lastTestClass = 'non-allergen'
+        lastClass=0
+        lastTestClass = 0
         fa, ca, fta, cta = [], [], [], []
         for i in range(reduction):
             for j,cl in enumerate(c):
                 if cl != lastClass:
                     fa.append(f[j])
                     ca.append(cl)
-                    lastClass = 'allergen' if lastClass == 'non-allergen' else 'non-allergen'
+                    lastClass = 1 if lastClass == 0 else 0
                     break
             for j,cl in enumerate(ct):
                 if len(ct)>0 and cl != lastTestClass:
                     fta.append(ft[j])
                     cta.append(cl)
-                    lastTestClass = 'allergen' if lastTestClass == 'non-allergen' else 'non-allergen'
+                    lastTestClass = 1 if lastTestClass == 0 else 0
                     break
         f, ft, c, ct = fa, fta, ca, cta
     X_train, X_test, y_train, y_test = f, ft, c, ct
 
-    # dividimos el dataset en dos partes iguales
-    if testAlFile == "":
-        X_train, X_test, y_train, y_test = train_test_split(X_train, y_train, test_size=0.5, random_state=0)
+    # # dividimos el dataset en dos partes iguales
+    # if testAlFile == "":
+    #     X_train, X_test, y_train, y_test = train_test_split(X_train, y_train, test_size=0.5, random_state=0)
 
     if verbose:
         print("# Tuning hyper-parameters for %s" % score)
@@ -118,9 +123,9 @@ def tuning_model(method, score='accuracy', featToExtract=[True, True], m=1, kfol
 
     model = create_prediction_model(method)
     if score != None:
-        clf = GridSearchCV(model, tuned_parameters, cv=kfolds, scoring=score) #scoring='%s_macro' % score)
+        clf = GridSearchCV(model, tuned_parameters, cv=kfolds, scoring=score, refit=refit) #scoring='%s_macro' % score)
     else:
-        clf = GridSearchCV(model, tuned_parameters, cv=kfolds)
+        clf = GridSearchCV(model, tuned_parameters, cv=kfolds, refit=refit)
 
     if method != "km":
         clf.fit(X_train, y_train)
@@ -133,13 +138,15 @@ def tuning_model(method, score='accuracy', featToExtract=[True, True], m=1, kfol
         print(clf.best_params_)
         print()
         print("Grid scores on development set:")
-        print()
-        means = clf.cv_results_['mean_test_score']
-        stds = clf.cv_results_['std_test_score']
-        for mean, std, params in zip(means, stds, clf.cv_results_['params']):
-            print("%0.3f (+/-%0.03f) for %r"
-                  % (mean, std * 2, params))
-        print()
+        # print("scores cv:", clf.cv_results_)
+
+        for sc in score:
+            means = clf.cv_results_['mean_test_'+sc]
+            stds = clf.cv_results_['std_test_'+sc]
+            for mean, std, params in zip(means, stds, clf.cv_results_['params']):
+                print("%0.3f (+/-%0.03f) for %r"
+                      % (mean, std * 2, params))
+            print()
 
         print("Detailed classification report:")
         print()
@@ -150,7 +157,7 @@ def tuning_model(method, score='accuracy', featToExtract=[True, True], m=1, kfol
         print(classification_report(y_true, y_pred))
         print()
 
-    return clf.best_params_, f, c, ft, ct, p, pt
+    return clf.best_params_, f, c, ft, ct, p, pt,clf.cv_results_
 
 
 
@@ -239,7 +246,7 @@ def create_prediction_model(method, params={}):
         ni=20
         nc=100
         mod="dt"
-        modpar={'criterion': 'gini', 'max_depth': 10, 'min_samples_leaf': 100}
+        modpar={'criterion': 'entropy', 'max_depth': 10, 'min_samples_leaf': 5}
         param = params.get("model")
         if param != None:
             mod=param
@@ -360,18 +367,19 @@ def perform_prediction(method, features, classifications, test_data
                 model.fit(featsTrain, classTrain)
             class_predicted=model.predict(featsTest)
 
-            if method=="km":
-                class_predicted = np.array(["allergen" if i==0 else "non-allergen" for i in class_predicted])
+            # if method=="km":
+            #     class_predicted = np.array(["allergen" if i==1 else "non-allergen" for i in class_predicted])
 
             accuracy,sensitivity,specifity,ppv,f1Score,mcc=classification_performance(classTest, class_predicted)#model.score(X_test, y_test)
             measures.append([accuracy,sensitivity,specifity,ppv,f1Score,mcc])
 
             if printNativeClassReport and method!="km":
-                print(classification_report(classTest, class_predicted, target_names=["allergen", "non-allergen"]))
+                print(classification_report(classTest, class_predicted))
+                # print(classification_report(classTest, class_predicted, target_names=[0, 1]))
             elif printNativeClassReport and method=="km":
-                classTest = np.array([0 if i == "allergen" else 1 for i in classTest])
-                class_predicted = np.array([0 if i == "allergen" else 1 for i in class_predicted])
-                print(classification_report(classTest, class_predicted, target_names=["allergen", "non-allergen"]))
+                classTest = np.array([1 if i == "allergen" else 0 for i in classTest])
+                class_predicted = np.array([1 if i == "allergen" else 0 for i in class_predicted])
+                print(classification_report(classTest, class_predicted, target_names=[0, 1]))
                 print(confusion_matrix(classTest, class_predicted))
 
         accuracy=sum(a for a,s,sp,ppv,fs,mcc in measures)/len(measures)
@@ -391,7 +399,7 @@ def perform_prediction(method, features, classifications, test_data
         for train, test in loo.split(features):
             feat_train, feat_test = features[train], features[test]
             class_train, class_test = classifications[train], classifications[test]
-            class_test = np.array([0 if i=="allergen" else 1 for i in class_test])
+            class_test = np.array([1 if i=="allergen" else 0 for i in class_test])
             featsTrain.extend(feat_train)
             classTrain.extend(class_train)
             featsTest.append(feat_test[0])
@@ -403,8 +411,8 @@ def perform_prediction(method, features, classifications, test_data
                 model.fit(feat_train)
             cpred=model.predict(feat_test)
             class_predicted.append(cpred)
-            if method == "km":
-                class_predicted = np.array(["allergen" if i == 0 else "non-allergen" for i in class_predicted])
+            # if method == "km":
+            #     class_predicted = np.array(["allergen" if i == 1 else "non-allergen" for i in class_predicted])
             accuracy, sensitivity, specifity, ppv, f1Score, mcc = classification_performance(classTest,
                                                                                              class_predicted)
             measures.append([accuracy, sensitivity, specifity, ppv, f1Score, mcc])
@@ -484,13 +492,13 @@ def classification_performance(test_classif, predicted_class):
 
     for i in range(len(predicted_class)):
         correct_clas=test_classif[i]
-        if correct_clas=="allergen" and correct_clas==predicted_class[i]:
+        if correct_clas==1 and correct_clas==predicted_class[i]:
             tp+=1
-        elif correct_clas=="non-allergen" and correct_clas==predicted_class[i]:
+        elif correct_clas==0 and correct_clas==predicted_class[i]:
             tn+=1
-        elif correct_clas=="allergen" and predicted_class[i]=="non-allergen":
+        elif correct_clas==1 and predicted_class[i]==0:
             fn+=1
-        elif correct_clas=="non-allergen" and predicted_class[i]=="allergen":
+        elif correct_clas==0 and predicted_class[i]==1:
             fp+=1
 
     sensitivity=tp/(tp+fn) if tp+fn != 0 else 0
@@ -545,7 +553,7 @@ def maxClasification(prediction, posClass="allergen", negClass="non-allergen"):
 ### Mejor clasificación: 100.00%, k=5, m=1
 
 def draw3DGraphics(pos_t_filename="a_cdep.txt", neg_t_filename="a_cden.txt", test_filename="a_cdp.txt"
-                   , test_class="non-allergen", maxK=15, maxM=5, crossVal=False, test_length=0.1, holdOutTest=200
+                   , test_class=1, maxK=15, maxM=5, crossVal=False, test_length=0.1, holdOutTest=200
                    , leaveOneOut=False, kFolds=5, method="knn", params=[]):
     '''
     Entrada:
@@ -687,18 +695,19 @@ def predict(X_train=[], y_train=[], protInfo_train=[], X_test=[], y_test=[], pro
             , negAlFile="a_cden.txt"
             , testSecFile="created_test.fasta"
             , testAlFile="a_cdp.txt"
-            , testClass="allergen"
-            , featToExtract=[True,True, False, True]
+            , testClass=1
+            , featToExtract=[True]
             , method="rbm"
             , params={'rbm__n_iter': 20, 'rbm__n_components': 1000, 'rbm__learning_rate': 0.001
         , "mod": "dt"
-        , "mod_par": {'criterion': 'gini', 'max_depth': 10, 'min_samples_leaf': 100}}
+        , "mod_par": {'criterion': 'gini', 'max_depth': 5, 'min_samples_leaf': 50}}
             , plotAIO=False
             , webApp=False
             , plotPosAlgn=False, plotNegAlgn=False, plotTestAlgn=False
             , plotSurface=False, m=1, crossVal=False, testLength=0.05
             , holdOutTest=200, leaveOneOut=False, compLimits=False
-            , showAllPredictions=False, kFolds=0, nExperiments=1, plotModel=False, figSameColor=False):
+            , showAllPredictions=False, kFolds=0, nExperiments=1, plotModel=False, figSameColor=False
+            , printNativeClassReport=False):
     '''
     Descripción:
     Programa principal, encargado de extraer las alineaciones de los conjuntos de datos usados,
@@ -768,13 +777,12 @@ def predict(X_train=[], y_train=[], protInfo_train=[], X_test=[], y_test=[], pro
 
     #realizar la predicción
     print("Predicting...")
-    f,c,ft,ct,cp,ac,se,sp,ppv,f1Score,mcc=perform_prediction(method, f, c, ft, ct, kFolds, params, plotModel=plotModel)
-
-    #Presentar los resultados
-    # print("Resultados")
+    f,c,ft,ct,cp,ac,se,sp,ppv,f1Score,mcc=perform_prediction(method, f, c, ft, ct, kFolds, params, plotModel=plotModel, printNativeClassReport=printNativeClassReport)
 
     if showAllPredictions:
         print("Predicción de la clasificación: "+str(cp))
+
+    # print(f"CV-{kFolds}. Accuracy: {ac}. Sensitivity: {se}. Specificity: {sp}")
 
     #dibujar las gráficas 3D que muestran los rendimientos diferentes variando k y m
     if plotSurface:
@@ -783,36 +791,37 @@ def predict(X_train=[], y_train=[], protInfo_train=[], X_test=[], y_test=[], pro
                        , nExperiments=nExperiments)
 
     #dibujar las gráficas 2D de las alineaciones de los conjuntos de datos
-    if plotAIO or plotPosAlgn or plotNegAlgn or plotTestAlgn:
-        if plotAIO or plotPosAlgn:
-            xs=[item[0] for i,item in enumerate(f) if c[i]=="allergen"]
-            ys=[item[1] for i,item in enumerate(f) if c[i]=="allergen"]
-        if plotAIO or plotNegAlgn:
-            nxs=[item[0] for i,item in enumerate(f) if c[i]=="non-allergen"]
-            nys=[item[1] for i,item in enumerate(f) if c[i]=="non-allergen"]
-        if plotAIO or plotTestAlgn:
-            txs=[item[0] for item in ft]
-            tys=[item[1] for item in ft]
-    i=0
-    if plotAIO:
-        drawSimpleFigure(xs, ys, i, compLimits, nxs, nys, txs, tys)
+    if len(featToExtract)==2:
+        if plotAIO or plotPosAlgn or plotNegAlgn or plotTestAlgn:
+            if plotAIO or plotPosAlgn:
+                xs=[item[0] for i,item in enumerate(f) if c[i]==1]
+                ys=[item[1] for i,item in enumerate(f) if c[i]==1]
+            if plotAIO or plotNegAlgn:
+                nxs=[item[0] for i,item in enumerate(f) if c[i]==0]
+                nys=[item[1] for i,item in enumerate(f) if c[i]==0]
+            if plotAIO or plotTestAlgn:
+                txs=[item[0] for item in ft]
+                tys=[item[1] for item in ft]
+        i=0
+        if plotAIO:
+            drawSimpleFigure(xs, ys, i, compLimits, nxs, nys, txs, tys)
 
-    if plotPosAlgn:
-        i+=1
-        col='red' if not figSameColor else 'blue'
-        drawSimpleFigure(xs, ys, i, compLimits, color=col, title="Alérgenos")
+        if plotPosAlgn:
+            i+=1
+            col='red' if not figSameColor else 'blue'
+            drawSimpleFigure(xs, ys, i, compLimits, color=col, title="Alérgenos")
 
-    if plotNegAlgn:
-        i+=1
-        col = 'green' if not figSameColor else 'blue'
-        drawSimpleFigure(nxs, nys, i, compLimits, color=col, title="No alérgenos")
+        if plotNegAlgn:
+            i+=1
+            col = 'green' if not figSameColor else 'blue'
+            drawSimpleFigure(nxs, nys, i, compLimits, color=col, title="No alérgenos")
 
-    if plotTestAlgn:
-        i+=1
-        col = 'orange' if not figSameColor else 'blue'
-        drawSimpleFigure(txs, tys, i, compLimits, color=col, title="Test")
+        if plotTestAlgn:
+            i+=1
+            col = 'orange' if not figSameColor else 'blue'
+            drawSimpleFigure(txs, tys, i, compLimits, color=col, title="Test")
 
-    plt.show()
+        plt.show()
 
     #ordenamos primero apareceran todos los alérgenos y luego todos los no alérgenos
     cp_indexes = list(range(len(cp))) #para ello usaremos los índices de la list de la clasificación predicha
@@ -909,19 +918,19 @@ def prediction_test(method, params, m=1, feats=[True, True]):
     print("Test con " + method + ", m=" + str(m) + " y feats=" + str(features_for_extracting_to_string(feats)))
 
     # test de alérgenos
-    cp, pt = predict(method=method, params=params, m=m, featToExtract=feats, webApp=False, testAlFile="a_cdp.txt")
+    cp, pt = predict(method=method, params=params, m=m, featToExtract=feats, webApp=False, testAlFile="a_cdp.txt", testClass=1)
     counter = Counter(cp)
     print("allergen test", str(counter))
-    correct_allergens = counter['allergen']
+    correct_allergens = counter[1]
     set = (correct_allergens * 100) / len(cp)
     total_test_allergens = len(cp)
 
     # test de no alérgenos
-    cp, pt = predict(method=method, params=params, m=m, featToExtract=feats, webApp=False, testAlFile="a_cdpn.txt")
+    cp, pt = predict(method=method, params=params, m=m, featToExtract=feats, webApp=False, testAlFile="a_cdpn.txt", testClass=0)
     counter = Counter(cp)
     print("non-allergen test", str(counter))
     total_test_nonallergens = len(cp)
-    correct_nonallergens = counter['non-allergen']
+    correct_nonallergens = counter[0]
 
     spt = (correct_nonallergens * 100) / len(cp)
     act = ((correct_allergens+correct_nonallergens)/(total_test_allergens+total_test_nonallergens))* 100#(set + spt) / 2
@@ -937,7 +946,7 @@ def prediction_test(method, params, m=1, feats=[True, True]):
 
     return act, set, spt, ac, se, sp, ppv, f1Score, mcc
 
-def tuning_model_performance(method, combs=[],score='accuracy', minM=1, maxM=5, reduction=0, verbose=False):
+def tuning_model_performance(method, combs=[],score={'recall':'recall', 'accuracy':'accuracy'}, minM=1, maxM=5, reduction=0, verbose=False, refit='recall'):
     featCombs = [[True], [False, True], [True, True], [False, False, True], [False, False, False, True]
         , [True, False, True], [True, True, True], [True, True, False, True], [True, True, True, True]
         , [False, False, True, True], [True, False, False, True]] if len(combs) == 0 else combs
@@ -950,9 +959,10 @@ def tuning_model_performance(method, combs=[],score='accuracy', minM=1, maxM=5, 
         for comb in featCombs:
             if verbose:
                 print("checking with m=" + str(m) + " and feats: " + str(comb))
-            bestParams, _, _, _, _, _, _ = tuning_model(method, score, comb, m, reduction=reduction, verbose=verbose)
+            bestParams, _, _, _, _, _, _,cv_res = tuning_model(method, score, comb, m, reduction=reduction, verbose=verbose)
 
             if verbose:
+                # print("CV results:", cv_res)
                 print("best params: " + str(bestParams) + "\n")
             act, set, spt, ac, se, sp, ppv, f1Score, mcc = prediction_test(method, bestParams, m, comb)
             bests.append({"m": m, "feats": comb, "params": bestParams, "act": act, "set": set, "spt": spt

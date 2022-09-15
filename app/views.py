@@ -32,7 +32,10 @@ from .predict import predict
 def index():
     form = AminoacidSequencesForm()
     if request.method == "POST" and form.validate_on_submit():
-        predictions, protInfo=predict(webApp=True, testSecFile=form.sequences.data)
+        predictions, protInfo=predict(webApp=True, testSecFile=form.sequences.data,
+                                      method="dt",
+                                      params={'criterion': 'gini', 'max_depth': 5, 'min_samples_leaf': 50},
+                                      featToExtract=[True])
 
         return render_template('result.html',
                                allPred=predictions,

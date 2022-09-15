@@ -21,7 +21,7 @@ import os
 
 def extract_all_features_and_classifications(featToExtract=[True, True], m=1
                                              , posAlFile="a_cdep.txt", negAlFile="a_cden.txt", testAlFile="a_cdp.txt"
-                                             , testClass="allergen", appFolder="/app/", alignsPath="/alignments/"
+                                             , testClass=1, appFolder="/app/", alignsPath="/alignments/"
                                              , verbose=False):
     '''
     Entrada:
@@ -59,11 +59,11 @@ def extract_all_features_and_classifications(featToExtract=[True, True], m=1
 
     # características y clasificaciones del conjunto de entrenamiento "allergen"
     if posAlFile != "":
-        f1, c1, p1 = get_features(path + posAlFile, m, "allergen", featToExtract)
+        f1, c1, p1 = get_features(path + posAlFile, m, 1, featToExtract)
 
     # características y clasificaciones del conjunto de entrenamiento "non-allergen"
     if negAlFile != "":
-        f2, c2, p2 = get_features(path + negAlFile, m, "non-allergen", featToExtract)
+        f2, c2, p2 = get_features(path + negAlFile, m, 0, featToExtract) #0: non-allergen label
 
     # caracteristicas y clasificaciones del conjunto de prueba
     if testAlFile != "":

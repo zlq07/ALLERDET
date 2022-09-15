@@ -44,6 +44,7 @@ if __name__ == '__main__':
     ##----------------------------------------------------------
     ## Data set
     ##----------------------------------------------------------
+    aAllergenonline = 'app/alignments/allergenonline/allergenonline.fasta'
     aAllerTop = 'app/alignments/allertop/reduced_all_allergens.fasta'
     naAllerTop = 'app/alignments/allertop/reduced_all_nonallergens.fasta'
     # aAllerdictorA = 'app/alignments/allerdictor/A/alg.fa'
@@ -61,6 +62,7 @@ if __name__ == '__main__':
     aAllerPred5 = 'app/alignments/allerpred/testa5.fasta'
     naUniprot = 'app/alignments/unitprot/nonallergens-uniprot.fasta'
     aUnitprot2022 = 'app/alignments/unitprot/uniprot-allergen2022.fasta'
+    aUnitprot2022andHypers = 'app/alignments/unitprot/uniprot-allergen2022_including_hypersensitive.fasta'
     aCOMPARE = 'app/alignments/COMPARE/COMPARE-2022-FastA-Seq.fasta'
 
     myAllergenDataset = 'app/alignments/allergens_data_set.fasta'
@@ -86,6 +88,8 @@ if __name__ == '__main__':
     print("------")
 
     #resto de datasets disponibles
+    sid, s = splitFastaSeqs(aAllergenonline)
+    print("Allergenonline total allergens: " + str(len(s)))
     sid, s = splitFastaSeqs(aAllerTop)
     print("AllerTop total allergens: " + str(len(s)))
     sid, s = splitFastaSeqs(aAllerdictorA)
@@ -102,6 +106,14 @@ if __name__ == '__main__':
     print("AllerHunter total indep allergens: " + str(len(s)))
     sid, s = splitFastaSeqs(aAllerPred1)
     print("AllerPred 1 total test allergens: " + str(len(s)))
+    sid, s = splitFastaSeqs(aAllerPred2)
+    print("AllerPred 2 total test allergens: " + str(len(s)))
+    sid, s = splitFastaSeqs(aAllerPred3)
+    print("AllerPred 3 total test allergens: " + str(len(s)))
+    sid, s = splitFastaSeqs(aAllerPred4)
+    print("AllerPred 4 total test allergens: " + str(len(s)))
+    sid, s = splitFastaSeqs(aAllerPred5)
+    print("AllerPred 5 total test allergens: " + str(len(s)))
     sid, s = splitFastaSeqs(aUnitprotReviews)
     print("Uniprot total reviewed allergens: " + str(len(s)))
     sid, s = splitFastaSeqs(aUnitprot)
@@ -126,8 +138,8 @@ if __name__ == '__main__':
     #duplicaciones
     d = how_many_seqs_from_a_are_duplicated_in_b(aCOMPARE, aUnitprot2022)
     print("duplicaciones COMPARE y UnitProt2022: " + str(len(d)))
-    d=how_many_seqs_from_a_are_duplicated_in_b(myValidationDataset, myAllergenDataset)
-    print("duplicaciones validation en train: "+str(len(d)))
+    # d=how_many_seqs_from_a_are_duplicated_in_b(myValidationDataset, myAllergenDataset)
+    # print("duplicaciones validation en train: "+str(len(d)))
     d=how_many_seqs_from_a_are_duplicated_in_b(myTestDataset, myAllergenDataset)
     print("duplicaciones test en train: "+str(len(d)))
     d=how_many_seqs_from_a_are_duplicated_in_b(aAllerTop, myAllergenDataset)
@@ -209,7 +221,10 @@ if __name__ == '__main__':
     # our allergen dataset
     create_fasta_file_without_duplications([
                                             aUnitprot2022,
-        aCOMPARE,
+        # aUnitprot2022andHypers,
+        aAllergenonline
+        ,aCOMPARE,
+        aAllerPred1,aAllerPred2,aAllerPred3,aAllerPred4,aAllerPred5,
         aAllerTop,
         aAllerHunter,
         aAllerHunterInd,
@@ -227,13 +242,15 @@ if __name__ == '__main__':
     sid, s = splitFastaSeqs(myAllergenDataset)
     print("Our allergen train dataset: " + str(len(s)))
 
+
     # dataset non allergens
     create_fasta_file_without_duplications(['app/alignments/unitprot/non/plant_nonallergen.fasta'
                                                , 'app/alignments/unitprot/non/cowmilk_nonallergen.fasta'
                                                , 'app/alignments/unitprot/non/eggs_nonallergen.fasta'
                                                , 'app/alignments/unitprot/non/salmo-nonallergen.fasta'
-                                                , naAllerTop, naAllerHunter]
-                                           , myNonAllergenDataset, maxSec=80.0
+                                                , naAllerTop, naAllerHunter
+                                            ]
+                                           , myNonAllergenDataset, maxSec=4344
                                            , shuffle=True
                                            )
     sid, s = splitFastaSeqs(myNonAllergenDataset)
@@ -247,17 +264,21 @@ if __name__ == '__main__':
     # exclusion.extend(splitFastaSeqs(myTestDataset)[1])
     create_fasta_file_without_duplications([
                                             aUnitprot2022
-                                               , aCOMPARE
-                                               , aAllerTop
+                                                # aUnitprot2022andHypers
+                                                , aAllergenonline
+                                                , aCOMPARE
+                                                , aAllerPred1,aAllerPred2,aAllerPred3,aAllerPred4,aAllerPred5
+                                                , aAllerTop
                                                 , aAllerHunter
                                                 , aAllerHunterInd
                                                 , aAllerHunterTest
                                             ]
                                                  , myTestDataset, exclusion
-                                                , maxSec=1000
+                                                , maxSec=100. #in reality, is 20.0%
     )
     sid, s = splitFastaSeqs(myTestDataset)
     print("Our Test allergens: " + str(len(s)))
+
 
     # creacion del conjunto de test de no alérgenos
     exclusion=splitFastaSeqs(myNonAllergenDataset)[1]
@@ -267,7 +288,7 @@ if __name__ == '__main__':
                                                , 'app/alignments/unitprot/non/salmo-nonallergen.fasta'
                                                 , naAllerTop, naAllerHunter
                                                     ]
-                                                 , myNonAllergenTestDataset, exclusion, 1000)
+                                                 , myNonAllergenTestDataset, exclusion, 1087)
     sid, s = splitFastaSeqs(myNonAllergenTestDataset)
     print("Our non-allergen test dataset: " + str(len(s)))
 
@@ -280,27 +301,40 @@ if __name__ == '__main__':
     ##----------------------------------------------------------------------------------------
     ## Performance predicciones
     ##----------------------------------------------------------------------------------------
-    tuning_model_performance("dt", verbose=False)
-    tuning_model_performance("nb", verbose=True)
-    tuning_model_performance("knn", verbose=True)
-    tuning_model_performance("mlp", verbose=True)
-    tuning_model_performance("rbm", verbose=True)
+    from sklearn.metrics import make_scorer
+    from sklearn.metrics import accuracy_score
+    from sklearn.metrics import recall_score
+    from sklearn.metrics import f1_score
 
-    cp, pt = predict(method="rbm", params={'rbm__n_iter': 20, 'rbm__n_components': 1000, 'rbm__learning_rate': 0.001
+    tuning_model_performance("dt", maxM=1, verbose=True, score={'recall':make_scorer(recall_score),'accuracy':make_scorer(accuracy_score)}, refit='recall')
+    tuning_model_performance("nb", maxM=1, verbose=True)
+    tuning_model_performance("knn", maxM=1, verbose=True)
+    tuning_model_performance("mlp", maxM=1, verbose=True)
+    tuning_model_performance("rbm", maxM=1, reduction=100,  verbose=True, score={'recall':make_scorer(recall_score),'accuracy':make_scorer(accuracy_score)}, refit='recall')
+
+    cp, pt = predict(method="rbm", params={
+        'rbm__n_iter': 20, 'rbm__n_components': 50, 'rbm__learning_rate': 0.1
         , "mod": "dt"
-        , "mod_par": {'criterion': 'gini', 'max_depth': 10, 'min_samples_leaf': 100}}, m=2
-                     , showAllPredictions=False, featToExtract= [True, True, False, True], webApp=False, testAlFile="a_cdp_review.txt"
-                     , plotPosAlgn=True, plotNegAlgn=True, plotAIO=True)
+        , "mod_par": {'criterion': 'gini', 'max_depth': 5, 'min_samples_leaf': 50}}
+                     , m=1
+                     , showAllPredictions=True, featToExtract=[True], webApp=False
+                     , testAlFile="a_cdp.txt" #"a_cdp_review.txt"
+                     , printNativeClassReport= True
+                     , plotPosAlgn=False
+                     , plotNegAlgn=False
+                     , plotAIO=False
+                     , kFolds=0)
+
     counter = Counter(cp)
     print(str(counter))
-    print("Accuracy: " + str((counter['allergen'] * 100) / len(cp)))
+    print("Accuracy: " + str((counter[1] * 100) / len(cp)))
 
     prediction_test("rbm", {'rbm__n_iter': 20, 'rbm__n_components': 1000, 'rbm__learning_rate': 0.001
         , "mod": "dt"
-        , "mod_par": {'criterion': 'gini', 'max_depth': 10, 'min_samples_leaf': 100}}, 2,  [True, True, False, True])
+        , "mod_par": {'criterion': 'gini', 'max_depth': 10, 'min_samples_leaf': 100}}, 1,  [True, True, True, True])
 
 
-    tuning_model("dt", verbose=True)
+    tuning_model("dt", verbose=True, m=1, featToExtract=[True, True, True, True])
     tuning_model("nb")
     tuning_model("knn")
     tuning_model("mlp")
@@ -318,13 +352,14 @@ if __name__ == '__main__':
     # print("Accuracy: " + str((counter['allergen']*100)/len(cp)))
 
     print("Prueba Alérgenos DT")
-    cp,pt = predict(method="dt", params={'criterion': 'gini', 'max_depth': 10, 'min_samples_leaf': 30}
-                    , m=2, featToExtract=[True,True, False, True]
-                    , showAllPredictions=False, webApp=False
-                    , testAlFile="a_cdp_review.txt")
+    cp,pt = predict(method="dt", params={'criterion': 'gini', 'max_depth': 5, 'min_samples_leaf': 5}
+                    , m=1, featToExtract=[True, False, True]
+                    , showAllPredictions=True, webApp=False
+                    , printNativeClassReport=True
+                    , testAlFile="a_cdp_review.txt")#"a_cdp_review.txt")
     counter = Counter(cp)
     print(str(counter))
-    print("Accuracy: " + str((counter['allergen']*100)/len(cp)))
+    print("Accuracy: " + str((counter[1]*100)/len(cp)))
 
     # print("Prueba Alérgenos RF")
     # cp,pt = predict(method="rf", params={}
