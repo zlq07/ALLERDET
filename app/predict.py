@@ -41,10 +41,13 @@ from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
 from sklearn.model_selection import train_test_split
 from sklearn.model_selection import GridSearchCV
+from sklearn.model_selection import StratifiedShuffleSplit
 import matplotlib.pyplot as plt
 from matplotlib.colors import ListedColormap
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib import cm
+from sklearn_evaluation import plot
+import pandas as pd
 
 try:
     from .alignment import create_alignments_files
@@ -60,10 +63,7 @@ def tuning_model(method, score={'recall':'recall', 'accuracy':'accuracy'}, featT
     if verbose:
         print("CV score", score)
         print("Extrayendo features..")
-    f, c, ft, ct, p, pt = extract_all_features_and_classifications(featToExtract, m, posAlFile, negAlFile, "a_cdp.txt", testClass=1)
-    _, _, fnt, cnt, _, _ = extract_all_features_and_classifications(featToExtract, m, posAlFile, negAlFile, "a_cdpn.txt", testClass=0)
-    ft = ft + fnt #test features: allergens+non-allergen
-    ct = ct + cnt #test classes: allergens+non-allergen
+    f, c, ft, ct, p, pt = extract_all_features_and_classifications(featToExtract, m, posAlFile, negAlFile, "a_cdp.txt", "a_cdpn.txt")
 
     if reduction > 0:
         #misma proporción de alérgenos que de no alérgenos al reducir los conjuntos
@@ -123,14 +123,16 @@ def tuning_model(method, score={'recall':'recall', 'accuracy':'accuracy'}, featT
 
     model = create_prediction_model(method)
     if score != None:
-        clf = GridSearchCV(model, tuned_parameters, cv=kfolds, scoring=score, refit=refit) #scoring='%s_macro' % score)
+        clf = GridSearchCV(model, tuned_parameters, n_jobs=2, scoring=score, refit=refit,
+                           cv=StratifiedShuffleSplit(n_splits=kfolds,test_size=None, random_state=0)) #scoring='%s_macro' % score)
     else:
-        clf = GridSearchCV(model, tuned_parameters, cv=kfolds, refit=refit)
+        clf = GridSearchCV(model, tuned_parameters, n_jobs=2, cv=StratifiedShuffleSplit(n_splits=kfolds,test_size=None, random_state=0))
 
     if method != "km":
         clf.fit(X_train, y_train)
     else:
         clf.fit(X_train)
+
 
     if verbose:
         print("Best parameters set found on development set:")
@@ -140,24 +142,44 @@ def tuning_model(method, score={'recall':'recall', 'accuracy':'accuracy'}, featT
         print("Grid scores on development set:")
         # print("scores cv:", clf.cv_results_)
 
+        df_scores = [pd.DataFrame(clf.cv_results_["params"])]
         for sc in score:
             means = clf.cv_results_['mean_test_'+sc]
             stds = clf.cv_results_['std_test_'+sc]
             for mean, std, params in zip(means, stds, clf.cv_results_['params']):
-                print("%0.3f (+/-%0.03f) for %r"
-                      % (mean, std * 2, params))
+                print("%0.3f (+/-%0.03f) for %r" % (mean, std * 2, params))
             print()
+            df_scores.append(pd.DataFrame(clf.cv_results_["mean_test_" + sc], columns=[score[sc]]))
+
+        df_scores = pd.concat(df_scores, axis=1)
+        print(df_scores)
+
+        # find best model score
+        best_sc = clf.score(X_train, y_train)
+        print("Best model score", best_sc)
+        print("Best params", clf.best_params_)
 
         print("Detailed classification report:")
-        print()
         print("The model is trained on the full development set.")
-        print("The scores are computed on the full evaluation set.")
+        print("The scores are computed on the full evaluation set.\nMaking Test Evaluation:")
         print()
         y_true, y_pred = y_test, clf.predict(X_test)
+        sc_test = clf.score(X_test, y_test)
+        best_model = create_prediction_model(method, clf.best_params_)
+        if method != "km":
+            best_model.fit(X_train, y_train)
+        else:
+            best_model.fit(X_train)
+        # y_true, y_pred = y_test, best_model.predict(X_test)
+        print("Testing GridSerch with test dataset. Score: ", sc_test)
         print(classification_report(y_true, y_pred))
         print()
+        print(clf.best_params_)
+    # if "accuracy" in score.keys():
+    #     plot.grid_search(clf.cv_results_, change=clf.best_params_[list(clf.best_params_.keys())[0]], kind='bar')
 
     return clf.best_params_, f, c, ft, ct, p, pt,clf.cv_results_
+
 
 
 
@@ -324,7 +346,7 @@ def perform_prediction(method, features, classifications, test_data
     11) el valor de MCC, en porcentaje
 
     :return Tupla: (featsTrain,classTrain,featsTest,classTest,class_predicted,accuracy,
-    sensitivity,specifity,ppv,f1Score,mcc)
+    sensitivity,specifity,ppv,f1Score,mcc,tpr,tnr,tpr_prod_tnr)
      '''
     featsTrain=[]
     classTrain=[]
@@ -355,7 +377,7 @@ def perform_prediction(method, features, classifications, test_data
         if method != "rbm":
             features = np.array(features)
         classifications = np.array(classifications)
-        for train_index, test_index in skf.split(features,classifications):
+        for train_index, test_index in skf.split(features, classifications):
             featsTrain, featsTest = features[train_index], features[test_index]
             classTrain, classTest = classifications[train_index], classifications[test_index]
 
@@ -370,8 +392,8 @@ def perform_prediction(method, features, classifications, test_data
             # if method=="km":
             #     class_predicted = np.array(["allergen" if i==1 else "non-allergen" for i in class_predicted])
 
-            accuracy,sensitivity,specifity,ppv,f1Score,mcc=classification_performance(classTest, class_predicted)#model.score(X_test, y_test)
-            measures.append([accuracy,sensitivity,specifity,ppv,f1Score,mcc])
+            accuracy,sensitivity,specifity,ppv,f1Score,mcc,tpr,tnr,tpr_prod_tnr=classification_performance(classTest, class_predicted)#model.score(X_test, y_test)
+            measures.append([accuracy,sensitivity,specifity,ppv,f1Score,mcc,tpr,tnr,tpr_prod_tnr])
 
             if printNativeClassReport and method!="km":
                 print(classification_report(classTest, class_predicted))
@@ -382,12 +404,15 @@ def perform_prediction(method, features, classifications, test_data
                 print(classification_report(classTest, class_predicted, target_names=[0, 1]))
                 print(confusion_matrix(classTest, class_predicted))
 
-        accuracy=sum(a for a,s,sp,ppv,fs,mcc in measures)/len(measures)
-        sensitivity=sum(s for a,s,sp,ppv,fs,mcc in measures)/len(measures)
-        specifity=sum(sp for a,s,sp,ppv,fs,mcc in measures)/len(measures)
-        ppv=sum(ppv for a,s,sp,ppv,fs,mcc in measures)/len(measures)
-        f1Score=sum(fs for a,s,sp,ppv,fs,mcc in measures)/len(measures)
-        mcc=sum(mcc for a,s,sp,ppv,fs,mcc in measures)/len(measures)
+        accuracy=sum(a for a,s,sp,ppv,fs,mcc,tpr,tnr,tpr_prod_tnr in measures)/len(measures)
+        sensitivity=sum(s for a,s,sp,ppv,fs,mcc,tpr,tnr,tpr_prod_tnr in measures)/len(measures)
+        specifity=sum(sp for a,s,sp,ppv,fs,mcc,tpr,tnr,tpr_prod_tnr in measures)/len(measures)
+        ppv=sum(ppv for a,s,sp,ppv,fs,mcc,tpr,tnr,tpr_prod_tnr in measures)/len(measures)
+        f1Score=sum(fs for a,s,sp,ppv,fs,mcc,tpr,tnr,tpr_prod_tnr in measures)/len(measures)
+        mcc=sum(mcc for a,s,sp,ppv,fs,mcc,tpr,tnr,tpr_prod_tnr in measures)/len(measures)
+        tpr = sum(tpr for a, s, sp, ppv, fs, mcc, tpr, tnr, tpr_prod_tnr in measures) / len(measures)
+        tnr = sum(tnr for a, s, sp, ppv, fs, mcc, tpr, tnr, tpr_prod_tnr in measures) / len(measures)
+        tpr_prod_tnr = sum(tpr_prod_tnr for a, s, sp, ppv, fs, mcc, tpr, tnr, tpr_prod_tnr in measures) / len(measures)
 
     #validacion leave-one-out
     elif kFolds == 1:
@@ -399,7 +424,6 @@ def perform_prediction(method, features, classifications, test_data
         for train, test in loo.split(features):
             feat_train, feat_test = features[train], features[test]
             class_train, class_test = classifications[train], classifications[test]
-            class_test = np.array([1 if i=="allergen" else 0 for i in class_test])
             featsTrain.extend(feat_train)
             classTrain.extend(class_train)
             featsTest.append(feat_test[0])
@@ -413,19 +437,21 @@ def perform_prediction(method, features, classifications, test_data
             class_predicted.append(cpred)
             # if method == "km":
             #     class_predicted = np.array(["allergen" if i == 1 else "non-allergen" for i in class_predicted])
-            accuracy, sensitivity, specifity, ppv, f1Score, mcc = classification_performance(classTest,
-                                                                                             class_predicted)
-            measures.append([accuracy, sensitivity, specifity, ppv, f1Score, mcc])
+            accuracy, sensitivity, specifity, ppv, f1Score, mcc, tpr, tnr, tpr_prod_tnr  = classification_performance(classTest,class_predicted)
+            measures.append([accuracy, sensitivity, specifity, ppv, f1Score, mcc, tpr, tnr, tpr_prod_tnr ])
 
-        accuracy = sum(a for a, s, sp, ppv, fs, mcc in measures) / len(measures)
-        sensitivity = sum(s for a, s, sp, ppv, fs, mcc in measures) / len(measures)
-        specifity = sum(sp for a, s, sp, ppv, fs, mcc in measures) / len(measures)
-        ppv = sum(ppv for a, s, sp, ppv, fs, mcc in measures) / len(measures)
-        f1Score = sum(fs for a, s, sp, ppv, fs, mcc in measures) / len(measures)
-        mcc = sum(mcc for a, s, sp, ppv, fs, mcc in measures) / len(measures)
+        accuracy = sum(a for a, s, sp, ppv, fs, mcc, tpr, tnr, tpr_prod_tnr in measures) / len(measures)
+        sensitivity = sum(s for a, s, sp, ppv, fs, mcc, tpr, tnr, tpr_prod_tnr in measures) / len(measures)
+        specifity = sum(sp for a, s, sp, ppv, fs, mcc, tpr, tnr, tpr_prod_tnr in measures) / len(measures)
+        ppv = sum(ppv for a, s, sp, ppv, fs, mcc, tpr, tnr, tpr_prod_tnr in measures) / len(measures)
+        f1Score = sum(fs for a, s, sp, ppv, fs, mcc, tpr, tnr, tpr_prod_tnr in measures) / len(measures)
+        mcc = sum(mcc for a, s, sp, ppv, fs, mcc, tpr, tnr, tpr_prod_tnr in measures) / len(measures)
+        tpr = sum(tpr for a, s, sp, ppv, fs, mcc, tpr, tnr, tpr_prod_tnr in measures) / len(measures)
+        tnr = sum(tnr for a, s, sp, ppv, fs, mcc, tpr, tnr, tpr_prod_tnr in measures) / len(measures)
+        tpr_prod_tnr = sum(tpr_prod_tnr for a, s, sp, ppv, fs, mcc, tpr, tnr, tpr_prod_tnr in measures) / len(measures)
 
     #sin validación cruzada, test completo del conjunto de prueba dado
-    if kFolds == 0 and len(test_data) > 0:
+    elif kFolds == 0 and len(test_data) > 0:
         featsTrain=features
         classTrain=classifications
         featsTest=test_data
@@ -435,10 +461,15 @@ def perform_prediction(method, features, classifications, test_data
         else:
             model.fit(featsTrain)
         class_predicted=model.predict(featsTest)
+
+        accuracy, sensitivity, specifity, ppv, f1Score, mcc, tpr, tnr, tpr_prod_tnr = classification_performance(
+            tests_classif, class_predicted)
+
         if plotModel and method=='dt':
             plot_decision_tree(model)
+
         
-    return featsTrain,classTrain,featsTest,classTest,class_predicted,accuracy,sensitivity,specifity,ppv,f1Score,mcc
+    return featsTrain,classTrain,featsTest,classTest,class_predicted,accuracy,sensitivity,specifity,ppv,f1Score,mcc, tpr, tnr, tpr_prod_tnr
 
 
 def scale(X, eps = 0.001):
@@ -467,6 +498,32 @@ def totalElementsOfClass(classifications, classType="allergen"):
     '''
     return sum(1 for c in classifications if c==classType)
 
+def get_tp_tn_fp_fn(y_true, y_pred):
+    tp = 0  # total de alergenos predecidos correctamente como "allergen" (True positives)
+    tn = 0  # total de no alergenos predecidos correctamente como "non-allergen" (True negatives)
+    fn = 0  # total de alergenos predecidos incorrectamente como "non-allergen" (False negatives)
+    fp = 0  # total de no alergenos predecidos incorrectamente como "allergen" (False positives)
+
+    for i in range(len(y_pred)):
+        if y_true[i] == 1 and y_true[i] == y_pred[i]:
+            tp += 1
+        elif y_true[i] == 0 and y_true[i] == y_pred[i]:
+            tn += 1
+        elif y_true[i] == 1 and y_pred[i] == 0:
+            fn += 1
+        elif y_true[i] == 0 and y_pred[i] == 1:
+            fp += 1
+    return tp, tn, fp, fn
+
+def tpr_score(y_true, y_pred):
+    tp, tn, fp, fn = get_tp_tn_fp_fn(y_true, y_pred)
+    return tp/(tp+fn) if (tp+fn) > 0 else 0
+def tnr_score(y_true, y_pred):
+    tp, tn, fp, fn = get_tp_tn_fp_fn(y_true, y_pred)
+    return tn/(tn+fp) if (tn+fp) > 0 else 0
+def tpr_prod_tnr_score(y_true, y_pred):
+    return tpr_score(y_true, y_pred) * tnr_score(y_true, y_pred)
+
 
 def classification_performance(test_classif, predicted_class):
     '''
@@ -490,25 +547,18 @@ def classification_performance(test_classif, predicted_class):
     fn=0 #total de alergenos predecidos incorrectamente como "non-allergen" (False negatives)
     fp=0 #total de no alergenos predecidos incorrectamente como "allergen" (False positives)
 
-    for i in range(len(predicted_class)):
-        correct_clas=test_classif[i]
-        if correct_clas==1 and correct_clas==predicted_class[i]:
-            tp+=1
-        elif correct_clas==0 and correct_clas==predicted_class[i]:
-            tn+=1
-        elif correct_clas==1 and predicted_class[i]==0:
-            fn+=1
-        elif correct_clas==0 and predicted_class[i]==1:
-            fp+=1
-
+    tp, tn, fp, fn = get_tp_tn_fp_fn(test_classif, predicted_class)
     sensitivity=tp/(tp+fn) if tp+fn != 0 else 0
     specificity=tn/(tn+fp) if tn+fp != 0 else 0
     accuracy=(tp+tn)/(tp+fp+tn+fn) if tp+fp+tn+fn!=0 else 0
     ppv=tp/(tp+fp) if tp+fp!=0 else 0
     f1Score=(2*sensitivity*ppv)/(sensitivity+ppv) if sensitivity+ppv!=0 else 0
     mcc=((tp*tn)-(fp*fn))/math.sqrt((tp+fp)*(tp+fn)*(tn+fp)*(tn+fn)) if math.sqrt((tp+fp)*(tp+fn)*(tn+fp)*(tn+fn))!=0 else 0
+    tp_rate = tp / (tp + fn) if (tp + fn) > 0 else 0
+    tn_rate = tn / (tn + fp) if (tn + fp) > 0 else 0
+    tpr_prod_tnr = tp_rate*tn_rate
 
-    return accuracy*100, sensitivity*100, specificity*100, ppv*100, f1Score*100, mcc*100
+    return accuracy*100, sensitivity*100, specificity*100, ppv*100, f1Score*100, mcc*100, tp_rate*100, tn_rate*100, tpr_prod_tnr*100
 
 
 def maxClasification(prediction, posClass="allergen", negClass="non-allergen"):
@@ -610,13 +660,13 @@ def draw3DGraphics(pos_t_filename="a_cdep.txt", neg_t_filename="a_cden.txt", tes
         params=[[k,m] for k in range(3, maxK+2, 2) for m in range(1, maxM+1)]
         #calculamos el rendimiento de la clasificacion con kNN por cada par [k, m]
         for k,m in params:
-            f,c,ft,ct,cp,ac,se,sp,ppv,f1Score,mcc=perform_prediction(method, features[m-1], classifs[m-1], testFeatures[m-1], testClassifs[m-1], k, crossVal, test_length, holdOutTest, leaveOneOut, kFolds, params={"k":k})
+            f,c,ft,ct,cp,ac,se,sp,ppv,f1Score,mcc,tpr,tnr,tpr_prod_tnr=perform_prediction(method, features[m-1], classifs[m-1], testFeatures[m-1], testClassifs[m-1], k, crossVal, test_length, holdOutTest, leaveOneOut, kFolds, params={"k":k})
             xs.append(k)
             ys.append(m)
             zs.append(ac)
     else:
         for k,m in params:
-            f,c,ft,ct,cp,ac,se,sp,ppv,f1Score,mcc=perform_prediction(method, features[m-1], classifs[m-1], testFeatures[m-1], testClassifs[m-1], k, crossVal, test_length, holdOutTest, leaveOneOut, kFolds)
+            f,c,ft,ct,cp,ac,se,sp,ppv,f1Score,mcc,tpr,tnr,tpr_prod_tnr=perform_prediction(method, features[m-1], classifs[m-1], testFeatures[m-1], testClassifs[m-1], k, crossVal, test_length, holdOutTest, leaveOneOut, kFolds)
             xs.append(se)
             ys.append(m)
             zs.append(ac)
@@ -695,7 +745,9 @@ def predict(X_train=[], y_train=[], protInfo_train=[], X_test=[], y_test=[], pro
             , negAlFile="a_cden.txt"
             , testSecFile="created_test.fasta"
             , testAlFile="a_cdp.txt"
+            , testNegAlFile="a_cdp.txt"
             , testClass=1
+            , testNegClass=0
             , featToExtract=[True]
             , method="rbm"
             , params={'rbm__n_iter': 20, 'rbm__n_components': 1000, 'rbm__learning_rate': 0.001
@@ -770,14 +822,13 @@ def predict(X_train=[], y_train=[], protInfo_train=[], X_test=[], y_test=[], pro
             , aligNeg=False, aligTest=True, testSecFile=testSecFile)
 
     if X_train==[] and y_train==[] and protInfo_train==[] and X_test==[] and y_test==[] and protInfo_test==[]:
-        f,c,ft,ct,p,pt = extract_all_features_and_classifications(featToExtract, m,posAlFile, negAlFile
-                                                              , testAlFile, testClass)
+        f,c,ft,ct,p,pt = extract_all_features_and_classifications(featToExtract, m,posAlFile, negAlFile, testAlFile, testNegAlFile, testClass, testNegClass)
     else:
         f, c, ft, ct, p, pt = X_train, y_train, X_test, y_test, protInfo_train, protInfo_test
 
     #realizar la predicción
     print("Predicting...")
-    f,c,ft,ct,cp,ac,se,sp,ppv,f1Score,mcc=perform_prediction(method, f, c, ft, ct, kFolds, params, plotModel=plotModel, printNativeClassReport=printNativeClassReport)
+    f,c,ft,ct,cp,ac,se,sp,ppv,f1Score,mcc,tpr,tnr,tpr_prod_tnr=perform_prediction(method, f, c, ft, ct, kFolds, params, plotModel=plotModel, printNativeClassReport=printNativeClassReport)
 
     if showAllPredictions:
         print("Predicción de la clasificación: "+str(cp))
@@ -845,15 +896,12 @@ def show_learning_methods_performance(featToExtract=[True, True], method="knn"
     '''
 
     print("Valorando Método "+str(method))
-    print("Extrayendo features..")
-    f,c,_,_,_,_ = extract_all_features_and_classifications(featToExtract, m, posAlFile, negAlFile)
+    print("Extrayendo features...")
+    f,c,ft,ct,_,_ = extract_all_features_and_classifications(featToExtract, m, posAlFile, negAlFile)
 
     #realizar la predicción
-    print("Training performance...")
-    _,_,_,_,_,ac,se,sp,ppv,f1Score,mcc=perform_prediction(method, f, c, [], [], kFolds, params
-                                                          , printNativeClassReport)
-    
-    #Presentar los resultados
+    # print("Training performance of CV...")
+    _,_,_,_,_,ac,se,sp,ppv,f1Score,mcc,tpr,tnr,tpr_prod_tnr=perform_prediction(method, f, c, [], [], kFolds, params, printNativeClassReport)
     print("\nValoración del Método "+str(method))
     print("Con m="+str(m)+" mejores alineamientos, kFolds="+str(kFolds))
     print("Características extraídas: "+features_for_extracting_to_string(featToExtract))
@@ -861,11 +909,20 @@ def show_learning_methods_performance(featToExtract=[True, True], method="knn"
     if method=="knn":
         k=params.get("k")
         print("Y con k="+str(k)+"\n")
-
-    print("Accuracy = "+str("%.2f" % ac)+"%, Sensitivity = "+str("%.2f" % se)+"%"
+    print("CV Performance ::: \n Accuracy = "+str("%.2f" % ac)+"%, Sensitivity = "+str("%.2f" % se)+"%"
         +", Specification = "+str("%.2f" % sp)+"%"+", ppv = "+str("%.2f" % ppv)+"%"
-        +", F1 = "+str("%.2f" % f1Score)+"%"+", MCC = "+str("%.2f" % mcc)+"%")
+        +", F1 = "+str("%.2f" % f1Score)+"%"+", MCC = "+str("%.2f" % mcc)+"%"
+        + ", TPR = "+str("%.2f" % tpr)+"%" + ", TNR = "+str("%.2f" % tnr)+"%"
+        + ", TPR*TNR = "+str("%.2f" % tpr_prod_tnr)+"%")
     print(str("_"*10)+"\n")
+
+    _,_,_,_,_,ac,se,sp,ppv,f1Score,mcc,tpr,tnr,tpr_prod_tnr=perform_prediction(method, f, c, ft, ct, 0, params, printNativeClassReport)
+    print("OurTest Performance ::: \n Accuracy = " + str("%.2f" % ac) + "%, Sensitivity = " + str("%.2f" % se) + "%"
+          + ", Specification = " + str("%.2f" % sp) + "%" + ", ppv = " + str("%.2f" % ppv) + "%"
+          + ", F1 = " + str("%.2f" % f1Score) + "%" + ", MCC = " + str("%.2f" % mcc) + "%"
+          + ", TPR = " + str("%.2f" % tpr) + "%" + ", TNR = " + str("%.2f" % tnr) + "%"
+          + ", TPR*TNR = " + str("%.2f" % tpr_prod_tnr) + "%")
+    print(str("_" * 10) + "\n")
 
     return ac, se, sp, ppv, f1Score, mcc
 
@@ -917,6 +974,13 @@ def plot_decision_tree(model, filename='dt_plot'):
 def prediction_test(method, params, m=1, feats=[True, True]):
     print("Test con " + method + ", m=" + str(m) + " y feats=" + str(features_for_extracting_to_string(feats)))
 
+    # print("With CV (k-fold=10) + Stratification")
+    ac, se, sp, ppv, f1Score, mcc = show_learning_methods_performance(feats, method=method, params=params, kFolds=10,
+                                                                      printNativeClassReport=True, m=m)
+    # print("With CV (k-fold=10) + Stratification >> Accuracy = "+ str("%.2f" % ac) + "%, Sensitivity = " + str("%.2f" % se)
+    #       + "%" + ", Specification = " + str("%.2f" % sp) + "%"+ ", F1-Score = " + str("%.2f" % f1Score) + "%")
+
+
     # test de alérgenos
     cp, pt = predict(method=method, params=params, m=m, featToExtract=feats, webApp=False, testAlFile="a_cdp.txt", testClass=1)
     counter = Counter(cp)
@@ -938,28 +1002,63 @@ def prediction_test(method, params, m=1, feats=[True, True]):
     print("With our test data set >> Accuracy = " + str("%.2f" % act) + "%, Sensitivity = " + str("%.2f" % set)
           + "%" + ", Specification = " + str("%.2f" % spt) + "%")
 
-    print("With CV (k-fold=10) + Stratification")
-    ac, se, sp, ppv, f1Score, mcc = show_learning_methods_performance(feats, method=method, params=params,
-                                                                      kFolds=10)
-    # print("With CV (k-fold=10) + Stratification >> Accuracy = "+ str("%.2f" % ac) + "%, Sensitivity = " + str("%.2f" % se)
-    #       + "%" + ", Specification = " + str("%.2f" % sp) + "%"+ ", F1-Score = " + str("%.2f" % f1Score) + "%")
 
     return act, set, spt, ac, se, sp, ppv, f1Score, mcc
 
-def tuning_model_performance(method, combs=[],score={'recall':'recall', 'accuracy':'accuracy'}, minM=1, maxM=5, reduction=0, verbose=False, refit='recall'):
-    featCombs = [[True], [False, True], [True, True], [False, False, True], [False, False, False, True]
-        , [True, False, True], [True, True, True], [True, True, False, True], [True, True, True, True]
-        , [False, False, True, True], [True, False, False, True]] if len(combs) == 0 else combs
+def tuning_model_performance(method, combs=[],score={'recall':'recall', 'accuracy':'accuracy'}, minM=1, maxM=5, reduction=0, verbose=False, refit='recall', kFolds=10):
+    featCombs = [
+        [True],
+        [False, True],
+        [True, True],
+        [False, False, True],
+        [True, False, True],
+        [True, True, True],
+        [False, False, False, True],
+        [False, False, True, True],
+        [True, False, False, True],
+        [True, True, False, True],
+        [True, True, True, True],
+        # [False, False, False, False, True],
+        # [False, False, False, True, True],
+        # [True, False, False, False, True],
+        # [True, True, False, False, True],
+        # [True, True, True, False, True],
+        # [True, True, True, True, True],
+        # [False, False, False, False, False, True],
+        # [False, False, False, False, True, True],
+        # [True, False, False, False, False, True],
+        # [True, True, False, False, False, True],
+        # [True, True, True, False, False, True],
+        # [True, True, True, True, False, True],
+        # [True, True, True, True, True, True],
+        # [False, False, False, False, False, False, True],
+        # [False, False, False, False, False, True, True],
+        # [True, False, False, False, False, False, True],
+        # [True, True, False, False, False, False, True],
+        # [True, True, True, False, False, False, True],
+        # [True, True, True, True, False, False, True],
+        # [True, True, True, True, True, False, True],
+        # [True, True, True, True, True, True, True],
+        # [False, False, False, False, False, False, False, True],
+        # [False, False, False, False, False, False, True, True],
+        # [True, False, False, False, False, False, False, True],
+        # [True, True, False, False, False, False, False, True],
+        # [True, True, True, False, False, False, False, True],
+        # [True, True, True, True, False, False, False, True],
+        # [True, True, True, True, True, False, False, True],
+        # [True, True, True, True, True, True, False, True],
+        # [True, True, True, True, True, True, True, True],
+    ] if len(combs) == 0 else combs
 
 
     bests = []
 
-    print("Tuning model: " + method)
+    print("TuninBest parameters set found on development set:g model: " + method)
     for m in range(max(min(minM, 9), 1), max(min(maxM+1, 10), 1)):
         for comb in featCombs:
             if verbose:
                 print("checking with m=" + str(m) + " and feats: " + str(comb))
-            bestParams, _, _, _, _, _, _,cv_res = tuning_model(method, score, comb, m, reduction=reduction, verbose=verbose)
+            bestParams, _, _, _, _, _, _,cv_res = tuning_model(method, score, comb, m, kFolds, reduction=reduction, verbose=verbose)
 
             if verbose:
                 # print("CV results:", cv_res)

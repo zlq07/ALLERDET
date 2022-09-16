@@ -16,6 +16,7 @@ Fecha: 30-06-2016 (ultima modificacion: 26/08/2022)
 ----------------------------------------------------------
 """
 from collections import Counter
+import numpy as np
 
 try:
     from app.predict import predict
@@ -23,6 +24,7 @@ try:
     from app.predict import tuning_model
     from app.predict import tuning_model_performance
     from app.predict import show_learning_methods_performance
+    from app.predict import tpr_prod_tnr_score
     from app.alignment import splitFastaSeqs
     from app.alignment import how_many_seqs_from_a_are_duplicated_in_b
     from app.alignment import create_fasta_file_without_duplications
@@ -224,11 +226,11 @@ if __name__ == '__main__':
         # aUnitprot2022andHypers,
         aAllergenonline
         ,aCOMPARE,
-        aAllerPred1,aAllerPred2,aAllerPred3,aAllerPred4,aAllerPred5,
-        aAllerTop,
-        aAllerHunter,
-        aAllerHunterInd,
-        aAllerHunterTest
+        # aAllerPred1,aAllerPred2,aAllerPred3,aAllerPred4,aAllerPred5,
+        # aAllerTop,
+        # aAllerHunter,
+        # aAllerHunterInd,
+        # aAllerHunterTest
 
     ]
                                                 #aAllerTop, aAllerHunter, aUnitprot2, aAllerdictorA]
@@ -250,7 +252,7 @@ if __name__ == '__main__':
                                                , 'app/alignments/unitprot/non/salmo-nonallergen.fasta'
                                                 , naAllerTop, naAllerHunter
                                             ]
-                                           , myNonAllergenDataset, maxSec=4344
+                                           , myNonAllergenDataset, maxSec=3790
                                            , shuffle=True
                                            )
     sid, s = splitFastaSeqs(myNonAllergenDataset)
@@ -267,14 +269,15 @@ if __name__ == '__main__':
                                                 # aUnitprot2022andHypers
                                                 , aAllergenonline
                                                 , aCOMPARE
-                                                , aAllerPred1,aAllerPred2,aAllerPred3,aAllerPred4,aAllerPred5
-                                                , aAllerTop
-                                                , aAllerHunter
-                                                , aAllerHunterInd
-                                                , aAllerHunterTest
+                                                # , aAllerPred1,aAllerPred2,aAllerPred3,aAllerPred4,aAllerPred5
+                                                # , aAllerTop
+                                                # , aAllerHunter
+                                                # , aAllerHunterInd
+                                                # , aAllerHunterTest
                                             ]
                                                  , myTestDataset, exclusion
                                                 , maxSec=100. #in reality, is 20.0%
+                                                , shuffle=True
     )
     sid, s = splitFastaSeqs(myTestDataset)
     print("Our Test allergens: " + str(len(s)))
@@ -288,7 +291,7 @@ if __name__ == '__main__':
                                                , 'app/alignments/unitprot/non/salmo-nonallergen.fasta'
                                                 , naAllerTop, naAllerHunter
                                                     ]
-                                                 , myNonAllergenTestDataset, exclusion, 1087)
+                                                 , myNonAllergenTestDataset, exclusion, 948)
     sid, s = splitFastaSeqs(myNonAllergenTestDataset)
     print("Our non-allergen test dataset: " + str(len(s)))
 
@@ -305,6 +308,9 @@ if __name__ == '__main__':
     from sklearn.metrics import accuracy_score
     from sklearn.metrics import recall_score
     from sklearn.metrics import f1_score
+
+
+    tuning_model_performance("dt", maxM=1, verbose=True, score={'tpr_prod_tnr':make_scorer(tpr_prod_tnr_score), 'accuracy': make_scorer(accuracy_score)}, refit='recall')
 
     tuning_model_performance("dt", maxM=1, verbose=True, score={'recall':make_scorer(recall_score),'accuracy':make_scorer(accuracy_score)}, refit='recall')
     tuning_model_performance("nb", maxM=1, verbose=True)
@@ -329,34 +335,16 @@ if __name__ == '__main__':
     print(str(counter))
     print("Accuracy: " + str((counter[1] * 100) / len(cp)))
 
-    prediction_test("rbm", {'rbm__n_iter': 20, 'rbm__n_components': 1000, 'rbm__learning_rate': 0.001
-        , "mod": "dt"
-        , "mod_par": {'criterion': 'gini', 'max_depth': 10, 'min_samples_leaf': 100}}, 1,  [True, True, True, True])
-
-
-    tuning_model("dt", verbose=True, m=1, featToExtract=[True, True, True, True])
-    tuning_model("nb")
-    tuning_model("knn")
-    tuning_model("mlp")
-    # tuning_model("knn", ['precision'])
-    # tuning_model("rbm", [None])
 
     #Pruebas de predicción de alérgenos
 
-    # print("Prueba Alérgenos kNN")
-    # cp,pt = predict(method="knn", params={'metric': 'euclidean', 'weights': 'uniform'
-    #     , 'algorithm': 'auto', 'leaf_size': 1, 'p': 1, 'n_neighbors': 3}, showAllPredictions=False, featToExtract=[True,True, True, True]
-    #     , webApp=False, plotPosAlgn=False, plotNegAlgn=False, plotTestAlgn=False, plotAIO=False, figSameColor=False)
-    # counter = Counter(cp)
-    # print(str(counter))
-    # print("Accuracy: " + str((counter['allergen']*100)/len(cp)))
 
     print("Prueba Alérgenos DT")
-    cp,pt = predict(method="dt", params={'criterion': 'gini', 'max_depth': 5, 'min_samples_leaf': 5}
+    cp,pt = predict(method="dt", params={'criterion': 'gini', 'max_depth': 5, 'min_samples_leaf': 8}
                     , m=1, featToExtract=[True, False, True]
                     , showAllPredictions=True, webApp=False
                     , printNativeClassReport=True
-                    , testAlFile="a_cdp_review.txt")#"a_cdp_review.txt")
+                    , testAlFile="a_cdp.txt")#"a_cdp_review.txt")
     counter = Counter(cp)
     print(str(counter))
     print("Accuracy: " + str((counter[1]*100)/len(cp)))
