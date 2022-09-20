@@ -26,7 +26,7 @@ def extract_all_features_and_classifications(featToExtract=[True, True], m=1
                                              , testClass=1
                                              , testNegClass=0
                                              , appFolder="/app/", alignsPath="/alignments/"
-                                             , verbose=False):
+                                             , verbose=True, deleteDuplications=False):
     '''
     Entrada:
     :param featToExtract: características para extraer. Se trata de una lista en la
@@ -73,26 +73,39 @@ def extract_all_features_and_classifications(featToExtract=[True, True], m=1
     if testAlFile != "":
         ft, ct, pit = get_features(path + testAlFile, m, testClass, featToExtract)
         # caracteristicas y clasificaciones del conjunto de prueba negativo
-        if testAlFile != "":
+        if testNegAlFile != "":
             ftn, ctn, pitn = get_features(path + testNegAlFile, m, testNegClass, featToExtract)
             ct = ct + ctn
             ft = ft + ftn
             pit = pit + pitn
+    elif testNegAlFile != "":
+        ft, ct, pit = get_features(path + testNegAlFile, m, testNegClass, featToExtract)
+
 
     f = f1 + f2  # caracteristicas del conjunto de entrenamiento
     c = c1 + c2  # clasificaciones del conjunto de entrenamiento
     pi = p1 + p2
 
-    # eliminar elementos repetidos del conjunto de entrenamiento
-    d = []
-    for i, x in enumerate(f):
-        if x in d:
-            f.pop(i)
-            c.pop(i)
-            pi.pop(i)
+    # eliminar elementos repetidos del conjunto de entrenamiento y test
+    if deleteDuplications:
+        d = []
+        for i, x in enumerate(f):
+            if x in d:
+                f.pop(i)
+                c.pop(i)
+                pi.pop(i)
 
-        else:
-            d.append(x)
+            else:
+                d.append(x)
+        d = []
+        for i, x in enumerate(ft):
+            if x in d:
+                ft.pop(i)
+                ct.pop(i)
+                pi.pop(i)
+
+            else:
+                d.append(x)
     if verbose:
         print("train " + str(len(f)) + ", test " + str(len(ft)))
     return f, c, ft, ct, pi, pit
@@ -142,6 +155,8 @@ def get_features(filename, m, classType, featToExtract=[True, True], verbose=Fal
         classif = []
         protInfos = []
 
+        print("presec", len(presec))
+
         for alignment in presec:
             descp_line = alignment.split("\n")[0]
             protInfo = parse_info_protein(descp_line)
@@ -151,6 +166,8 @@ def get_features(filename, m, classType, featToExtract=[True, True], verbose=Fal
             if len(ali) > 1:
                 ali = ali[1:]  # quitamos el resumen de los mejores alineamientos
                 aBest = []
+
+                # print("ali", len(ali))
 
                 for a in ali:
                     firstLine = a.split("\n")[0]
@@ -174,14 +191,14 @@ def get_features(filename, m, classType, featToExtract=[True, True], verbose=Fal
 
                     # if totalExtractions > 2:
                     extractions = []
-                    extIdentity = totalExtractions >= 3 and featToExtract[2]  # condición extraer identity
-                    if extIdentity:
-                        identity = float(s[1].split("% identity")[0].split(";")[1].strip())
-                    if not extIdentity or (extIdentity and identity >= 35):  # FAO/WHO guidelines (identity >= 35%)
+                    # extIdentity = totalExtractions >= 3 and featToExtract[2]  # condición extraer identity
+                    # if extIdentity:
+                    identity = float(s[1].split("% identity")[0].split(";")[1].strip())
+                    if identity >= 35:  # FAO/WHO guidelines (identity >= 35%)
+                    # if not extIdentity or (extIdentity and identity >= 35):  # FAO/WHO guidelines (identity >= 35%)
                         extractions = []
                         for i in range(len(featToExtract)):
                             extract = featToExtract[i]
-
                             if extract:
                                 if i == 0:  # Smith-Waterman Score
                                     feat = score
@@ -211,7 +228,9 @@ def get_features(filename, m, classType, featToExtract=[True, True], verbose=Fal
 
                 aBest.sort(reverse=True)  # ordenamos de mayor a menor score
                 bestMs = aBest[:m] # los mejores m alineamientos según el primer elemento
+                # print("best aligns", len(bestMs))
                 features.extend(bestMs)
+                # print("size", len(features))
                 protInfos.extend([protInfo] * len(bestMs)) #duplicamos el nombre de la proteína segun los bestMs
 
         classif = [classType] * len(features) #generamos el vector de clasificación según el número de features

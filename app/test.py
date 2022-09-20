@@ -24,6 +24,7 @@ try:
     from app.predict import tuning_model
     from app.predict import tuning_model_performance
     from app.predict import show_learning_methods_performance
+    from app.predict import tpr_score
     from app.predict import tpr_prod_tnr_score
     from app.alignment import splitFastaSeqs
     from app.alignment import how_many_seqs_from_a_are_duplicated_in_b
@@ -74,13 +75,33 @@ if __name__ == '__main__':
     myTestDataset = 'app/alignments/test_allergens_data_set.fasta'
     myNonAllergenTestDataset = 'app/alignments/test_nonallergens_data_set.fasta'
 
+    oldAllergens ='app/alignments/old/allergens_data_set.fasta'
+    oldtestAllergens ='app/alignments/old/test_allergens_data_set.fasta'
+    oldNonAllergens = 'app/alignments/old/non_allergens_data_set.fasta'
+    oldtestNonAllergens ='app/alignments/old/test_nonallergens_data_set.fasta'
+    oldAllergensAlgn = 'old/a_cdep.txt'
+    oldtestAllergensAlgn = 'old/a_cdp.txt'
+    oldNonAllergensAlg = 'old/a_cden.txt'
+    oldtestNonAllergensAlg= 'old/a_cdpn.txt'
+    sid, s = splitFastaSeqs(oldAllergens)
+    print("Antiguo conjunto total de entrenamiento de allergens: " + str(len(s)))
+    sid, s = splitFastaSeqs(oldtestAllergens)
+    print("Antiguo conjunto de test total de entrenamiento de allergens: " + str(len(s)))
+    d = how_many_seqs_from_a_are_duplicated_in_b(oldAllergens, oldtestAllergens)
+    print("duplicaciones OLD_ALLERGEN y OLD_TEST_ALLERGEN: " + str(len(d)))
+
+    d = how_many_seqs_from_a_are_duplicated_in_b(oldtestAllergens, myAllergenDataset)
+    print("duplicaciones NEW_ALLERGEN y OLD_TEST_ALLERGEN: " + str(len(d)))
+    d = how_many_seqs_from_a_are_duplicated_in_b(oldAllergens, myAllergenDataset)
+    print("duplicaciones NEW_ALLERGEN y OLD_ALLERGEN: " + str(len(d)))
+
+
     #Nuestro Data set
     sid, s = splitFastaSeqs(myAllergenDataset)
     print("Nuestro conjunto total de entrenamiento de allergens: " + str(len(s)))
     sid, s = splitFastaSeqs(myNonAllergenDataset)
     print("Nuestro conjunto total de entrenamiento de non-allergens: " + str(len(s)))
-    sid, s = splitFastaSeqs(myValidationDataset)
-    print("Conjunto total de validación de allergens: " + str(len(s)))
+
     sid, s = splitFastaSeqs(myTestDataset)
     print("Nuestro conjunto total de test de allergens: " + str(len(s)))
     sid, s = splitFastaSeqs(myNonAllergenTestDataset)
@@ -221,8 +242,10 @@ if __name__ == '__main__':
 
     # combina diferentes datasets de alérgenos sin duplicaciones
     # our allergen dataset
+    # exclusion=splitFastaSeqs(oldtestAllergens)[1]
     create_fasta_file_without_duplications([
                                             aUnitprot2022,
+        # oldtestAllergens,
         # aUnitprot2022andHypers,
         aAllergenonline
         ,aCOMPARE,
@@ -231,74 +254,100 @@ if __name__ == '__main__':
         # aAllerHunter,
         # aAllerHunterInd,
         # aAllerHunterTest
-
     ]
                                                 #aAllerTop, aAllerHunter, aUnitprot2, aAllerdictorA]
                                                  , myAllergenDataset
                                                     #exclude the following:
+                                                    # , exclusion
                                                  #, splitFastaSeqs('app/alignments/allergens_allertop_1000.fasta')[1]
-                                                , maxSec=80.0
+                                                , maxSec=100.0
                                                 # , maxSec=20000
                                                 , shuffle=True
                                                  )
-    sid, s = splitFastaSeqs(myAllergenDataset)
-    print("Our allergen train dataset: " + str(len(s)))
+    sid, n_all = splitFastaSeqs(myAllergenDataset)
+    print("Our allergen train dataset: " + str(len(n_all)))
+
+    d = how_many_seqs_from_a_are_duplicated_in_b(myAllergenDataset, oldtestAllergens)
+    print("duplicaciones NEW_ALLERGEN y OLD_TEST_ALLERGEN: " + str(len(d)))
 
 
     # dataset non allergens
+    exclusion=splitFastaSeqs(myAllergenDataset)[1]
     create_fasta_file_without_duplications(['app/alignments/unitprot/non/plant_nonallergen.fasta'
                                                , 'app/alignments/unitprot/non/cowmilk_nonallergen.fasta'
                                                , 'app/alignments/unitprot/non/eggs_nonallergen.fasta'
                                                , 'app/alignments/unitprot/non/salmo-nonallergen.fasta'
                                                 , naAllerTop, naAllerHunter
+                                               # ,oldNonAllergens
                                             ]
-                                           , myNonAllergenDataset, maxSec=3790
+                                           , myNonAllergenDataset
+                                           , exclusion
+                                           , maxSec=80. #len(n_all)
                                            , shuffle=True
                                            )
-    sid, s = splitFastaSeqs(myNonAllergenDataset)
-    print("Our non-allergen train dataset: " + str(len(s)))
+    sid, n_non_all = splitFastaSeqs(myNonAllergenDataset)
+    print("Our non-allergen train dataset: " + str(len(n_non_all)))
+    d = how_many_seqs_from_a_are_duplicated_in_b(myNonAllergenDataset, oldNonAllergens)
+    print("duplicaciones NEW_NON-ALLERGEN y OLD_NON-ALLERGEN: " + str(len(d)))
 
-
+    d = how_many_seqs_from_a_are_duplicated_in_b(myAllergenDataset, myNonAllergenDataset)
+    print("duplicaciones ALLERGEN y NON-ALLERGEN: " + str(len(d)))
 
     # create allergen dataset for testing from different sources
     exclusion=splitFastaSeqs(myAllergenDataset)[1]
-    # exclusion.extend(splitFastaSeqs(myValidationDataset)[1])
+    exclusion.extend(splitFastaSeqs(myNonAllergenDataset)[1])
     # exclusion.extend(splitFastaSeqs(myTestDataset)[1])
     create_fasta_file_without_duplications([
-                                            aUnitprot2022
-                                                # aUnitprot2022andHypers
-                                                , aAllergenonline
-                                                , aCOMPARE
-                                                # , aAllerPred1,aAllerPred2,aAllerPred3,aAllerPred4,aAllerPred5
-                                                # , aAllerTop
-                                                # , aAllerHunter
-                                                # , aAllerHunterInd
-                                                # , aAllerHunterTest
-                                            ]
-                                                 , myTestDataset, exclusion
-                                                , maxSec=100. #in reality, is 20.0%
-                                                , shuffle=True
+        # aUnitprot2022,
+        # oldtestAllergens,
+        # oldAllergens,
+        # aUnitprot2022andHypers,
+        # aAllergenonline
+        # , aCOMPARE,
+        aAllerPred1, aAllerPred2, aAllerPred3, aAllerPred4, aAllerPred5,
+        aAllerTop,
+        aAllerHunter,
+        aAllerHunterInd,
+        aAllerHunterTest
+        ]
+             , myTestDataset, exclusion
+            , maxSec=100. #in reality, is 20.0%
+            , shuffle=False
     )
-    sid, s = splitFastaSeqs(myTestDataset)
-    print("Our Test allergens: " + str(len(s)))
-
+    sid, n_test_all = splitFastaSeqs(myTestDataset)
+    print("Our Test allergens: " + str(len(n_test_all)))
+    d = how_many_seqs_from_a_are_duplicated_in_b(myAllergenDataset, myTestDataset)
+    print("duplicaciones TEST_ALLERGEN y TRAIN_ALLERGEN: " + str(len(d)))
+    d = how_many_seqs_from_a_are_duplicated_in_b(myNonAllergenDataset, myTestDataset)
+    print("duplicaciones TEST_ALLERGEN y TRAIN_NON-ALLERGEN: " + str(len(d)))
 
     # creacion del conjunto de test de no alérgenos
     exclusion=splitFastaSeqs(myNonAllergenDataset)[1]
-    create_fasta_file_without_duplications(['app/alignments/unitprot/non/plant_nonallergen.fasta'
-                                               , 'app/alignments/unitprot/non/cowmilk_nonallergen.fasta'
-                                               , 'app/alignments/unitprot/non/eggs_nonallergen.fasta'
-                                               , 'app/alignments/unitprot/non/salmo-nonallergen.fasta'
-                                                , naAllerTop, naAllerHunter
-                                                    ]
-                                                 , myNonAllergenTestDataset, exclusion, 948)
-    sid, s = splitFastaSeqs(myNonAllergenTestDataset)
-    print("Our non-allergen test dataset: " + str(len(s)))
+    exclusion.extend(splitFastaSeqs(myAllergenDataset)[1])
+    exclusion.extend(splitFastaSeqs(myTestDataset)[1])
 
+    create_fasta_file_without_duplications([
+        'app/alignments/unitprot/non/plant_nonallergen.fasta'
+       , 'app/alignments/unitprot/non/cowmilk_nonallergen.fasta'
+       , 'app/alignments/unitprot/non/eggs_nonallergen.fasta'
+       , 'app/alignments/unitprot/non/salmo-nonallergen.fasta'
+        , naAllerTop, naAllerHunter,
+        # oldtestNonAllergens
+        # ,oldNonAllergens
+            ]
+                                                 , myNonAllergenTestDataset, exclusion, len(n_test_all))
+    sid, n_test_non_all = splitFastaSeqs(myNonAllergenTestDataset)
+    print("Our non-allergen test dataset: " + str(len(n_test_non_all)))
+    d = how_many_seqs_from_a_are_duplicated_in_b(myAllergenDataset, myNonAllergenTestDataset)
+    print("duplicaciones TEST_NON_ALLERGEN y TRAIN_ALLERGEN: " + str(len(d)))
+    d = how_many_seqs_from_a_are_duplicated_in_b(myNonAllergenTestDataset, myTestDataset)
+    print("duplicaciones TEST_NON_ALLERGEN y TEST-ALLERGEN: " + str(len(d)))
+    d = how_many_seqs_from_a_are_duplicated_in_b(myNonAllergenTestDataset, myNonAllergenDataset)
+    print("duplicaciones TEST_NON_ALLERGEN y TRAIN_NON-ALLERGEN: " + str(len(d)))
 
-    #possible crash. It is better to execute the command directly from cmd in the folder alignments/
-    # create_alignments_files(aligPos=True, aligNeg=True, aligTest=True, testSecFile='test_allergens_data_set.fasta', verbose=True)
-    # create_alignments_files(posSecFile="allergens_data_set.fasta", negSecFile="nonallergens_data_set.fasta")
+   # possible crash. It is better to execute the command directly from cmd in the folder alignments/
+   #  create_alignments_files(aligPos=True, aligNeg=True, aligTest=True, testSecFile='test_allergens_data_set.fasta', verbose=True)
+   #  create_alignments_files(posSecFile="allergens_data_set.fasta", negSecFile="nonallergens_data_set.fasta")
 
 
     ##----------------------------------------------------------------------------------------
@@ -309,6 +358,26 @@ if __name__ == '__main__':
     from sklearn.metrics import recall_score
     from sklearn.metrics import f1_score
 
+    tuning_model_performance("dt", maxM=1, kFolds=3, verbose=True, score={'tpr_prod_tnr':make_scorer(tpr_prod_tnr_score), 'accuracy': make_scorer(accuracy_score)}, refit="tpr_prod_tnr") #, posAlFile=oldAllergensAlgn, negAlFile=oldNonAllergensAlg, testPosAlFile=oldtestAllergensAlgn, testNegAlFile=oldtestNonAllergensAlg)
+
+    tuning_model_performance("rbm", maxM=1, kFolds=3, verbose=True, score={'tpr_prod_tnr':make_scorer(tpr_prod_tnr_score), 'accuracy': make_scorer(accuracy_score)}, refit="tpr_prod_tnr") #, posAlFile=oldAllergensAlgn, negAlFile=oldNonAllergensAlg, testPosAlFile=oldtestAllergensAlgn, testNegAlFile=oldtestNonAllergensAlg)
+
+    cp, pt,ac,se,sp,ppv,f1Score,mcc,tpr,tnr,tpr_prod_tnr = predict(method="rbm",
+    params={'rbm__learning_rate': 0.1, 'rbm__n_components': 50, 'rbm__n_iter': 20
+        , "mod": "dt"
+        , "mod_par": {'criterion': 'entropy', 'max_depth': 10, 'min_samples_leaf': 50}}, m=1
+            , printNativeClassReport=True
+           , showAllPredictions=False, featToExtract=[True, True, True, True, False, True], webApp=False
+            , testAlFile="a_cdp_review.txt" #"a_cdp.txt"
+            , testNegAlFile=""#"a_cdpn.txt"
+           , plotPosAlgn=False, plotNegAlgn=False, plotAIO=False)
+
+    prediction_test("rbm", {'rbm__n_iter': 20, 'rbm__n_components': 1000, 'rbm__learning_rate': 0.001
+            , "mod": "dt"
+            , "mod_par": {'criterion': 'entropy', 'max_depth': 10, 'min_samples_leaf': 15}}, 1, [True, False, False, False, True])
+
+
+    tuning_model_performance("dt", maxM=1, verbose=True, score={'tpr':make_scorer(tpr_score), 'accuracy': make_scorer(accuracy_score)}, refit='tpr', posAlFile=oldAllergensAlgn, negAlFile=oldNonAllergensAlg, testPosAlFile=oldtestAllergensAlgn, testNegAlFile=oldtestNonAllergensAlg)
 
     tuning_model_performance("dt", maxM=1, verbose=True, score={'tpr_prod_tnr':make_scorer(tpr_prod_tnr_score), 'accuracy': make_scorer(accuracy_score)}, refit='recall')
 
@@ -316,14 +385,14 @@ if __name__ == '__main__':
     tuning_model_performance("nb", maxM=1, verbose=True)
     tuning_model_performance("knn", maxM=1, verbose=True)
     tuning_model_performance("mlp", maxM=1, verbose=True)
-    tuning_model_performance("rbm", maxM=1, reduction=100,  verbose=True, score={'recall':make_scorer(recall_score),'accuracy':make_scorer(accuracy_score)}, refit='recall')
+    tuning_model_performance("rbm", maxM=1, reduction=500,  verbose=True, score={'tpr':make_scorer(tpr_score), 'accuracy': make_scorer(accuracy_score)}, refit='recall')
 
     cp, pt = predict(method="rbm", params={
         'rbm__n_iter': 20, 'rbm__n_components': 50, 'rbm__learning_rate': 0.1
         , "mod": "dt"
         , "mod_par": {'criterion': 'gini', 'max_depth': 5, 'min_samples_leaf': 50}}
                      , m=1
-                     , showAllPredictions=True, featToExtract=[True], webApp=False
+                     , showAllPredictions=False, featToExtract=[True], webApp=False
                      , testAlFile="a_cdp.txt" #"a_cdp_review.txt"
                      , printNativeClassReport= True
                      , plotPosAlgn=False
@@ -337,14 +406,27 @@ if __name__ == '__main__':
 
 
     #Pruebas de predicción de alérgenos
+    print("Prueba Alérgenos DT")
+    cp,pt,ac,se,sp,ppv,f1Score,mcc,tpr,tnr,tpr_prod_tnr = predict(method="dt"
+          , params={'criterion': 'entropy', 'max_depth': 30, 'min_samples_leaf': 10}
+                    , m=1, featToExtract=[False, False, False, False, False, False, True, True]
+                    # , showAllPredictions=True
+                    , webApp=False
+                    , printNativeClassReport=True
+                    , testNegAlFile="a_cdpn.txt"#oldtestNonAllergensAlg
+                    , testAlFile="a_cdp.txt")#"a_cdp_review.txt") #oldtestAllergensAlgn)#"a_cdp_review.txt")
 
 
     print("Prueba Alérgenos DT")
-    cp,pt = predict(method="dt", params={'criterion': 'gini', 'max_depth': 5, 'min_samples_leaf': 8}
-                    , m=1, featToExtract=[True, False, True]
-                    , showAllPredictions=True, webApp=False
+    cp,pt,ac,se,sp,ppv,f1Score,mcc,tpr,tnr,tpr_prod_tnr = predict(method="dt"
+          , params={'criterion': 'entropy', 'max_depth': 30, 'min_samples_leaf': 10}
+                    , m=1, featToExtract=[False, False, False, False, False, False, True, True]
+                    # , showAllPredictions=True
+                    , webApp=False
                     , printNativeClassReport=True
-                    , testAlFile="a_cdp.txt")#"a_cdp_review.txt")
+                    , testNegAlFile="a_cdp_review.txt"#oldtestNonAllergensAlg
+                    , testAlFile="")#"a_cdp_review.txt") #oldtestAllergensAlgn)#"a_cdp_review.txt")
+
     counter = Counter(cp)
     print(str(counter))
     print("Accuracy: " + str((counter[1]*100)/len(cp)))

@@ -48,6 +48,10 @@ from mpl_toolkits.mplot3d import Axes3D
 from matplotlib import cm
 from sklearn_evaluation import plot
 import pandas as pd
+from sklearn.metrics import make_scorer
+from sklearn.metrics import accuracy_score
+from sklearn.metrics import recall_score
+from sklearn.metrics import f1_score
 
 try:
     from .alignment import create_alignments_files
@@ -59,13 +63,14 @@ except SystemError:
     from preprocessing import features_for_extracting_to_string
 
 def tuning_model(method, score={'recall':'recall', 'accuracy':'accuracy'}, featToExtract=[True, True], m=1, kfolds=10, posAlFile="a_cdep.txt"
-                 , negAlFile="a_cden.txt", reduction=0, verbose=False, refit='accuracy'):
+                 , negAlFile="a_cden.txt", reduction=0, verbose=False, refit='accuracy', testPosAlFile="a_cdp.txt", testNegAlFile="a_cdpn.txt"):
     if verbose:
         print("CV score", score)
         print("Extrayendo features..")
-    f, c, ft, ct, p, pt = extract_all_features_and_classifications(featToExtract, m, posAlFile, negAlFile, "a_cdp.txt", "a_cdpn.txt")
+    f, c, ft, ct, p, pt = extract_all_features_and_classifications(featToExtract, m, posAlFile, negAlFile, testPosAlFile, testNegAlFile)
 
     if reduction > 0:
+        print("Reducing data train and test")
         #misma proporción de alérgenos que de no alérgenos al reducir los conjuntos
         lastClass=0
         lastTestClass = 0
@@ -85,6 +90,11 @@ def tuning_model(method, score={'recall':'recall', 'accuracy':'accuracy'}, featT
                     break
         f, ft, c, ct = fa, fta, ca, cta
     X_train, X_test, y_train, y_test = f, ft, c, ct
+    print("train shape", np.array(X_train).shape)
+    print("test shape", np.array(X_test).shape)
+    print("train proportion", Counter(np.array(y_train)))
+    print("test proportion", Counter(np.array(y_test)))
+
 
     # # dividimos el dataset en dos partes iguales
     # if testAlFile == "":
@@ -112,9 +122,9 @@ def tuning_model(method, score={'recall':'recall', 'accuracy':'accuracy'}, featT
                                 , "activation": ['identity', 'logistic', 'tanh', 'relu']}]
     elif method=="rbm":
         tuned_parameters = [{"rbm__learning_rate": [0.1, 0.01, 0.001],"rbm__n_iter": [20, 40, 80, 100]
-                                ,"rbm__n_components": [50, 100, 200, 300, 500, 1000]
-                                , "dt__min_samples_leaf": [1, 2, 3, 5, 8, 10, 15, 30, 50, 100]
-                                , "dt__criterion":['gini', 'entropy'], "dt__max_depth":[5, 10, 30, 50]
+                                ,"rbm__n_components": [50, 100, 250, 500, 1000]
+                                # , "dt__min_samples_leaf": [1, 2, 3, 5, 8, 10, 15, 30, 50, 100]
+                                # , "dt__criterion":['gini', 'entropy'], "dt__max_depth":[5, 10, 30, 50]
                              }]
             # , "logistic__C": [1.0, 10.0, 100.0, 500.0, 1000.0]}]
     elif method=="km":
@@ -123,11 +133,12 @@ def tuning_model(method, score={'recall':'recall', 'accuracy':'accuracy'}, featT
 
     model = create_prediction_model(method)
     if score != None:
-        clf = GridSearchCV(model, tuned_parameters, n_jobs=2, scoring=score, refit=refit,
+        clf = GridSearchCV(model, tuned_parameters, n_jobs=4, scoring=score, refit=refit,
                            cv=StratifiedShuffleSplit(n_splits=kfolds,test_size=None, random_state=0)) #scoring='%s_macro' % score)
     else:
-        clf = GridSearchCV(model, tuned_parameters, n_jobs=2, cv=StratifiedShuffleSplit(n_splits=kfolds,test_size=None, random_state=0))
+        clf = GridSearchCV(model, tuned_parameters, n_jobs=4, cv=StratifiedShuffleSplit(n_splits=kfolds,test_size=None, random_state=0))
 
+    print("GridSearchCV...")
     if method != "km":
         clf.fit(X_train, y_train)
     else:
@@ -143,14 +154,14 @@ def tuning_model(method, score={'recall':'recall', 'accuracy':'accuracy'}, featT
         # print("scores cv:", clf.cv_results_)
 
         df_scores = [pd.DataFrame(clf.cv_results_["params"])]
-        for sc in score:
-            means = clf.cv_results_['mean_test_'+sc]
-            stds = clf.cv_results_['std_test_'+sc]
-            for mean, std, params in zip(means, stds, clf.cv_results_['params']):
-                print("%0.3f (+/-%0.03f) for %r" % (mean, std * 2, params))
-            print()
-            df_scores.append(pd.DataFrame(clf.cv_results_["mean_test_" + sc], columns=[score[sc]]))
-
+        if score != None:
+            for sc in score:
+                means = clf.cv_results_['mean_test_'+sc]
+                stds = clf.cv_results_['std_test_'+sc]
+                for mean, std, params in zip(means, stds, clf.cv_results_['params']):
+                    print("%0.3f (+/-%0.03f) for %r" % (mean, std * 2, params))
+                print()
+                df_scores.append(pd.DataFrame(clf.cv_results_["mean_test_" + sc], columns=[score[sc]]))
         df_scores = pd.concat(df_scores, axis=1)
         print(df_scores)
 
@@ -165,20 +176,20 @@ def tuning_model(method, score={'recall':'recall', 'accuracy':'accuracy'}, featT
         print()
         y_true, y_pred = y_test, clf.predict(X_test)
         sc_test = clf.score(X_test, y_test)
-        best_model = create_prediction_model(method, clf.best_params_)
-        if method != "km":
-            best_model.fit(X_train, y_train)
-        else:
-            best_model.fit(X_train)
+        # best_model = create_prediction_model(method, clf.best_params_)
+        # if method != "km":
+        #     best_model.fit(X_train, y_train)
+        # else:
+        #     best_model.fit(X_train)
         # y_true, y_pred = y_test, best_model.predict(X_test)
-        print("Testing GridSerch with test dataset. Score: ", sc_test)
+        print("Testing GridSearch with test dataset. Score: ", sc_test)
         print(classification_report(y_true, y_pred))
         print()
-        print(clf.best_params_)
+        # print(clf.best_params_)
     # if "accuracy" in score.keys():
     #     plot.grid_search(clf.cv_results_, change=clf.best_params_[list(clf.best_params_.keys())[0]], kind='bar')
 
-    return clf.best_params_, f, c, ft, ct, p, pt,clf.cv_results_
+    return clf.best_params_, f, c, ft, ct, p, pt, clf.cv_results_
 
 
 
@@ -268,7 +279,7 @@ def create_prediction_model(method, params={}):
         ni=20
         nc=100
         mod="dt"
-        modpar={'criterion': 'entropy', 'max_depth': 10, 'min_samples_leaf': 5}
+        modpar={'criterion': 'entropy', 'max_depth': 10, 'min_samples_leaf': 50}
         param = params.get("model")
         if param != None:
             mod=param
@@ -361,7 +372,6 @@ def perform_prediction(method, features, classifications, test_data
     mcc=0
     measures=[] #medidas parciales
 
-
     if method == "rbm":
         features = np.asarray(features, 'float32')
         features = scale(features)  # 0-1 scaling
@@ -372,6 +382,7 @@ def perform_prediction(method, features, classifications, test_data
 
     #validacion cruzada
     if kFolds > 1:
+        print(f"Training performance over CV Folds:{kFolds}...")
         skf = StratifiedKFold(n_splits=kFolds, shuffle=True)
         #i=0
         if method != "rbm":
@@ -380,6 +391,7 @@ def perform_prediction(method, features, classifications, test_data
         for train_index, test_index in skf.split(features, classifications):
             featsTrain, featsTest = features[train_index], features[test_index]
             classTrain, classTest = classifications[train_index], classifications[test_index]
+            print("Proportion", "train", Counter(classTrain), "test", Counter(classTest))
 
             # construcción del modelo de predicción
             model = create_prediction_model(method, params)
@@ -404,6 +416,20 @@ def perform_prediction(method, features, classifications, test_data
                 print(classification_report(classTest, class_predicted, target_names=[0, 1]))
                 print(confusion_matrix(classTest, class_predicted))
 
+            #also evaluating with our independent test set
+            print("independent test set shape", np.array(test_data).shape)
+            print("Proportion", "independent test", Counter(tests_classif))
+            if method != "rbm":
+                test_data = np.array(test_data)
+            tests_classif = np.array(tests_classif)
+            class_predicted = model.predict(test_data)
+            act, set, spt, ppvt, f1Scoret, mcct, tprt, tnrt, tpr_prod_tnrt = classification_performance(
+                tests_classif, class_predicted)
+            print("also evaluating with our independent test set")
+            print(classification_report(tests_classif, class_predicted))
+            print("ac_test:", act, "sen_test", set, "spec_test", spt, "tpr*tnr_test", tpr_prod_tnrt)
+
+
         accuracy=sum(a for a,s,sp,ppv,fs,mcc,tpr,tnr,tpr_prod_tnr in measures)/len(measures)
         sensitivity=sum(s for a,s,sp,ppv,fs,mcc,tpr,tnr,tpr_prod_tnr in measures)/len(measures)
         specifity=sum(sp for a,s,sp,ppv,fs,mcc,tpr,tnr,tpr_prod_tnr in measures)/len(measures)
@@ -414,6 +440,12 @@ def perform_prediction(method, features, classifications, test_data
         tnr = sum(tnr for a, s, sp, ppv, fs, mcc, tpr, tnr, tpr_prod_tnr in measures) / len(measures)
         tpr_prod_tnr = sum(tpr_prod_tnr for a, s, sp, ppv, fs, mcc, tpr, tnr, tpr_prod_tnr in measures) / len(measures)
 
+        print("CV Performance ::: \n Accuracy = " + str("%.2f" % accuracy) + "%, Sensitivity = " + str("%.2f" % sensitivity) + "%"
+              + ", Specification = " + str("%.2f" % specifity) + "%" + ", ppv = " + str("%.2f" % ppv) + "%"
+              + ", F1 = " + str("%.2f" % f1Score) + "%" + ", MCC = " + str("%.2f" % mcc) + "%"
+              + ", TPR = " + str("%.2f" % tpr) + "%" + ", TNR = " + str("%.2f" % tnr) + "%"
+              + ", TPR*TNR = " + str("%.2f" % tpr_prod_tnr) + "%")
+        print(str("_" * 10) + "\n")
     #validacion leave-one-out
     elif kFolds == 1:
         features=np.array(features)
@@ -452,6 +484,10 @@ def perform_prediction(method, features, classifications, test_data
 
     #sin validación cruzada, test completo del conjunto de prueba dado
     elif kFolds == 0 and len(test_data) > 0:
+        if method != "rbm":
+            features = np.array(features)
+            test_data = np.array(test_data)
+
         featsTrain=features
         classTrain=classifications
         featsTest=test_data
@@ -464,6 +500,9 @@ def perform_prediction(method, features, classifications, test_data
 
         accuracy, sensitivity, specifity, ppv, f1Score, mcc, tpr, tnr, tpr_prod_tnr = classification_performance(
             tests_classif, class_predicted)
+
+        if printNativeClassReport and method != "km":
+            print(classification_report(tests_classif, class_predicted))
 
         if plotModel and method=='dt':
             plot_decision_tree(model)
@@ -745,7 +784,7 @@ def predict(X_train=[], y_train=[], protInfo_train=[], X_test=[], y_test=[], pro
             , negAlFile="a_cden.txt"
             , testSecFile="created_test.fasta"
             , testAlFile="a_cdp.txt"
-            , testNegAlFile="a_cdp.txt"
+            , testNegAlFile="a_cdpn.txt"
             , testClass=1
             , testNegClass=0
             , featToExtract=[True]
@@ -822,8 +861,10 @@ def predict(X_train=[], y_train=[], protInfo_train=[], X_test=[], y_test=[], pro
             , aligNeg=False, aligTest=True, testSecFile=testSecFile)
 
     if X_train==[] and y_train==[] and protInfo_train==[] and X_test==[] and y_test==[] and protInfo_test==[]:
+        print("Extracting features......")
         f,c,ft,ct,p,pt = extract_all_features_and_classifications(featToExtract, m,posAlFile, negAlFile, testAlFile, testNegAlFile, testClass, testNegClass)
     else:
+        print("Features indicated....")
         f, c, ft, ct, p, pt = X_train, y_train, X_test, y_test, protInfo_train, protInfo_test
 
     #realizar la predicción
@@ -880,11 +921,12 @@ def predict(X_train=[], y_train=[], protInfo_train=[], X_test=[], y_test=[], pro
     sorted_cp = list(map(cp.__getitem__, cp_indexes))
     sorted_pt = list(map(pt.__getitem__, cp_indexes))
 
-    return sorted_cp, sorted_pt
+    return sorted_cp, sorted_pt, ac,se,sp,ppv,f1Score,mcc,tpr,tnr,tpr_prod_tnr
 
 def show_learning_methods_performance(featToExtract=[True, True], method="knn"
     , params={"k":3}, kFolds=5, m=1
-    , posAlFile="a_cdep.txt", negAlFile="a_cden.txt", printNativeClassReport = False):
+    , posAlFile="a_cdep.txt", negAlFile="a_cden.txt", posTestAlFile="a_cdp.txt", negTestAlFile="a_cdpn.txt", printNativeClassReport = False,
+                                      forceToExtractFeatures=False, f=[],c=[],ft=[],ct=[]):
     '''
     Entrada:
     :param printNativeClassReport: True para imprimir el informe de la clasificacion que
@@ -896,12 +938,12 @@ def show_learning_methods_performance(featToExtract=[True, True], method="knn"
     '''
 
     print("Valorando Método "+str(method))
-    print("Extrayendo features...")
-    f,c,ft,ct,_,_ = extract_all_features_and_classifications(featToExtract, m, posAlFile, negAlFile)
+    if forceToExtractFeatures:
+        print("Extrayendo features...")
+        f,c,ft,ct,_,_ = extract_all_features_and_classifications(featToExtract, m, posAlFile, negAlFile, posTestAlFile, negTestAlFile)
 
     #realizar la predicción
-    # print("Training performance of CV...")
-    _,_,_,_,_,ac,se,sp,ppv,f1Score,mcc,tpr,tnr,tpr_prod_tnr=perform_prediction(method, f, c, [], [], kFolds, params, printNativeClassReport)
+    _,_,_,_,_,ac,se,sp,ppv,f1Score,mcc,tpr,tnr,tpr_prod_tnr=perform_prediction(method, f, c, ft, ct, kFolds, params, printNativeClassReport)
     print("\nValoración del Método "+str(method))
     print("Con m="+str(m)+" mejores alineamientos, kFolds="+str(kFolds))
     print("Características extraídas: "+features_for_extracting_to_string(featToExtract))
@@ -909,22 +951,18 @@ def show_learning_methods_performance(featToExtract=[True, True], method="knn"
     if method=="knn":
         k=params.get("k")
         print("Y con k="+str(k)+"\n")
-    print("CV Performance ::: \n Accuracy = "+str("%.2f" % ac)+"%, Sensitivity = "+str("%.2f" % se)+"%"
-        +", Specification = "+str("%.2f" % sp)+"%"+", ppv = "+str("%.2f" % ppv)+"%"
-        +", F1 = "+str("%.2f" % f1Score)+"%"+", MCC = "+str("%.2f" % mcc)+"%"
-        + ", TPR = "+str("%.2f" % tpr)+"%" + ", TNR = "+str("%.2f" % tnr)+"%"
-        + ", TPR*TNR = "+str("%.2f" % tpr_prod_tnr)+"%")
-    print(str("_"*10)+"\n")
 
-    _,_,_,_,_,ac,se,sp,ppv,f1Score,mcc,tpr,tnr,tpr_prod_tnr=perform_prediction(method, f, c, ft, ct, 0, params, printNativeClassReport)
-    print("OurTest Performance ::: \n Accuracy = " + str("%.2f" % ac) + "%, Sensitivity = " + str("%.2f" % se) + "%"
-          + ", Specification = " + str("%.2f" % sp) + "%" + ", ppv = " + str("%.2f" % ppv) + "%"
-          + ", F1 = " + str("%.2f" % f1Score) + "%" + ", MCC = " + str("%.2f" % mcc) + "%"
-          + ", TPR = " + str("%.2f" % tpr) + "%" + ", TNR = " + str("%.2f" % tnr) + "%"
-          + ", TPR*TNR = " + str("%.2f" % tpr_prod_tnr) + "%")
+
+    print("Training performance over Test data...")
+    _,_,_,_,_,act,set,spt,ppvt,f1Scoret,mcct,tprt,tnrt,tpr_prod_tnrt=perform_prediction(method, f, c, ft, ct, 0, params, printNativeClassReport)
+    print("OurTest Performance ::: \n Accuracy = " + str("%.2f" % act) + "%, Sensitivity = " + str("%.2f" % set) + "%"
+          + ", Specification = " + str("%.2f" % spt) + "%" + ", ppv = " + str("%.2f" % ppvt) + "%"
+          + ", F1 = " + str("%.2f" % f1Scoret) + "%" + ", MCC = " + str("%.2f" % mcct) + "%"
+          + ", TPR = " + str("%.2f" % tprt) + "%" + ", TNR = " + str("%.2f" % tnrt) + "%"
+          + ", TPR*TNR = " + str("%.2f" % tpr_prod_tnrt) + "%")
     print(str("_" * 10) + "\n")
 
-    return ac, se, sp, ppv, f1Score, mcc
+    return ac, se, sp, ppv, f1Score, mcc,tpr,tnr,tpr_prod_tnr,act,set,spt,ppvt,f1Scoret,mcct,tprt,tnrt,tpr_prod_tnrt
 
 
 def show_all_learning_methods_performance(methods=[("mlp",{}), ("log", {}), ("rf", {}), ("knn", {"k":3})
@@ -971,41 +1009,33 @@ def plot_decision_tree(model, filename='dt_plot'):
     graph = pydotplus.graph_from_dot_data(str_buffer.getvalue())
     graph.write_png(path+".png")
 
-def prediction_test(method, params, m=1, feats=[True, True]):
+def prediction_test(method, params, m=1, feats=[True, True], kFold=10, posAlFile="a_cdep.txt", negAlFile="a_cden.txt", posTestAlFile="a_cdp.txt", negTestAlFile="a_cdpn.txt", printNativeClassReport = True, f=[], c=[], ft=[], ct=[]):
     print("Test con " + method + ", m=" + str(m) + " y feats=" + str(features_for_extracting_to_string(feats)))
 
     # print("With CV (k-fold=10) + Stratification")
-    ac, se, sp, ppv, f1Score, mcc = show_learning_methods_performance(feats, method=method, params=params, kFolds=10,
-                                                                      printNativeClassReport=True, m=m)
+    ac, se, sp, ppv, f1Score, mcc, tpr, tnr, tpr_prod_tnr, act, set, spt, ppvt, f1Scoret, mcct, tprt, tnrt, tpr_prod_tnrt \
+        = show_learning_methods_performance(feats,method, params, kFold, m, posAlFile, negAlFile, posTestAlFile,
+                                            negTestAlFile, printNativeClassReport, f=f, c=c, ft=ft, ct=ct)
     # print("With CV (k-fold=10) + Stratification >> Accuracy = "+ str("%.2f" % ac) + "%, Sensitivity = " + str("%.2f" % se)
     #       + "%" + ", Specification = " + str("%.2f" % sp) + "%"+ ", F1-Score = " + str("%.2f" % f1Score) + "%")
 
-
-    # test de alérgenos
-    cp, pt = predict(method=method, params=params, m=m, featToExtract=feats, webApp=False, testAlFile="a_cdp.txt", testClass=1)
-    counter = Counter(cp)
-    print("allergen test", str(counter))
-    correct_allergens = counter[1]
-    set = (correct_allergens * 100) / len(cp)
-    total_test_allergens = len(cp)
-
-    # test de no alérgenos
-    cp, pt = predict(method=method, params=params, m=m, featToExtract=feats, webApp=False, testAlFile="a_cdpn.txt", testClass=0)
-    counter = Counter(cp)
-    print("non-allergen test", str(counter))
-    total_test_nonallergens = len(cp)
-    correct_nonallergens = counter[0]
-
-    spt = (correct_nonallergens * 100) / len(cp)
-    act = ((correct_allergens+correct_nonallergens)/(total_test_allergens+total_test_nonallergens))* 100#(set + spt) / 2
-
-    print("With our test data set >> Accuracy = " + str("%.2f" % act) + "%, Sensitivity = " + str("%.2f" % set)
-          + "%" + ", Specification = " + str("%.2f" % spt) + "%")
+    # #testing with our test data
+    # f, c, ft, ct, p, pt = extract_all_features_and_classifications(feats, m, posAlFile, negAlFile, posTestAlFile,
+    #                                                                negTestAlFile, testClass=1, testNegClass=0)
+    # # test de alérgenos
+    # cp, pt, act,set,spt,ppvt,f1Scoret,mcct,tprt,tnrt,tpr_prod_tnrt = predict(f,c,p, ft, ct, pt, posAlFile, negAlFile,
+    #                  testAlFile=posTestAlFile,testNegAlFile=negTestAlFile, method=method, params=params, m=m, kFolds=0, featToExtract=feats, webApp=False)
 
 
-    return act, set, spt, ac, se, sp, ppv, f1Score, mcc
+    # print("With our test data set >> Accuracy = " + str("%.2f" % act) + "%, Sensitivity = " + str("%.2f" % set)
+    #       + "%" + ", Specification = " + str("%.2f" % spt) + "%")
 
-def tuning_model_performance(method, combs=[],score={'recall':'recall', 'accuracy':'accuracy'}, minM=1, maxM=5, reduction=0, verbose=False, refit='recall', kFolds=10):
+
+    return ac, se, sp, ppv, f1Score, mcc, tpr, tnr, tpr_prod_tnr, act, set, spt, ppvt, f1Scoret, mcct, tprt, tnrt, tpr_prod_tnrt
+
+def tuning_model_performance(method, combs=[],score={'recall':make_scorer(recall_score),'accuracy':make_scorer(accuracy_score)}, minM=1, maxM=5,
+                             reduction=0, verbose=False, refit='recall', kFolds=10, posAlFile="a_cdep.txt", negAlFile="a_cden.txt",
+                             testPosAlFile="a_cdp.txt", testNegAlFile="a_cdpn.txt", printNativeClassReport=True):
     featCombs = [
         [True],
         [False, True],
@@ -1018,36 +1048,37 @@ def tuning_model_performance(method, combs=[],score={'recall':'recall', 'accurac
         [True, False, False, True],
         [True, True, False, True],
         [True, True, True, True],
-        # [False, False, False, False, True],
-        # [False, False, False, True, True],
-        # [True, False, False, False, True],
-        # [True, True, False, False, True],
-        # [True, True, True, False, True],
-        # [True, True, True, True, True],
-        # [False, False, False, False, False, True],
-        # [False, False, False, False, True, True],
-        # [True, False, False, False, False, True],
-        # [True, True, False, False, False, True],
-        # [True, True, True, False, False, True],
-        # [True, True, True, True, False, True],
-        # [True, True, True, True, True, True],
-        # [False, False, False, False, False, False, True],
-        # [False, False, False, False, False, True, True],
-        # [True, False, False, False, False, False, True],
-        # [True, True, False, False, False, False, True],
-        # [True, True, True, False, False, False, True],
-        # [True, True, True, True, False, False, True],
-        # [True, True, True, True, True, False, True],
-        # [True, True, True, True, True, True, True],
-        # [False, False, False, False, False, False, False, True],
-        # [False, False, False, False, False, False, True, True],
-        # [True, False, False, False, False, False, False, True],
-        # [True, True, False, False, False, False, False, True],
-        # [True, True, True, False, False, False, False, True],
-        # [True, True, True, True, False, False, False, True],
-        # [True, True, True, True, True, False, False, True],
-        # [True, True, True, True, True, True, False, True],
-        # [True, True, True, True, True, True, True, True],
+
+        [False, False, False, False, True],
+        [False, False, False, True, True],
+        [True, False, False, False, True],
+        [True, True, False, False, True],
+        [True, True, True, False, True],
+        [True, True, True, True, True],
+        [False, False, False, False, False, True],
+        [False, False, False, False, True, True],
+        [True, False, False, False, False, True],
+        [True, True, False, False, False, True],
+        [True, True, True, False, False, True],
+        [True, True, True, True, False, True],
+        [True, True, True, True, True, True],
+        [False, False, False, False, False, False, True],
+        [False, False, False, False, False, True, True],
+        [True, False, False, False, False, False, True],
+        [True, True, False, False, False, False, True],
+        [True, True, True, False, False, False, True],
+        [True, True, True, True, False, False, True],
+        [True, True, True, True, True, False, True],
+        [True, True, True, True, True, True, True],
+        [False, False, False, False, False, False, False, True],
+        [False, False, False, False, False, False, True, True],
+        [True, False, False, False, False, False, False, True],
+        [True, True, False, False, False, False, False, True],
+        [True, True, True, False, False, False, False, True],
+        [True, True, True, True, False, False, False, True],
+        [True, True, True, True, True, False, False, True],
+        [True, True, True, True, True, True, False, True],
+        [True, True, True, True, True, True, True, True],
     ] if len(combs) == 0 else combs
 
 
@@ -1058,14 +1089,16 @@ def tuning_model_performance(method, combs=[],score={'recall':'recall', 'accurac
         for comb in featCombs:
             if verbose:
                 print("checking with m=" + str(m) + " and feats: " + str(comb))
-            bestParams, _, _, _, _, _, _,cv_res = tuning_model(method, score, comb, m, kFolds, reduction=reduction, verbose=verbose)
+            bestParams, f, c, ft, ct, _, _, cv_res = tuning_model(method, score, comb, m, kFolds, posAlFile, negAlFile, reduction, verbose, refit, testPosAlFile, testNegAlFile)
 
             if verbose:
                 # print("CV results:", cv_res)
                 print("best params: " + str(bestParams) + "\n")
-            act, set, spt, ac, se, sp, ppv, f1Score, mcc = prediction_test(method, bestParams, m, comb)
-            bests.append({"m": m, "feats": comb, "params": bestParams, "act": act, "set": set, "spt": spt
-                         , "ac": ac, "se": se, "sp": sp, "ppv": ppv, "f1s": f1Score, "mcc": mcc})
+            ac, se, sp, ppv, f1Score, mcc, tpr, tnr, tpr_prod_tnr, act, set, spt, ppvt, f1Scoret, mcct, tprt, tnrt, tpr_prod_tnrt \
+                = prediction_test(method, bestParams, m, comb, kFolds, posAlFile, negAlFile, testPosAlFile, testNegAlFile, printNativeClassReport, f, c, ft, ct)
+
+            bests.append({"m": m, "feats": comb, "params": bestParams, "act": act, "set": set, "spt": spt, "tpr_prod_tnrt": tpr_prod_tnrt, "f1Scoret": f1Scoret
+                         , "ac": ac, "se": se, "sp": sp, "tpr_prod_tnr": tpr_prod_tnr, "f1s": f1Score})
         #por cada m vamos presentando resultados parciales
         print_best_tuning_params(bests)
 

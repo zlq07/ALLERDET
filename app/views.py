@@ -33,8 +33,9 @@ def index():
     form = AminoacidSequencesForm()
     if request.method == "POST" and form.validate_on_submit():
         predictions, protInfo=predict(webApp=True, testSecFile=form.sequences.data,
+                                      testNegAlFile="", #no need align negative test (used to evaluate the model)
                                       method="dt",
-                                      params={'criterion': 'gini', 'max_depth': 5, 'min_samples_leaf': 50},
+                                      params={'criterion': 'gini', 'max_depth': 5, 'min_samples_leaf': 30},
                                       featToExtract=[True])
 
         return render_template('result.html',
