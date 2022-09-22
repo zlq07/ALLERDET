@@ -1,10 +1,14 @@
 {% extends 'base.html' %}
 {% block content %}
 	
-	{% if isAllergen %}
-		<h3>Allergen Data Set</h1>
-	{% else %}
-		<h3>Non-allergen Data Set</h1>
+	{% if isAllergen and isTrain %}
+		<h3>Allergen train Dataset</h3>
+	{% elif not isAllergen and isTrain %}
+		<h3>Non-allergen Train Dataset</h3>
+{#    {% elif isAllergen and not isTrain %}#}
+{#		<h3>Allergen Dataset</h3>#}
+{#    {% else %}#}
+{#		<h3>Non-Allergen Test Dataset</h3>#}
 	{% endif %}
 
 	{% if data %}
