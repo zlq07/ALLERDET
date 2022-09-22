@@ -42,8 +42,6 @@ def index():
           },
           featToExtract=[True, False, False, False, False, False, False, True])
 
-        predictions = ["Probable allergen" if p==1 else "Non-allergen" for p in predictions]
-
         return render_template('result.html',
                                allPred=predictions,
                                protInfo=protInfo)
@@ -78,8 +76,8 @@ def getDataSet(allergen=True, train=True):
     if allergen and train:
         filename+="allergens_data_set.fasta"
     elif not allergen and train:
-        filename+="non_allergens_data_set.fasta"
-    if allergen and not train:
+        filename+="nonallergens_data_set.fasta"
+    elif allergen and not train:
         filename+="test_allergens_data_set.fasta"
     else:
         filename+="test_nonallergens_data_set.fasta"

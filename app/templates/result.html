@@ -21,21 +21,21 @@
   					 <a href="{{ ''.join(['http://www.uniprot.org/uniprot/', protInfo[loop.index0][1]]) }}" target="_blank">{{protInfo[loop.index0][2]}}</a>
             </th>
             <th class="tg-yw4l">
-              <span style="{{'color:red;' if pred == 'allergen' else 'color:green;'}}">{{pred}}</span>
+              <span style="{{'color:red;' if pred == 1 else 'color:green;'}}">{{ "Probable allergen" if pred == 1 else "Non-allergen" }}</span>
             </th>
   				{% elif protInfo[loop.index0][0]=="gi" %}
             <th class="tg-yw4l tg-left">
   					 <a href="{{ ''.join(['http://www.ncbi.nlm.nih.gov/protein/', protInfo[loop.index0][1]]) }}" target="_blank">{{protInfo[loop.index0][2]}}</a>
             </th>
             <th class="tg-yw4l">
-              <span style="{{'color:red;' if pred == 'allergen' else 'color:green;'}}">{{pred}}</span>
+              <span style="{{'color:red;' if pred == 1 else 'color:green;'}}">{{ "Probable allergen" if pred == 1 else "Non-allergen" }}</span>
             </th>
   				{% else %}
             <th class="tg-yw4l tg-left">
 					   <span>{{protInfo[loop.index0][0]}}</span>
             </th>
             <th class="tg-yw4l">
-             <span style="{{'color:red;' if pred == 'allergen' else 'color:green;'}}">{{pred}}</span>
+             <span style="{{'color:red;' if pred == 1 else 'color:green;'}}">{{ "Probable allergen" if pred == 1 else "Non-allergen" }}</span>
             </th>
   				{% endif %}
 
