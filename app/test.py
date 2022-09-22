@@ -409,7 +409,16 @@ if __name__ == '__main__':
     tuning_model_performance("dt", maxM=1, kFolds=3, verbose=True, score={'tpr_prod_tnr':make_scorer(tpr_prod_tnr_score), 'accuracy': make_scorer(accuracy_score)}, refit="tpr_prod_tnr") #, posAlFile=oldAllergensAlgn, negAlFile=oldNonAllergensAlg, testPosAlFile=oldtestAllergensAlgn, testNegAlFile=oldtestNonAllergensAlg)
     tuning_model_performance("rbm", maxM=1, kFolds=3, verbose=True, score={'tpr_prod_tnr':make_scorer(tpr_prod_tnr_score), 'accuracy': make_scorer(accuracy_score)}, refit="tpr_prod_tnr") #, posAlFile=oldAllergensAlgn, negAlFile=oldNonAllergensAlg, testPosAlFile=oldtestAllergensAlgn, testNegAlFile=oldtestNonAllergensAlg)
 
-    tuning_model_performance("nb", maxM=1, verbose=True)
+
+    #save best model
+    from app.preprocessing import save_best_model
+    save_best_model()
+
+    from app.predict import predict
+    predictions, protInfo, _, _, _, _, _, _, _, _, _ = predict(webApp=True, featToExtract=[True, False, False, False, False, False, False, True], method="rbm")
+
+
+   tuning_model_performance("nb", maxM=1, verbose=True)
     tuning_model_performance("knn", maxM=1, verbose=True)
     tuning_model_performance("mlp", maxM=1, verbose=True)
     tuning_model_performance("rbm", maxM=1, reduction=500,  verbose=True, score={'tpr':make_scorer(tpr_score), 'accuracy': make_scorer(accuracy_score)}, refit='recall')

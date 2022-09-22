@@ -798,7 +798,8 @@ def predict(X_train=[], y_train=[], protInfo_train=[], X_test=[], y_test=[], pro
             , plotSurface=False, m=1, crossVal=False, testLength=0.05
             , holdOutTest=200, leaveOneOut=False, compLimits=False
             , showAllPredictions=False, kFolds=0, nExperiments=1, plotModel=False, figSameColor=False
-            , printNativeClassReport=False):
+            , printNativeClassReport=False
+            , best_model_path='best_model/model.joblib'):
     '''
     Descripción:
     Programa principal, encargado de extraer las alineaciones de los conjuntos de datos usados,
@@ -854,22 +855,31 @@ def predict(X_train=[], y_train=[], protInfo_train=[], X_test=[], y_test=[], pro
     Salida:
     :return Devuelve la tupla ([clasificacion predicha], [nombres de las proteínas])
     '''
-
+    ac, se, sp, ppv, f1Score, mcc, tpr, tnr, tpr_prod_tnr = None, None, None, None, None, None, None, None, None
     if webApp:
         print("Creating test alignment file")
         create_alignments_files(aligPos=False
-            , aligNeg=False, aligTest=True, testSecFile=testSecFile)
+            , aligNeg=False, aligTest=True, testSecFile=testSecFile, testAlFile="a_web_app.txt")
 
-    if X_train==[] and y_train==[] and protInfo_train==[] and X_test==[] and y_test==[] and protInfo_test==[]:
-        print("Extracting features......")
-        f,c,ft,ct,p,pt = extract_all_features_and_classifications(featToExtract, m,posAlFile, negAlFile, testAlFile, testNegAlFile, testClass, testNegClass)
+        from joblib import load
+        model = load(best_model_path)
+        _,_, x_web_test, _, p, pt = extract_all_features_and_classifications(featToExtract, m, "", "",
+                                                                       "a_web_app.txt", "", testClass,
+                                                                       testNegClass)
+        if method != "rbm":
+            x_web_test = np.array(x_web_test)
+        cp=model.predict(x_web_test)
     else:
-        print("Features indicated....")
-        f, c, ft, ct, p, pt = X_train, y_train, X_test, y_test, protInfo_train, protInfo_test
+        if X_train==[] and y_train==[] and protInfo_train==[] and X_test==[] and y_test==[] and protInfo_test==[]:
+            print("Extracting features......")
+            f,c,ft,ct,p,pt = extract_all_features_and_classifications(featToExtract, m,posAlFile, negAlFile, testAlFile, testNegAlFile, testClass, testNegClass)
+        else:
+            print("Features indicated....")
+            f, c, ft, ct, p, pt = X_train, y_train, X_test, y_test, protInfo_train, protInfo_test
 
-    #realizar la predicción
-    print("Predicting...")
-    f,c,ft,ct,cp,ac,se,sp,ppv,f1Score,mcc,tpr,tnr,tpr_prod_tnr=perform_prediction(method, f, c, ft, ct, kFolds, params, plotModel=plotModel, printNativeClassReport=printNativeClassReport)
+        #realizar la predicción
+        print("Predicting...")
+        f,c,ft,ct,cp,ac,se,sp,ppv,f1Score,mcc,tpr,tnr,tpr_prod_tnr=perform_prediction(method, f, c, ft, ct, kFolds, params, plotModel=plotModel, printNativeClassReport=printNativeClassReport)
 
     if showAllPredictions:
         print("Predicción de la clasificación: "+str(cp))

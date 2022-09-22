@@ -308,3 +308,14 @@ def features_for_extracting_to_string(featToExtract=[True, True]):
                 feat = "E value"
             res.append(feat)
     return ",".join(res)
+
+def save_best_model(save_path='best_model/model.joblib', featToExtract=[True, False, False, False, False, False, False, True], method="rbm", params={
+        'rbm__n_iter': 20, 'rbm__n_components': 50, 'rbm__learning_rate': 0.1
+        , "mod": "dt"
+        , "mod_par": {'criterion': 'gini', 'max_depth': 5, 'min_samples_leaf': 1}}):
+    from joblib import dump, load
+    from .predict import create_prediction_model
+    X, y, _, _, _, _ = extract_all_features_and_classifications(featToExtract, testAlFile="", testNegAlFile="")
+    model = create_prediction_model("rbm", params)
+    model.fit(X, y)
+    dump(model, save_path)
